@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/covid19/" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="新型コロナウイルス 国内感染の状況" />
+		<meta property="og:description" content="日本国内において現在確定している新型コロナウイルス（COVID-19）の感染状況を厚生労働省の報道発表資料からビジュアル化した" />
+		<meta property="og:image" content="https://toyokeizai.net/sp/visual/tko/covid19/img/image_1200_630.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css"/>
+		<title>新型コロナウイルス 国内感染の状況</title>
+    <script src="https://tk.ismcdn.jp/sp/js/td_sdk.js" type="text/javascript" async></script>
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-6066080-9']);_gaq.push(['_setDomainName','toyokeizai.net']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+    <script>
+    dataLayer =[{
+      'pageClass' : 'ビジュアルページ',
+      'articleId' : '332995',
+      'articlePubdate' : '2020/02/27 06:00:00',
+      'articlePubFrom' : '2020/02/27 06:00:00',
+      'articleTitle' : '国内｢新型コロナウイルス｣患者の発生状況',
+      'articleAuthor' : '荻原 和樹',
+      'articleCategoryClass2' : 'ビジュアルページ'
+    }];
+    </script>
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5CJSV5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5CJSV5');</script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="title-block">
+        <img id="img-logo" src="img/logo-tko-white.png" />
+        <h2><span>新型コロナウイルス</span><span>国内感染の状況</span></h2>
+        <p>日本国内において現在確定している新型コロナウイルス（COVID-19）の感染状況を厚生労働省の報道発表資料からビジュアル化した。</p>
+        <p>制作：<a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F+%E5%92%8C%E6%A8%B9" target="_blank">荻原 和樹</a>（東洋経済オンライン編集部）</p>
+        <p>最終更新：2月26日</p>
+      </div>
+      <div id="main-block">
+        <div class="row">
+          <div id="transition-block">
+            <h3>感染者数の推移</h3>
+            <div class="switches">
+              <div class="switch selected" value="total">累計</div>
+              <div class="switch" value="new">新規</div>
+            </div>
+            <div id="transition-chart"></div>
+          </div>
+          <div id="demographic-block">
+            <h3>年齢・性別</h3>
+            <div id="age-chart"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div id="region-block">
+            <h3>感染が報告されている都道府県</h3>
+  					<div id="japan-map"></div>
+            <div id="region-chart"></div>
+          </div>
+        </div>
+      </div>
+      <div id="footer-block">
+        <p class="notes">注）武漢からの政府チャーター便帰国者、およびダイヤモンド・プリンセス号の乗客・乗員は除く。感染が報告されている都道府県からは国外居住者は除く。</p>
+        <p class="notes">データソース：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。</p>
+        <p class="notes">更新履歴・ソースコード：<a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://toyokeizai.net/sp/visual/tko/covid19/csv/20200225.csv" download="20200225.csv" target="_blank">CSVデータのダウンロード</a></p>
+        <div id="social-buttons">
+          <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
+          <a class="twitter"  href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
+        </div>
+        <p>Copyright &copy; Toyo Keizai Inc. All Rights Reserved.</p>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/jquery.japan-map.min.js"></script>
+    <script src="js/script.min.js"></script>
+  </body>
+</html>
