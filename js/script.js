@@ -16,8 +16,8 @@ const init = () => {
   const drawTransitionChart = () => {
     const dates = () => {
       let ret = [];
-      let start = new Date("2020-1-15");
-      let end   = new Date("2020-2-25");
+      let start = new Date("2020-01-15T00:00:00+09:00");
+      let end   = new Date("2020-02-25T00:00:00+09:00");
 
       for(let t = start; t <= end; t.setDate(t.getDate() + 1)) {
         let m = t.getMonth() + 1;
