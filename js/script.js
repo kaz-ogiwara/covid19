@@ -1,8 +1,8 @@
 let gData;
 let gRegions = [];
 
-const ageLabels = ["80代","70代","60代","50代","40代","30代","20代","10代","10歳未満"];
-
+const LAST_DATE = "2020-02-26T00:00:00+09:00";
+const AGE_LABELS = ["80代","70代","60代","50代","40代","30代","20代","10代","10歳未満"];
 const COLORS = {
   default: "#3dc",
   gender: {
@@ -17,7 +17,7 @@ const init = () => {
     const dates = () => {
       let ret = [];
       let start = new Date("2020-01-15T00:00:00+09:00");
-      let end   = new Date("2020-02-25T00:00:00+09:00");
+      let end   = new Date(LAST_DATE);
 
       for(let t = start; t <= end; t.setDate(t.getDate() + 1)) {
         let m = t.getMonth() + 1;
@@ -336,7 +336,7 @@ const init = () => {
       if (patient[5] == "男") gender = "m";
       if (patient[5] == "女") gender = "f";
 
-      ageLabels.forEach(function(a, i){
+      AGE_LABELS.forEach(function(a, i){
         if (patient[4] === a) {
           ageidx = i;
         }
@@ -350,7 +350,7 @@ const init = () => {
     let config = {
       type: "horizontalBar",
       data: {
-        labels: ageLabels,
+        labels: AGE_LABELS,
         datasets: [{
           label: "女性",
           backgroundColor: COLORS.gender.f,
