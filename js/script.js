@@ -1,7 +1,7 @@
 let gData;
 let gRegions = [];
 
-const LAST_DATE = "2020-02-26T00:00:00+09:00";
+const LAST_DATE = "2020-02-27T00:00:00+09:00";
 const AGE_LABELS = ["80代","70代","60代","50代","40代","30代","20代","10代","10歳未満"];
 const COLORS = {
   default: "#3dc",
@@ -190,7 +190,7 @@ const init = () => {
         }]
       },
       options: {
-        aspectRatio: 1.0,
+        aspectRatio: 0.8,
         responsive: true,
         legend: {
           display: false
@@ -237,8 +237,8 @@ const init = () => {
       }
     };
 
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.2;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.4;
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.0;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.2;
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
