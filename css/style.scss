@@ -88,6 +88,7 @@ html,body {
 
   #main-block {
     margin: 0 auto;
+    max-width: 1280px;
 
     @media only screen and (min-width: 960px) {
       display: flex;
@@ -96,18 +97,24 @@ html,body {
   }
 
   .row {
+    margin: 0 auto;
+    padding: 0 16px;
+    max-width: 640px;
+
     @media only screen and (min-width: 960px) {
       width: 50%;
+
+      &:nth-child(1) {padding: 0 8px 0 16px;}
+      &:nth-child(2) {padding: 0 16px 0 8px;}
     }
   }
-
 
   #region-block,
   #demographic-block,
   #transition-block {
     margin: 0 auto;
     margin-top: 16px;
-    width: calc(100% - 32px);
+    width: 100%;
     max-width: 640px;
     padding: 8px 16px;
     background-color: rgb(36,42,60);
@@ -138,32 +145,7 @@ html,body {
     }
   }
 
-
-  #region-block {
-    @media only screen and (min-width: 960px) {
-      margin-left: 8px;
-    }
-  }
-
-  #demographic-block {
-    @media only screen and (min-width: 960px) {
-      margin-right: 8px;
-    }
-  }
-
   #transition-block {
-    margin: 0 auto;
-    margin-top: 16px;
-    padding-top: 8px;
-    width: calc(100% - 32px);
-    background-color: rgb(36,42,60);
-    border: none;
-    border-radius: 4px;
-
-    @media only screen and (min-width: 960px) {
-      margin-right: 8px;
-    }
-
     .switches {
       margin: 0 auto;
       margin-top: 16px;
