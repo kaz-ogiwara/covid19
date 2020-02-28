@@ -5,6 +5,11 @@ const LAST_DATE = "2020-02-27T00:00:00+09:00";
 const AGE_LABELS = ["80代","70代","60代","50代","40代","30代","20代","10代","10歳未満"];
 const COLORS = {
   default: "#3dc",
+  high: "#f80",
+  middle: "#fb3",
+  low: "#fe9",
+  gray: "#666",
+  others: "rgba(255,255,255,0.4)",
   gender: {
     f: "#FE9",
     m: "#2B9"
@@ -124,6 +129,24 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
 
+  const getPrefColor = (prefName) => {
+    let pref = gRegions.find(region => region.label === prefName);
+    if (pref === undefined) {
+      return COLORS.gray;
+    }
+
+    let prefNumber = pref.value;
+    if (prefNumber >= 45) {
+      return COLORS.high;
+    } else if (prefNumber >= 30) {
+      return COLORS.middle;
+    } else if  (prefNumber >= 15) {
+      return COLORS.low;
+    } else if (prefNumber > 0) {
+      return COLORS.default;
+    }
+  }
+
   const drawRegionChart = () => {
     const convertRegionName = (name) => {
       if (name === "東京") {name = "東京都";}
@@ -171,11 +194,10 @@ const init = () => {
     gRegions.forEach(function(region, i){
       cLabels.push(region.label);
       cValues.push(region.value);
-
       if (region.label === "中国居住者" || region.label === "調査中") {
-        cColors.push("rgba(255,255,255,0.4)");
+        cColors.push(COLORS.others);
       } else {
-        cColors.push(COLORS.default);
+        cColors.push(getPrefColor(region.label));
       }
     });
 
@@ -245,14 +267,6 @@ const init = () => {
   }
 
   const drawJapanMap = () => {
-    const getPrefColor = (name) => {
-      let ret = "#666";
-      gRegions.forEach(function(region, i){
-        if (region.label === name) ret = COLORS.default;
-      });
-      return ret;
-    }
-
     let width = $("#japan-map").width();
     let prefs = [
       {code:1,jp:"北海道",en:"Hokkaido",color:getPrefColor("北海道"),hoverColor:getPrefColor("北海道"),prefectures:[1]},
