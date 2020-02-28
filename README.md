@@ -11,7 +11,7 @@
 
 ### CSVデータ
 - 使用したデータはCSVファイルでも公開しています。
-- https://toyokeizai.net/sp/visual/tko/covid19/csv/20200225.csv
+- https://toyokeizai.net/sp/visual/tko/covid19/csv/data.csv
 
 ### データの更新
 - 厚生労働省の発表にあわせて不定期で更新する予定です。
