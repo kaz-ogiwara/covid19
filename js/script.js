@@ -15,6 +15,11 @@ const COLORS = {
     m: "#2B9"
   }
 };
+const THRESHOLDS = {
+  high: 45,
+  middle: 30,
+  low: 15,
+};
 
 
 const init = () => {
@@ -130,17 +135,17 @@ const init = () => {
   }
 
   const getPrefColor = (prefName) => {
-    let pref = gRegions.find(region => region.label === prefName);
+    const pref = gRegions.find(region => region.label === prefName);
     if (pref === undefined) {
       return COLORS.gray;
     }
 
-    let prefNumber = pref.value;
-    if (prefNumber >= 45) {
+    const prefNumber = pref.value;
+    if (prefNumber >= THRESHOLDS.high) {
       return COLORS.high;
-    } else if (prefNumber >= 30) {
+    } else if (prefNumber >= THRESHOLDS.middle) {
       return COLORS.middle;
-    } else if  (prefNumber >= 15) {
+    } else if  (prefNumber >= THRESHOLDS.low) {
       return COLORS.low;
     } else if (prefNumber > 0) {
       return COLORS.default;
