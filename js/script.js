@@ -15,9 +15,9 @@ const COLORS = {
 };
 
 
-const init = () => {
-  const drawTransitionChart = () => {
-    const dates = () => {
+const init = function() {
+  const drawTransitionChart = function() {
+    const dates = function() {
       let ret = [];
       let start = new Date("2020-01-15T00:00:00+09:00");
       let end   = new Date(LAST_DATE);
@@ -127,8 +127,8 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
 
-  const drawRegionChart = (targetRegion, isAnimated) => {
-    const convertRegionName = (name) => {
+  const drawRegionChart = function(targetRegion, isAnimated) {
+    const convertRegionName = function(name) {
       if (name === "東京") {name = "東京都";}
       if (name === "京都") {name = "京都府";}
       if (name === "大阪") {name = "大阪府";}
@@ -251,7 +251,7 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
 
-  const getPrefColor = (name) => {
+  const getPrefColor = function(name) {
     let ret = "#666";
     gRegions.forEach(function(region, i){
       if (region.label === name) {
@@ -262,7 +262,7 @@ const init = () => {
     return ret;
   }
 
-  const drawJapanMap = () => {
+  const drawJapanMap = function() {
     const WIDTH = $("#japan-map").width();
     const PREFECTURES = [
       {code:1,jp:"北海道",en:"Hokkaido"},
@@ -343,7 +343,7 @@ const init = () => {
     });
   }
 
-  const drawDemographicChart = () => {
+  const drawDemographicChart = function() {
     $wrapper = $("#age-chart");
     $wrapper.empty();
     $wrapper.html('<canvas></canvas>');
@@ -445,7 +445,7 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
 
-  const loadData = () => {
+  const loadData = function() {
     $.getJSON("data/data.json", function(data){
       gData = data;
       drawTransitionChart();
@@ -456,7 +456,7 @@ const init = () => {
     })
   }
 
-  const bindEvents = () => {
+  const bindEvents = function() {
     $("#transition-block").find(".switch").on("click",function(){
       $("#transition-block").find(".switch").removeClass("selected");
       $(this).addClass("selected");
