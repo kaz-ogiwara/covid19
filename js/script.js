@@ -449,7 +449,7 @@ const init = () => {
     $.getJSON("data/data.json", function(data){
       gData = data;
       drawTransitionChart();
-      drawRegionChart("", true);
+      drawRegionChart("", false);
       drawJapanMap();
       drawDemographicChart();
       $("#container").addClass("show");
