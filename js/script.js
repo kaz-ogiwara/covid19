@@ -197,7 +197,9 @@ const init = () => {
       },
       options: {
         aspectRatio: 0.8,
-        animation: isAnimated,
+        animation: {
+          duration: isAnimated
+          },
         responsive: true,
         legend: {
           display: false
@@ -338,7 +340,7 @@ const init = () => {
       movesIslands : true,
       fontSize : 11,
       onSelect : function(data){
-        drawRegionChart(data.name, false);
+        drawRegionChart(data.name, 0);
       }
     });
   }
@@ -449,7 +451,7 @@ const init = () => {
     $.getJSON("data/data.json", function(data){
       gData = data;
       drawTransitionChart();
-      drawRegionChart("", true);
+      drawRegionChart("", 1000);
       drawJapanMap();
       drawDemographicChart();
       $("#container").addClass("show");
