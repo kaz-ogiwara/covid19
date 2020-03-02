@@ -1,13 +1,16 @@
 let gData;
 let gRegions = [];
 
-const LAST_DATE = "2020-02-29T00:00:00+09:00";
-const AGE_LABELS = ["80代","70代","60代","50代","40代","30代","20代","10代","10歳未満"];
 const REGION_THRESHOLD = 10;
 const COLORS = {
-  default: "#33ddcc",
+  default: "#3DC",
   dark: "#399",
-  selected: "#ec2",
+  patient: "#ED9",
+  discharge: "#3CA",
+  test: "#3DC",
+  dead: "#E95",
+  positive: "#E95",
+  selected: "#EC2",
   gender: {
     f: "#FE9",
     m: "#2B9"
@@ -16,23 +19,8 @@ const COLORS = {
 
 
 const init = () => {
-  const drawTransitionChart = () => {
-    const dates = () => {
-      let ret = [];
-      let start = new Date("2020-01-15T00:00:00+09:00");
-      let end   = new Date(LAST_DATE);
-
-      for(let t = start; t <= end; t.setDate(t.getDate() + 1)) {
-        let m = t.getMonth() + 1;
-        let d = t.getDate();
-        let s = m.toString() + "/" + d.toString();
-        ret.push(s);
-      }
-
-      return ret;
-    }
-
-    let $wrapper = $("#transition-chart");
+  const drawPatientsChart = () => {
+    let $wrapper = $("#patients-chart");
     $wrapper.empty();
     $wrapper.html("<canvas></canvas>");
     let $canvas = $wrapper.find("canvas")[0];
@@ -40,10 +28,21 @@ const init = () => {
     let config = {
       type: "bar",
       data: {
-        labels: dates(),
+        labels: [],
         datasets: [{
+          label: "死亡数",
+          backgroundColor: COLORS.dead,
+          borderColor: "transparent",
+          data: []
+        },{
+          label: "退院数",
+          backgroundColor: COLORS.discharge,
+          borderColor: "transparent",
+          data: []
+        },{
           label: "患者数",
-          backgroundColor: COLORS.default,
+          backgroundColor: COLORS.patient,
+          borderColor: "transparent",
           data: []
         }]
       },
@@ -51,7 +50,10 @@ const init = () => {
         aspectRatio: 1.2,
         responsive: true,
         legend: {
-          display: false
+          display: true,
+          labels: {
+            fontColor: "rgba(255, 255, 255, 0.7)"
+          }
         },
         title: {
           display: false
@@ -59,13 +61,17 @@ const init = () => {
         tooltips: {
           xPadding: 24,
           yPadding: 12,
-          displayColors: true,
+          displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              return tooltipItem[0].xLabel;
+              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点";
             },
             label: function(tooltipItem, data){
-              return tooltipItem.yLabel + "名";
+              let row = gData.transition[tooltipItem.index];
+              let ret = ["患者数：" + (row[5]) + "名"];
+                  ret.push("　うち退院：" + row[6] + "名");
+                  ret.push("　同　死亡：" + row[7] + "名");
+              return ret;
             }
           }
         },
@@ -81,7 +87,114 @@ const init = () => {
           }],
           yAxes: [{
             location: "bottom",
+            stacked: false,
+            gridLines: {
+              display: true,
+              color: "rgba(255, 255, 255, 0.3)"
+            },
+            ticks: {
+              beginAtZero: true,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                return value.toString() + " 名";
+              }
+            }
+          }]
+        }
+      }
+    };
+
+    if ($wrapper.width() >= 400) config.options.aspectRatio = 1.5;
+    if ($wrapper.width() >= 600) config.options.aspectRatio = 1.8;
+
+    gData.transition.forEach(function(date, i){
+      config.data.labels.push(date[0] + "/" + date[1]);
+
+      if ($("#patients-block").find(".switch.selected").attr("value") === "new" && i >= 1) {
+        let prev = gData.transition[i - 1];
+        config.data.datasets[2].data.push(date[5] - prev[5]);
+        config.data.datasets[1].data.push(date[6] - prev[6]);
+        config.data.datasets[0].data.push(date[7] - prev[7]);
+      } else {
+        config.data.datasets[2].data.push(date[5]);
+        config.data.datasets[1].data.push(date[6]);
+        config.data.datasets[0].data.push(date[7]);
+      }
+    });
+
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
+
+  const drawSurveysChart = () => {
+    let $wrapper = $("#surveys-chart");
+    $wrapper.empty();
+    $wrapper.html("<canvas></canvas>");
+    let $canvas = $wrapper.find("canvas")[0];
+
+    let config = {
+      type: "bar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: "有症数＝患者数",
+          backgroundColor: COLORS.patient,
+          borderColor: "transparent",
+          data: []
+        },{
+          label: "陽性者数",
+          backgroundColor: COLORS.positive,
+          borderColor: "transparent",
+          data: []
+        },{
+          label: "検査数",
+          backgroundColor: COLORS.test,
+          borderColor: "transparent",
+          data: []
+        }]
+      },
+      options: {
+        aspectRatio: 1.2,
+        responsive: true,
+        legend: {
+          display: true,
+          labels: {
+            fontColor: "rgba(255, 255, 255, 0.7)"
+          }
+        },
+        title: {
+          display: false
+        },
+        tooltips: {
+          xPadding: 24,
+          yPadding: 12,
+          displayColors: false,
+          callbacks: {
+            title: function(tooltipItem){
+              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点";
+            },
+            label: function(tooltipItem, data){
+              let row = gData.transition[tooltipItem.index];
+              let ret = ["PCR検査数：" + (row[3]) + "名"];
+                  ret.push("　うち陽性：" + row[4] + "名");
+                  ret.push("　同　有症：" + row[5] + "名");
+              return ret;
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
             stacked: true,
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.7)"
+            }
+          }],
+          yAxes: [{
+            location: "bottom",
+            stacked: false,
             gridLines: {
               display: true,
               color: "rgba(255, 255, 255, 0.3)"
@@ -101,228 +214,43 @@ const init = () => {
     if ($wrapper.width() >= 400) config.options.aspectRatio = 1.5;
     if ($wrapper.width() >= 600) config.options.aspectRatio = 1.8;
 
-    let sdata = [];
+    gData.transition.forEach(function(date, i){
+      config.data.labels.push(date[0] + "/" + date[1]);
 
-    dates().forEach(function(d, j){
-      sdata.push(0);
+
+      if ($("#surveys-block").find(".switch.selected").attr("value") === "new" && i >= 1) {
+        let prev = gData.transition[i - 1];
+        config.data.datasets[2].data.push(date[3] - prev[3]);
+        config.data.datasets[1].data.push(date[4] - prev[4]);
+        config.data.datasets[0].data.push(date[5] - prev[5]);
+      } else {
+        config.data.datasets[2].data.push(date[3]);
+        config.data.datasets[1].data.push(date[4]);
+        config.data.datasets[0].data.push(date[5]);
+      }
     });
-
-    gData.forEach(function(patient, i){
-      dates().forEach(function(d, j){
-        if (patient[3] === d) {
-          if ($("#transition-block").find(".switch.selected").attr("value") === "total") {
-            for (let k = j; k < sdata.length; k++) {
-              sdata[k]++;
-            }
-          } else {
-            sdata[j]++;
-          }
-        }
-      });
-    });
-
-    config.data.datasets[0].data = sdata;
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
   }
 
-  const drawRegionChart = (targetRegion, isAnimated) => {
-    const convertRegionName = (name) => {
-      if (name === "東京") {name = "東京都";}
-      if (name === "京都") {name = "京都府";}
-      if (name === "大阪") {name = "大阪府";}
-      if ( name !== "東京都"
-        && name !== "大阪府"
-        && name !== "京都府"
-        && name !== "北海道"
-        && name !== "調査中"
-        && name.slice(-1) !== "県") {
-          name = name + "県";
-      }
-      if (name.indexOf("中国") !== -1) {name = "中国居住者";}
-      return name;
-    }
-
-    let $wrapper = $("#region-chart");
-    $wrapper.empty();
-    $wrapper.html('<canvas></canvas>');
-    let $canvas = $wrapper.find("canvas")[0];
-
-    gRegions = [];
-    gData.forEach(function(patient, i){
-      let hit = -1;
-      gRegions.forEach(function(region, j){
-        if (region.label == convertRegionName(patient[6])) hit = j;
-      });
-
-      if (hit >= 0) {
-        gRegions[hit].value++;
-      } else {
-        gRegions.push({label:convertRegionName(patient[6]),value:1});
-      }
-    });
-
-    gRegions.sort(function(a, b) {
-      if (a.value <= b.value)   return 1;
-      return -1;
-    });
-
-    let cLabels = [];
-    let cValues = [];
-    let cColors = [];
-
-    gRegions.forEach(function(region, i){
-      cLabels.push(region.label);
-      cValues.push(region.value);
-
-      if (region.label === "中国居住者" || region.label === "調査中") {
-        cColors.push("rgba(255,255,255,0.4)");
-      } else if (region.label === targetRegion) {
-        cColors.push(COLORS.selected);
-      } else {
-        cColors.push(getPrefColor(region.label));
-      }
-    });
-
-    let config = {
-      type: "horizontalBar",
-      data: {
-        labels: cLabels,
-        datasets: [{
-          label: "",
-          backgroundColor: cColors,
-          data: cValues
-        }]
-      },
-      options: {
-        aspectRatio: 0.8,
-        animation: {
-          duration: isAnimated
-          },
-        responsive: true,
-        legend: {
-          display: false
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: true,
-          callbacks: {
-            title: function(tooltipItem){
-              return tooltipItem[0].yLabel;
-            },
-            label: function(tooltipItem, data){
-              return tooltipItem.xLabel + "名";
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            position: "top",
-            gridLines: {
-              color: "rgba(255,255,255,0.2)"
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return value.toString() + " 名";
-              }
-            }
-          }],
-          yAxes: [{
-            gridLines: {
-              color: "rgba(255,255,255,0.1)"
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)",
-            }
-          }]
-        }
-      }
-    };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.0;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.2;
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
-
-  const getPrefColor = (name) => {
-    let ret = "#666";
-    gRegions.forEach(function(region, i){
-      if (region.label === name) {
-        ret = COLORS.default;
-      }
-    });
-
+  const getPrefColor = (value) => {
+    let ret = "rgba(90, 90, 90, 0.3)";
+    if (value >= 1)  ret = COLORS.dark;
+    if (value >= REGION_THRESHOLD) ret = COLORS.default;
     return ret;
   }
 
   const drawJapanMap = () => {
     const WIDTH = $("#japan-map").width();
-    const PREFECTURES = [
-      {code:1,jp:"北海道",en:"Hokkaido"},
-      {code:2,jp:"青森県",en:"Aomori"},
-      {code:3,jp:"岩手県",en:"Iwate"},
-      {code:4,jp:"宮城県",en:"Miyagi"},
-      {code:5,jp:"秋田県",en:"Akita"},
-      {code:6,jp:"山形県",en:"Yamagata"},
-      {code:7,jp:"福島県",en:"Fukushima"},
-      {code:8,jp:"茨城県",en:"Ibaraki"},
-      {code:9,jp:"栃木県",en:"Tochigi"},
-      {code:10,jp:"群馬県",en:"Gunma"},
-      {code:11,jp:"埼玉県",en:"Saitama"},
-      {code:12,jp:"千葉県",en:"Chiba"},
-      {code:13,jp:"東京都",en:"Tokyo"},
-      {code:14,jp:"神奈川県",en:"Kanagawa"},
-      {code:15,jp:"新潟県",en:"Niigata"},
-      {code:16,jp:"富山県",en:"Toyama"},
-      {code:17,jp:"石川県",en:"Ishikawa"},
-      {code:18,jp:"福井県",en:"Fukui"},
-      {code:19,jp:"山梨県",en:"Yamanashi"},
-      {code:20,jp:"長野県",en:"Nagano"},
-      {code:21,jp:"岐阜県",en:"Gifu"},
-      {code:22,jp:"静岡県",en:"Shizuoka"},
-      {code:23,jp:"愛知県",en:"Aichi"},
-      {code:24,jp:"三重県",en:"Mie"},
-      {code:25,jp:"滋賀県",en:"Shiga"},
-      {code:26,jp:"京都府",en:"Kyoto"},
-      {code:27,jp:"大阪府",en:"Osaka"},
-      {code:28,jp:"兵庫県",en:"Hyogo"},
-      {code:29,jp:"奈良県",en:"Nara"},
-      {code:30,jp:"和歌山県",en:"Wakayama"},
-      {code:31,jp:"鳥取県",en:"Tottori"},
-      {code:32,jp:"島根県",en:"Shimane"},
-      {code:33,jp:"岡山県",en:"Okayama"},
-      {code:34,jp:"広島県",en:"Hiroshima"},
-      {code:35,jp:"山口県",en:"Yamaguchi"},
-      {code:36,jp:"徳島県",en:"Tokushima"},
-      {code:37,jp:"香川県",en:"Kagawa"},
-      {code:38,jp:"愛媛県",en:"Ehime"},
-      {code:39,jp:"高知県",en:"Kochi"},
-      {code:40,jp:"福岡県",en:"Fukuoka"},
-      {code:41,jp:"佐賀県",en:"Saga"},
-      {code:42,jp:"長崎県",en:"Nagasaki"},
-      {code:43,jp:"熊本県",en:"Kumamoto"},
-      {code:44,jp:"大分県",en:"Oita"},
-      {code:45,jp:"宮崎県",en:"Miyazaki"},
-      {code:46,jp:"鹿児島県",en:"Kagoshima"},
-      {code:47,jp:"沖縄県",en:"Okinawa"}
-    ];
 
     let prefs = [];
-    PREFECTURES.forEach(function(pref, i){
+    gData.prefectures.forEach(function(pref, i){
       prefs.push({
         code: pref.code,
         jp: pref.jp,
         en: pref.en,
-        color: getPrefColor(pref.jp),
+        color: getPrefColor(pref.value),
         hoverColor: COLORS.selected,
         prefectures: [pref.code]
       });
@@ -339,57 +267,34 @@ const init = () => {
       showsPrefectureName: false,
       movesIslands : true,
       fontSize : 11,
-      onSelect : function(data){
-        drawRegionChart(data.name, 0);
+      onHover : function(data){
+        drawRegionChart(data.code, 0);
       }
     });
   }
 
-  const drawDemographicChart = () => {
-    $wrapper = $("#age-chart");
+  const drawDemographyChart = () => {
+    $wrapper = $("#demography-chart");
     $wrapper.empty();
     $wrapper.html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
 
-    let dataValues = {
-      f: [0,0,0,0,0,0,0,0,0,0],
-      m: [0,0,0,0,0,0,0,0,0,0]
-    };
-
-    gData.forEach(function(patient, i){
-      let gender;
-      let ageidx = -1;
-
-      if (patient[5] == "男") gender = "m";
-      if (patient[5] == "女") gender = "f";
-
-      AGE_LABELS.forEach(function(a, i){
-        if (patient[4] === a) {
-          ageidx = i;
-        }
-      });
-
-      if (gender && ageidx >= 0) {
-        dataValues[gender][ageidx]++;
-      }
-    });
-
     let config = {
       type: "horizontalBar",
       data: {
-        labels: AGE_LABELS,
+        labels: [],
         datasets: [{
           label: "女性",
           backgroundColor: COLORS.gender.f,
-          data: dataValues.f
+          data: []
         },{
           label: "男性",
           backgroundColor: COLORS.gender.m,
-          data: dataValues.m
+          data: []
         }]
       },
       options: {
-        aspectRatio: 1.0,
+        aspectRatio: 0.9,
         responsive: true,
         legend: {
           display: true,
@@ -440,8 +345,106 @@ const init = () => {
       }
     };
 
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.2;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.4;
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.1;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
+
+    let dsi = 0;
+    for (let gender in gData.demography) {
+      for (let age in gData.demography[gender]) {
+        let value = gData.demography[gender][age];
+        if (dsi === 0) config.data.labels.push(age);
+        config.data.datasets[dsi].data.push(value);
+      }
+      dsi++;
+    }
+
+    let ctx = $canvas.getContext('2d');
+    window.myChart = new Chart(ctx, config);
+  }
+
+  const drawRegionChart = (targetRegion) => {
+    let $wrapper = $("#region-chart");
+    $wrapper.empty();
+    $wrapper.html('<canvas></canvas>');
+    let $canvas = $wrapper.find("canvas")[0];
+
+    let config = {
+      type: "horizontalBar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: "",
+          backgroundColor: [],
+          data: []
+        }]
+      },
+      options: {
+        aspectRatio: 0.8,
+        animation: {
+          duration: 1000
+        },
+        responsive: true,
+        legend: {
+          display: false
+        },
+        title: {
+          display: false
+        },
+        tooltips: {
+          xPadding: 24,
+          yPadding: 12,
+          displayColors: true,
+          callbacks: {
+            title: function(tooltipItem){
+              return tooltipItem[0].yLabel;
+            },
+            label: function(tooltipItem, data){
+              return tooltipItem.xLabel + "名";
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            position: "top",
+            gridLines: {
+              color: "rgba(255,255,255,0.2)"
+            },
+            ticks: {
+              suggestedMin: 0,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                return value.toString() + " 名";
+              }
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              color: "rgba(255,255,255,0.1)"
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.7)",
+            }
+          }]
+        }
+      }
+    };
+
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.0;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.2;
+    if (targetRegion !== "") config.options.animation.duration = 0;
+
+    gData.prefectures.forEach(function(pref, i){
+      if (pref.value >= 1) {
+        config.data.labels.push(pref.jp);
+        config.data.datasets[0].data.push(pref.value);
+
+        if (targetRegion === pref.code) {
+          config.data.datasets[0].backgroundColor.push(COLORS.selected);
+        } else {
+          config.data.datasets[0].backgroundColor.push(getPrefColor(pref.value));
+        }
+      }
+    });
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
@@ -450,19 +453,21 @@ const init = () => {
   const loadData = () => {
     $.getJSON("data/data.json", function(data){
       gData = data;
-      drawTransitionChart();
-      drawRegionChart("", 1000);
+      drawSurveysChart();
+      drawPatientsChart();
+      drawDemographyChart();
       drawJapanMap();
-      drawDemographicChart();
+      drawRegionChart("");
       $("#container").addClass("show");
     })
   }
 
   const bindEvents = () => {
-    $("#transition-block").find(".switch").on("click",function(){
-      $("#transition-block").find(".switch").removeClass("selected");
+    $(".switch").on("click",function(){
+      $(this).siblings(".switch").removeClass("selected");
       $(this).addClass("selected");
-      drawTransitionChart();
+      if ($(this).closest("#patients-block")[0]) drawPatientsChart();
+      if ($(this).closest("#surveys-block")[0]) drawSurveysChart();
     });
   }
 
