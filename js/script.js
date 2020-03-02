@@ -68,9 +68,23 @@ const init = () => {
             },
             label: function(tooltipItem, data){
               let row = gData.transition[tooltipItem.index];
-              let ret = ["患者数：" + (row[5]) + "名"];
-                  ret.push("　うち退院：" + row[6] + "名");
-                  ret.push("　同　死亡：" + row[7] + "名");
+              let ret;
+              if ($("#patients-block").find(".switch.selected").attr("value") === "new") {
+                const prev = gData.transition[tooltipItem.index - 1];
+                if (tooltipItem.index === 0) {
+                  ret = ["患者数：" + (row[5]) + "名"];
+                  ret.push("退院：" + (row[6]) + "名");
+                  ret.push("死亡：" + (row[7]) + "名");
+                } else {
+                  ret = ["患者数：" + (row[5] - prev[5]) + "名"];
+                  ret.push("退院：" + (row[6] - prev[6]) + "名");
+                  ret.push("死亡：" + (row[7] - prev[7]) + "名");
+                }
+              } else {
+                ret = ["患者数：" + (row[5]) + "名"];
+                ret.push("　うち退院：" + row[6] + "名");
+                ret.push("　同　死亡：" + row[7] + "名");
+              }
               return ret;
             }
           }
@@ -175,9 +189,17 @@ const init = () => {
             },
             label: function(tooltipItem, data){
               let row = gData.transition[tooltipItem.index];
-              let ret = ["PCR検査数：" + (row[3]) + "名"];
+              let ret;
+                if ($("#surveys-block").find(".switch.selected").attr("value") === "new" && tooltipItem.index >= 1) {
+                  const prev = gData.transition[tooltipItem.index - 1];
+                  ret = ["PCR検査数：" + (row[3] - prev[3]) + "名"];
+                  ret.push("　うち陽性：" + (row[4] - prev[4]) + "名");
+                  ret.push("　同　有症：" + (row[5] - prev[5]) + "名");
+                } else {
+                  ret = ["PCR検査数：" + (row[3]) + "名"];
                   ret.push("　うち陽性：" + row[4] + "名");
                   ret.push("　同　有症：" + row[5] + "名");
+                }
               return ret;
             }
           }
