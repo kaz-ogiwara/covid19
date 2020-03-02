@@ -110,8 +110,9 @@ html,body {
   }
 
   #region-block,
-  #demographic-block,
-  #transition-block {
+  #demography-block,
+  #patients-block,
+  #surveys-block {
     margin: 0 auto;
     margin-top: 16px;
     width: 100%;
@@ -139,16 +140,17 @@ html,body {
       }
     }
 
-    p.notes {
-      font-size: 13px;
+    h5 {
       color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      margin-left: 10px;
+      margin-bottom: 8px;
     }
-  }
 
-  #transition-block {
     .switches {
       margin: 0 auto;
       margin-top: 16px;
+      margin-bottom: 16px;
       padding: 4px;
       width: fit-content;
       background-color: rgb(71,79,98);
@@ -179,14 +181,9 @@ html,body {
       }
     }
 
-    canvas {
-      margin-top: 16px;
-    }
-
-    .notes {
-      padding: 8px 16px;
+    p.notes {
       font-size: 13px;
-      color: #ccc;
+      color: rgba(255,255,255,0.5);
     }
   }
 
@@ -217,7 +214,7 @@ html,body {
       }
     }
 
-    p {
+    p,small {
       margin-top: 8px;
       text-align: center;
       color: #aaa;

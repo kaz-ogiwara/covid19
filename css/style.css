@@ -79,8 +79,9 @@ html, body {
         #container .row:nth-child(2) {
           padding: 0 16px 0 8px; } }
   #container #region-block,
-  #container #demographic-block,
-  #container #transition-block {
+  #container #demography-block,
+  #container #patients-block,
+  #container #surveys-block {
     margin: 0 auto;
     margin-top: 16px;
     width: 100%;
@@ -90,8 +91,9 @@ html, body {
     border: none;
     border-radius: 4px; }
     #container #region-block h3,
-    #container #demographic-block h3,
-    #container #transition-block h3 {
+    #container #demography-block h3,
+    #container #patients-block h3,
+    #container #surveys-block h3 {
       padding-left: 4px;
       font-size: 16px;
       font-weight: bold;
@@ -99,53 +101,77 @@ html, body {
       border-left: 4px solid #ec2; }
       @media only screen and (min-width: 400px) {
         #container #region-block h3,
-        #container #demographic-block h3,
-        #container #transition-block h3 {
+        #container #demography-block h3,
+        #container #patients-block h3,
+        #container #surveys-block h3 {
           padding-left: 6px;
           font-size: 20px; } }
       @media only screen and (min-width: 640px) {
         #container #region-block h3,
-        #container #demographic-block h3,
-        #container #transition-block h3 {
+        #container #demography-block h3,
+        #container #patients-block h3,
+        #container #surveys-block h3 {
           padding-left: 8px;
           font-size: 24px; } }
+    #container #region-block h5,
+    #container #demography-block h5,
+    #container #patients-block h5,
+    #container #surveys-block h5 {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 13px;
+      margin-left: 10px;
+      margin-bottom: 8px; }
+    #container #region-block .switches,
+    #container #demography-block .switches,
+    #container #patients-block .switches,
+    #container #surveys-block .switches {
+      margin: 0 auto;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      padding: 4px;
+      width: fit-content;
+      background-color: #474f62;
+      border: none;
+      border-radius: 50px; }
+      #container #region-block .switches .switch,
+      #container #demography-block .switches .switch,
+      #container #patients-block .switches .switch,
+      #container #surveys-block .switches .switch {
+        font-size: 14px;
+        color: #aaa;
+        background-color: transparent;
+        display: inline-block;
+        padding: 2px 16px 0 16px;
+        margin: 0 4px;
+        border-radius: 50px; }
+        #container #region-block .switches .switch:hover,
+        #container #demography-block .switches .switch:hover,
+        #container #patients-block .switches .switch:hover,
+        #container #surveys-block .switches .switch:hover {
+          cursor: pointer;
+          background-color: #1b354f; }
+        #container #region-block .switches .switch.selected,
+        #container #demography-block .switches .switch.selected,
+        #container #patients-block .switches .switch.selected,
+        #container #surveys-block .switches .switch.selected {
+          color: #fafafa;
+          background-color: #d72; }
+        #container #region-block .switches .switch:nth-child(1),
+        #container #demography-block .switches .switch:nth-child(1),
+        #container #patients-block .switches .switch:nth-child(1),
+        #container #surveys-block .switches .switch:nth-child(1) {
+          margin-left: 0px; }
+        #container #region-block .switches .switch:nth-child(3),
+        #container #demography-block .switches .switch:nth-child(3),
+        #container #patients-block .switches .switch:nth-child(3),
+        #container #surveys-block .switches .switch:nth-child(3) {
+          margin-right: 0px; }
     #container #region-block p.notes,
-    #container #demographic-block p.notes,
-    #container #transition-block p.notes {
+    #container #demography-block p.notes,
+    #container #patients-block p.notes,
+    #container #surveys-block p.notes {
       font-size: 13px;
       color: rgba(255, 255, 255, 0.5); }
-  #container #transition-block .switches {
-    margin: 0 auto;
-    margin-top: 16px;
-    padding: 4px;
-    width: fit-content;
-    background-color: #474f62;
-    border: none;
-    border-radius: 50px; }
-    #container #transition-block .switches .switch {
-      font-size: 14px;
-      color: #aaa;
-      background-color: transparent;
-      display: inline-block;
-      padding: 2px 16px 0 16px;
-      margin: 0 4px;
-      border-radius: 50px; }
-      #container #transition-block .switches .switch:hover {
-        cursor: pointer;
-        background-color: #1b354f; }
-      #container #transition-block .switches .switch.selected {
-        color: #fafafa;
-        background-color: #d72; }
-      #container #transition-block .switches .switch:nth-child(1) {
-        margin-left: 0px; }
-      #container #transition-block .switches .switch:nth-child(3) {
-        margin-right: 0px; }
-  #container #transition-block canvas {
-    margin-top: 16px; }
-  #container #transition-block .notes {
-    padding: 8px 16px;
-    font-size: 13px;
-    color: #ccc; }
   #container #footer-block {
     width: calc(100% - 32px);
     max-width: 640px;
@@ -169,14 +195,14 @@ html, body {
           background-image: url(../img/social-icon-facebook.svg); }
         #container #footer-block #social-buttons a.twitter {
           background-image: url(../img/social-icon-twitter.svg); }
-    #container #footer-block p {
+    #container #footer-block p, #container #footer-block small {
       margin-top: 8px;
       text-align: center;
       color: #aaa;
       font-size: 13px; }
-      #container #footer-block p.notes {
+      #container #footer-block p.notes, #container #footer-block small.notes {
         text-align: left; }
-        #container #footer-block p.notes a {
+        #container #footer-block p.notes a, #container #footer-block small.notes a {
           color: #ace;
           font-size: 13px;
           text-decoration: none; }
