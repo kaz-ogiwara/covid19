@@ -36,29 +36,44 @@
         <h2><span>新型コロナウイルス</span><span>国内感染の状況</span></h2>
         <p>日本国内において現在確定している新型コロナウイルス（COVID-19）の感染状況を厚生労働省の報道発表資料からビジュアル化した。</p>
         <p>制作：<a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F+%E5%92%8C%E6%A8%B9" target="_blank">荻原 和樹</a>（東洋経済オンライン編集部）</p>
-        <p>最終更新：2020年3月1日</p>
+        <p>最終更新：2020年3月2日</p>
       </div>
       <div id="main-block">
         <div class="row">
-          <div id="transition-block">
-            <h3>感染者数の推移</h3>
+          <div id="patients-block">
+            <h3>患者数の推移</h3>
+            <h5>3月1日 12:00時点</h5>
             <div class="switches">
               <div class="switch selected" value="total">累計</div>
               <div class="switch" value="new">新規</div>
             </div>
-            <div id="transition-chart"></div>
+            <div id="patients-chart"></div>
+            <p class="notes">注）退院数、死亡数は患者数の内数。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。2月17日の退院数は12名とした。</p>
           </div>
-          <div id="demographic-block">
+          <div id="surveys-block">
+            <h3>PCR検査数の推移</h3>
+            <h5>3月1日 12:00時点</h5>
+            <div class="switches">
+              <div class="switch selected" value="total">累計</div>
+              <div class="switch" value="new">新規</div>
+            </div>
+            <div id="surveys-chart"></div>
+            <p class="notes">注）陽性数、有症数はPCR検査数の内数。有症数は患者数と等しい。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。国内事例のPCR検査実施人数は、疑似症報告制度の枠組みの中で報告が上がった数を計上しており、各自治体で行った全ての検査結果を反映しているものではない（退院時の確認検査や、疑似症報告に該当しない検査などは含まれていない）。</p>
+          </div>
+          <div id="demography-block">
             <h3>年齢・性別</h3>
-            <div id="age-chart"></div>
+            <h5>3月1日時点</h5>
+            <div id="demography-chart"></div>
             <p class="notes">注）性別・年齢が不明（調査中）のケースは除く。</p>
           </div>
         </div>
         <div class="row">
           <div id="region-block">
             <h3>感染が報告されている都道府県</h3>
+            <h5>3月1日時点</h5>
   					<div id="japan-map"></div>
             <div id="region-chart"></div>
+            <p class="notes">注）中国在住、不明など、都道府県に割り振れないケースは除く。</p>
           </div>
         </div>
       </div>
@@ -70,12 +85,12 @@
           <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
           <a class="twitter"  href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
         </div>
-	<p><small lang="en">© 2020 Toyo Keizai Inc.</small></p>
+        <p><small lang="en">© 2020 Toyo Keizai Inc.</small></p>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="js/jquery.japan-map.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.min.js"></script>
   </body>
 </html>
