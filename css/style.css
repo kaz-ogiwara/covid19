@@ -119,8 +119,19 @@ html, body {
     #container #surveys-block h5 {
       color: rgba(255, 255, 255, 0.5);
       font-size: 13px;
-      margin-left: 10px;
-      margin-bottom: 8px; }
+      margin: 4px 0 8px 10px; }
+      @media only screen and (min-width: 400px) {
+        #container #region-block h5,
+        #container #demography-block h5,
+        #container #patients-block h5,
+        #container #surveys-block h5 {
+          margin-left: 12px; } }
+      @media only screen and (min-width: 640px) {
+        #container #region-block h5,
+        #container #demography-block h5,
+        #container #patients-block h5,
+        #container #surveys-block h5 {
+          margin-left: 14px; } }
     #container #region-block .switches,
     #container #demography-block .switches,
     #container #patients-block .switches,
@@ -176,6 +187,29 @@ html, body {
     width: calc(100% - 32px);
     max-width: 640px;
     margin: 32px auto; }
+    #container #footer-block #related-links {
+      margin: 16px auto;
+      width: 100%;
+      max-width: 400px; }
+      #container #footer-block #related-links h3 {
+        font-size: 14px;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+        margin-bottom: 8px; }
+      #container #footer-block #related-links .links .link {
+        display: inline-block;
+        width: calc(50% - 3px); }
+        #container #footer-block #related-links .links .link a {
+          display: block;
+          margin: 0 auto;
+          width: calc(100% - 16px); }
+          #container #footer-block #related-links .links .link a img {
+            display: block;
+            width: 100%;
+            border-radius: 4px; }
+        #container #footer-block #related-links .links .link h4 {
+          text-align: center;
+          color: #666;
+          font-size: 13px; }
     #container #footer-block #social-buttons {
       width: fit-content;
       margin: 32px auto 32px auto; }
