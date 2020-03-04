@@ -25,6 +25,9 @@ const init = () => {
     $wrapper.html("<canvas></canvas>");
     let $canvas = $wrapper.find("canvas")[0];
 
+    let switchValue = $("#patients-block").find(".switch.selected").attr("value");
+    let isStacked = (switchValue === "total") ? true: false;
+
     let config = {
       type: "bar",
       data: {
@@ -32,17 +35,17 @@ const init = () => {
         datasets: [{
           label: "死亡数",
           backgroundColor: COLORS.dead,
-          borderColor: "transparent",
+          borderColor: COLORS.dead,
           data: []
         },{
           label: "退院数",
           backgroundColor: COLORS.discharge,
-          borderColor: "transparent",
+          borderColor: COLORS.discharge,
           data: []
         },{
           label: "患者数",
           backgroundColor: COLORS.patient,
-          borderColor: "transparent",
+          borderColor: COLORS.patient,
           data: []
         }]
       },
@@ -64,22 +67,18 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点";
+              let suffix = "累計";
+              if (switchValue === "new") suffix = "新規";
+              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点 " + suffix;
             },
             label: function(tooltipItem, data){
               let row = gData.transition[tooltipItem.index];
               let ret;
-              if ($("#patients-block").find(".switch.selected").attr("value") === "new") {
+              if (switchValue === "new" && tooltipItem.index >= 1) {
                 const prev = gData.transition[tooltipItem.index - 1];
-                if (tooltipItem.index === 0) {
-                  ret = ["患者数：" + (row[5]) + "名"];
-                  ret.push("退院：" + (row[6]) + "名");
-                  ret.push("死亡：" + (row[7]) + "名");
-                } else {
-                  ret = ["患者数：" + (row[5] - prev[5]) + "名"];
-                  ret.push("退院：" + (row[6] - prev[6]) + "名");
-                  ret.push("死亡：" + (row[7] - prev[7]) + "名");
-                }
+                ret = ["患者数：" + (row[5] - prev[5]) + "名"];
+                ret.push("退院：" + (row[6] - prev[6]) + "名");
+                ret.push("死亡：" + (row[7] - prev[7]) + "名");
               } else {
                 ret = ["患者数：" + (row[5]) + "名"];
                 ret.push("　うち退院：" + row[6] + "名");
@@ -91,7 +90,7 @@ const init = () => {
         },
         scales: {
           xAxes: [{
-            stacked: true,
+            stacked: isStacked,
             gridLines: {
               display: false
             },
@@ -124,7 +123,7 @@ const init = () => {
     gData.transition.forEach(function(date, i){
       config.data.labels.push(date[0] + "/" + date[1]);
 
-      if ($("#patients-block").find(".switch.selected").attr("value") === "new" && i >= 1) {
+      if (switchValue === "new" && i >= 1) {
         let prev = gData.transition[i - 1];
         config.data.datasets[2].data.push(date[5] - prev[5]);
         config.data.datasets[1].data.push(date[6] - prev[6]);
@@ -146,24 +145,39 @@ const init = () => {
     $wrapper.html("<canvas></canvas>");
     let $canvas = $wrapper.find("canvas")[0];
 
+    let switchValue = $("#surveys-block").find(".switch.selected").attr("value");
+    let isStacked = (switchValue === "total") ? true: false;
+
     let config = {
       type: "bar",
       data: {
         labels: [],
         datasets: [{
-          label: "有症数＝患者数",
+          label: "有症数",
+          fill: false,
           backgroundColor: COLORS.patient,
-          borderColor: "transparent",
+          borderColor: COLORS.patient,
+          pointRadius: 3,
+					pointHoverRadius: 6,
+          pointBorderColor: "rgba(24,42,60,0.5)",
           data: []
         },{
           label: "陽性者数",
+          fill: false,
           backgroundColor: COLORS.positive,
-          borderColor: "transparent",
+          borderColor: COLORS.positive,
+          pointRadius: 3,
+					pointHoverRadius: 6,
+          pointBorderColor: "rgba(24,42,60,0.5)",
           data: []
         },{
           label: "検査数",
+          fill: false,
           backgroundColor: COLORS.test,
-          borderColor: "transparent",
+          borderColor: COLORS.test,
+          pointRadius: 3,
+					pointHoverRadius: 6,
+          pointBorderColor: "rgba(24,42,60,0.5)",
           data: []
         }]
       },
@@ -185,20 +199,22 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点";
+              let suffix = "累計";
+              if (switchValue === "new") suffix = "新規";
+              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点 " + suffix;
             },
             label: function(tooltipItem, data){
               let row = gData.transition[tooltipItem.index];
               let ret;
-                if ($("#surveys-block").find(".switch.selected").attr("value") === "new" && tooltipItem.index >= 1) {
+                if (switchValue === "new" && tooltipItem.index >= 1) {
                   const prev = gData.transition[tooltipItem.index - 1];
                   ret = ["PCR検査数：" + (row[3] - prev[3]) + "名"];
-                  ret.push("　うち陽性：" + (row[4] - prev[4]) + "名");
-                  ret.push("　同　有症：" + (row[5] - prev[5]) + "名");
+                  ret.push("陽性数：" + (row[4] - prev[4]) + "名");
+                  ret.push("有症数：" + (row[5] - prev[5]) + "名");
                 } else {
                   ret = ["PCR検査数：" + (row[3]) + "名"];
-                  ret.push("　うち陽性：" + row[4] + "名");
-                  ret.push("　同　有症：" + row[5] + "名");
+                  ret.push("　うち陽性数：" + row[4] + "名");
+                  ret.push("　同　有症数：" + row[5] + "名");
                 }
               return ret;
             }
@@ -206,7 +222,7 @@ const init = () => {
         },
         scales: {
           xAxes: [{
-            stacked: true,
+            stacked: isStacked,
             gridLines: {
               display: false
             },
@@ -239,8 +255,7 @@ const init = () => {
     gData.transition.forEach(function(date, i){
       config.data.labels.push(date[0] + "/" + date[1]);
 
-
-      if ($("#surveys-block").find(".switch.selected").attr("value") === "new" && i >= 1) {
+      if (switchValue === "new" && i >= 1) {
         let prev = gData.transition[i - 1];
         config.data.datasets[2].data.push(date[3] - prev[3]);
         config.data.datasets[1].data.push(date[4] - prev[4]);
