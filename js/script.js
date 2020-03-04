@@ -155,7 +155,8 @@ const init = () => {
         datasets: [{
           label: "有症数",
           fill: false,
-          backgroundColor: COLORS.patient,
+          //backgroundColor: COLORS.patient,
+          backgroundColor: [],
           borderColor: COLORS.patient,
           pointRadius: 3,
 					pointHoverRadius: 6,
@@ -164,7 +165,8 @@ const init = () => {
         },{
           label: "陽性者数",
           fill: false,
-          backgroundColor: COLORS.positive,
+          //backgroundColor: COLORS.positive,
+          backgroundColor: [],
           borderColor: COLORS.positive,
           pointRadius: 3,
 					pointHoverRadius: 6,
@@ -173,7 +175,8 @@ const init = () => {
         },{
           label: "検査数",
           fill: false,
-          backgroundColor: COLORS.test,
+          //backgroundColor: COLORS.test,
+          backgroundColor: [],
           borderColor: COLORS.test,
           pointRadius: 3,
 					pointHoverRadius: 6,
@@ -265,6 +268,12 @@ const init = () => {
         config.data.datasets[1].data.push(date[4]);
         config.data.datasets[0].data.push(date[5]);
       }
+
+      let pcrTestColor = (date[0] >= 3 && date[1] >= 4) ? COLORS.dark: COLORS.test;
+
+      config.data.datasets[2].backgroundColor.push(pcrTestColor);
+      config.data.datasets[1].backgroundColor.push(COLORS.positive);
+      config.data.datasets[0].backgroundColor.push(COLORS.patient);
     });
 
     let ctx = $canvas.getContext('2d');
