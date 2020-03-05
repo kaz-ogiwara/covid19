@@ -1,18 +1,18 @@
 <!doctype html>
-<html class="no-js" lang="ja">
+<html class="no-js" lang="en">
   <head>
     <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
 		<meta name="format-detection" content="telephone=no">
 		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/covid19/" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="新型コロナウイルス 国内感染の状況" />
-		<meta property="og:description" content="日本国内において現在確定している新型コロナウイルス（COVID-19）の感染状況を厚生労働省の報道発表資料からビジュアル化した" />
+		<meta property="og:title" content="Coronavirus Disease (COVID-19) Situation Report in Japan" />
+		<meta property="og:description" content="Confirmed cases of COVID-19 in Japan. Data provided by the Ministry of Health, Labor and Welfare." />
 		<meta property="og:image" content="https://toyokeizai.net/sp/visual/tko/covid19/img/image_1200_630.png" />
 		<meta name="twitter:card" content="summary_large_image" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css"/>
-		<title>新型コロナウイルス 国内感染の状況</title>
+		<title>Coronavirus Disease (COVID-19) Situation Report in Japan</title>
     <script src="https://tk.ismcdn.jp/sp/js/td_sdk.js" type="text/javascript" async></script>
     <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-6066080-9']);_gaq.push(['_setDomainName','toyokeizai.net']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
     <script>
@@ -33,69 +33,67 @@
     <div id="container">
       <div id="title-block">
         <a href="" target="_blank"><img id="img-logo" src="img/logo-tko-white.png" /></a>
-        <h2><span>新型コロナウイルス</span><span>国内感染の状況</span></h2>
-        <p>日本国内において現在確定している新型コロナウイルス（COVID-19）の感染状況を厚生労働省の報道発表資料からビジュアル化した。</p>
-        <p>制作：<a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F+%E5%92%8C%E6%A8%B9" target="_blank">荻原 和樹</a>（東洋経済オンライン編集部）</p>
-        <p>最終更新：2020年3月4日</p>
-        <p><a href="en.html">ENGLISH</a></p>
+        <h2><span>Coronavirus Disease (COVID-19) Situation Report in Japan</span></h2>
+        <p>Confirmed cases of COVID-19 in Japan. Data provided by the Ministry of Health, Labor and Welfare.</p>
+        <p>By <a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F+%E5%92%8C%E6%A8%B9" target="_blank">Kazuki OGIWARA</a> (Toyo Keizai Online Editor)</p>
+        <p>Last updated: 4 March 2020</p>
+        <p><a href="index.html">JAPANESE</a></p>
       </div>
       <div id="main-block">
         <div class="row">
           <div id="patients-block">
-            <h3>患者数の推移</h3>
-            <h5>3月4日 12:00時点</h5>
+            <h3>Cases, Discharged, Deaths</h3>
+            <h5>As of 4 March 12:00</h5>
             <div class="switches">
-              <div class="switch selected" value="total">累計</div>
-              <div class="switch" value="new">新規</div>
+              <div class="switch selected" value="total">Total</div>
+              <div class="switch" value="new">New cases</div>
             </div>
             <div id="patients-chart"></div>
-            <p class="notes">注）累計の退院数、死亡数は患者数の内数。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。2月17日の退院数は12名とした。</p>
+            <p class="notes">Notes: Number of total cases includes that of discharged and deaths. Dates with no data (8, 9, 11, 15, 16 February) were assumed to be the same as the previous day. Discharged on 17 February was assumed to be 12.</p>
           </div>
           <div id="surveys-block">
-            <h3>PCR検査数の推移</h3>
-            <h5>3月4日 12:00時点</h5>
+            <h3>PCR Tests, Positive, With symptoms</h3>
+            <h5>As of 4 March 12:00</h5>
             <div class="switches">
-              <div class="switch selected" value="total">累計</div>
-              <div class="switch" value="new">新規</div>
+              <div class="switch selected" value="total">Total</div>
+              <div class="switch" value="new">New</div>
             </div>
             <div id="surveys-chart"></div>
-            <p class="notes">注）3月4日にPCR検査数の集計基準が変更された。累計の陽性数、有症数はPCR検査数の内数。有症数は患者数と等しい。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。国内事例のPCR検査実施人数は、疑似症報告制度の枠組みの中で報告が上がった数を計上しており、各自治体で行った全ての検査結果を反映しているものではない。</p>
+            <p class="notes">Notes: It seems that MHLW started counting tests for those who were in close contact with suspected careers from 4 March. Number of total PCR tests includes that of positive cases and cases with symptoms. Dates with no data (8, 9, 11, 15, 16 February) were assumed to be the same as the previous day. Number of PCR tests does not include all tests conducted in Japan.</p>
           </div>
           <div id="demography-block">
-            <h3>年齢・性別</h3>
-            <h5>3月4日 12:00時点</h5>
+            <h3>Age and Gender</h3>
+            <h5>As of 4 March 12:00</h5>
             <div id="demography-chart"></div>
-            <p class="notes">注）性別・年齢が不明（調査中）のケースは除く。</p>
+            <p class="notes">Notes: Cases with unknown age or gender are excluded.</p>
           </div>
         </div>
         <div class="row">
           <div id="region-block">
-            <h3>感染が報告されている都道府県</h3>
-            <h5>3月4日 12:00時点</h5>
+            <h3>Cases by Prefectures</h3>
+            <h5>As of 4 March 12:00</h5>
   					<div id="japan-map"></div>
             <div id="region-chart"></div>
-            <p class="notes">注）中国在住、不明など、都道府県に割り振れないケースは除く。</p>
+            <p class="notes">Notes: Cases with unknown residence or abroad are excluded.</p>
           </div>
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">注）武漢からの政府チャーター便帰国者、およびダイヤモンド・プリンセス号の乗客・乗員は除く。</p>
-        <p class="notes">データソース：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。</p>
-        <p class="notes">更新履歴・ソースコード：<a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://toyokeizai.net/sp/visual/tko/covid19/csv/data.csv" download="data.csv" target="_blank">CSVデータのダウンロード</a></p>
+        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on the Diamond Princess, are expected.</p>
+        <p class="notes">Data source: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">Press release from MHLW</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Used <a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a> to draw prefectures map.</p>
+        <p class="notes">Change log and source code: <a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://toyokeizai.net/sp/visual/tko/covid19/csv/data.csv" download="data.csv" target="_blank">Download CSV data</a></p>
         <div id="social-buttons">
           <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
           <a class="twitter"  href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
         </div>
         <div id="related-links">
-          <h3>関連記事（画像をクリックすると特集記事一覧にジャンプします）</h3>
+          <h3>Related articles [Japanese]</h3>
           <div class="links">
             <div class="link">
               <a href="https://toyokeizai.net/category/corona-virus" target="_blank"><img src="img/image-series-01.jpg" /></a>
-              <h4>コロナウイルスの恐怖</h4>
             </div>
             <div class="link">
               <a href="https://toyokeizai.net/category/corona-large-ripples" target="_blank"><img src="img/image-series-02.jpg" /></a>
-              <h4>コロナショックの大波紋</h4>
             </div>
           </div>
         </div>
