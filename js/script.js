@@ -1,6 +1,7 @@
 let gData;
 let gRegions = [];
 
+const LANG = $("html").attr("lang");
 const REGION_THRESHOLD = 10;
 const COLORS = {
   default: "#3DC",
@@ -14,6 +15,68 @@ const COLORS = {
   gender: {
     f: "#FE9",
     m: "#2B9"
+  }
+};
+const LABELS = {
+  ja: {
+    chart: {
+      patients: {
+        dead: "死亡数",
+        discharge: "退院数",
+        patient: "患者数"
+      },
+      surveys: {
+        patient: "有症数",
+        positive: "陽性者数",
+        test: "検査数"
+      },
+      demography: {
+        f: "女性",
+        m: "男性"
+      }
+    },
+    age: {
+      "10代": "10代",
+      "20代": "20代",
+      "30代": "30代",
+      "40代": "40代",
+      "50代": "50代",
+      "60代": "60代",
+      "70代": "70代",
+      "80代": "80代",
+      "90代": "90代",
+      "10歳未満": "10歳未満"
+    }
+  },
+  en: {
+    chart: {
+      patients: {
+        dead: "Deaths",
+        discharge: "Discharged",
+        patient: "Cases"
+      },
+      surveys: {
+        patient: "Cases",
+        positive: "Positive",
+        test: "PCR Tests"
+      },
+      demography: {
+        f: "Female",
+        m: "Male"
+      }
+    },
+    age: {
+      "10代": "10s",
+      "20代": "20s",
+      "30代": "30s",
+      "40代": "40s",
+      "50代": "50s",
+      "60代": "60s",
+      "70代": "70s",
+      "80代": "80s",
+      "90代": "90s",
+      "10歳未満": "Under 10"
+    }
   }
 };
 
@@ -33,17 +96,17 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: "死亡数",
+          label: LABELS[LANG].chart.patients.dead,
           backgroundColor: COLORS.dead,
           borderColor: COLORS.dead,
           data: []
         },{
-          label: "退院数",
+          label: LABELS[LANG].chart.patients.discharge,
           backgroundColor: COLORS.discharge,
           borderColor: COLORS.discharge,
           data: []
         },{
-          label: "患者数",
+          label: LABELS[LANG].chart.patients.patient,
           backgroundColor: COLORS.patient,
           borderColor: COLORS.patient,
           data: []
@@ -67,22 +130,47 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              let suffix = "累計";
-              if (switchValue === "new") suffix = "新規";
-              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点 " + suffix;
+              let prefix = {
+                ja: "",
+                en: "As of "
+              };
+
+              let dateTime = tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00";
+
+              let suffix = {
+                ja: {
+                  total: "時点 累計",
+                  new: "時点新規"
+                },
+                en: {
+                  total: " Total",
+                  new: " New cases"
+                }
+              };
+
+              return prefix[LANG] + dateTime + suffix[LANG][switchValue];
             },
             label: function(tooltipItem, data){
               let row = gData.transition[tooltipItem.index];
               let ret;
+              let suffix = {
+                ja: "名",
+                en: ""
+              };
+
               if (switchValue === "new" && tooltipItem.index >= 1) {
                 const prev = gData.transition[tooltipItem.index - 1];
-                ret = ["患者数：" + (row[5] - prev[5]) + "名"];
-                ret.push("退院：" + (row[6] - prev[6]) + "名");
-                ret.push("死亡：" + (row[7] - prev[7]) + "名");
+                ret = [
+                  LABELS[LANG].chart.patients.patient   + ": " + (row[5] - prev[5]) + suffix[LANG],
+                  LABELS[LANG].chart.patients.discharge + ": " + (row[6] - prev[6]) + suffix[LANG],
+                  LABELS[LANG].chart.patients.dead      + ": " + (row[7] - prev[7]) + suffix[LANG]
+                ];
               } else {
-                ret = ["患者数：" + (row[5]) + "名"];
-                ret.push("　うち退院：" + row[6] + "名");
-                ret.push("　同　死亡：" + row[7] + "名");
+                ret = [
+                  LABELS[LANG].chart.patients.patient   + ": " + row[5] + suffix[LANG],
+                  LABELS[LANG].chart.patients.discharge + ": " + row[6] + suffix[LANG],
+                  LABELS[LANG].chart.patients.dead      + ": " + row[7] + suffix[LANG]
+                ];
               }
               return ret;
             }
@@ -109,7 +197,7 @@ const init = () => {
               beginAtZero: true,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString() + " 名";
+                return value.toString();
               }
             }
           }]
@@ -153,34 +241,19 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: "有症数",
-          fill: false,
-          //backgroundColor: COLORS.patient,
+          label: LABELS[LANG].chart.surveys.patient,
           backgroundColor: [],
           borderColor: COLORS.patient,
-          pointRadius: 3,
-					pointHoverRadius: 6,
-          pointBorderColor: "rgba(24,42,60,0.5)",
           data: []
         },{
-          label: "陽性者数",
-          fill: false,
-          //backgroundColor: COLORS.positive,
+          label: LABELS[LANG].chart.surveys.positive,
           backgroundColor: [],
           borderColor: COLORS.positive,
-          pointRadius: 3,
-					pointHoverRadius: 6,
-          pointBorderColor: "rgba(24,42,60,0.5)",
           data: []
         },{
-          label: "検査数",
-          fill: false,
-          //backgroundColor: COLORS.test,
+          label: LABELS[LANG].chart.surveys.test,
           backgroundColor: [],
           borderColor: COLORS.test,
-          pointRadius: 3,
-					pointHoverRadius: 6,
-          pointBorderColor: "rgba(24,42,60,0.5)",
           data: []
         }]
       },
@@ -202,23 +275,48 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              let suffix = "累計";
-              if (switchValue === "new") suffix = "新規";
-              return tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00時点 " + suffix;
+              let prefix = {
+                ja: "",
+                en: "As of "
+              };
+
+              let dateTime = tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00";
+
+              let suffix = {
+                ja: {
+                  total: "時点 累計",
+                  new: "時点新規"
+                },
+                en: {
+                  total: " Total",
+                  new: " New cases"
+                }
+              };
+
+              return prefix[LANG] + dateTime + suffix[LANG][switchValue];
             },
             label: function(tooltipItem, data){
               let row = gData.transition[tooltipItem.index];
               let ret;
-                if (switchValue === "new" && tooltipItem.index >= 1) {
-                  const prev = gData.transition[tooltipItem.index - 1];
-                  ret = ["PCR検査数：" + (row[3] - prev[3]) + "名"];
-                  ret.push("陽性数：" + (row[4] - prev[4]) + "名");
-                  ret.push("有症数：" + (row[5] - prev[5]) + "名");
-                } else {
-                  ret = ["PCR検査数：" + (row[3]) + "名"];
-                  ret.push("　うち陽性数：" + row[4] + "名");
-                  ret.push("　同　有症数：" + row[5] + "名");
-                }
+              let suffix = {
+                ja: "名",
+                en: ""
+              };
+
+              if (switchValue === "new" && tooltipItem.index >= 1) {
+                const prev = gData.transition[tooltipItem.index - 1];
+                ret = [
+                  LABELS[LANG].chart.surveys.test     + ": " + (row[3] - prev[3]) + suffix[LANG],
+                  LABELS[LANG].chart.surveys.positive + ": " + (row[4] - prev[4]) + suffix[LANG],
+                  LABELS[LANG].chart.surveys.patient  + ": " + (row[5] - prev[5]) + suffix[LANG]
+                ];
+              } else {
+                ret = [
+                  LABELS[LANG].chart.surveys.test     + ": " + row[3] + suffix[LANG],
+                  LABELS[LANG].chart.surveys.positive + ": " + row[4] + suffix[LANG],
+                  LABELS[LANG].chart.surveys.patient  + ": " + row[5] + suffix[LANG]
+                ];
+              }
               return ret;
             }
           }
@@ -244,7 +342,7 @@ const init = () => {
               suggestedMin: 0,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString() + " 名";
+                return value.toString();
               }
             }
           }]
@@ -330,11 +428,11 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: "女性",
+          label: LABELS[LANG].chart.demography.f,
           backgroundColor: COLORS.gender.f,
           data: []
         },{
-          label: "男性",
+          label: LABELS[LANG].chart.demography.m,
           backgroundColor: COLORS.gender.m,
           data: []
         }]
@@ -360,7 +458,11 @@ const init = () => {
               return tooltipItem[0].yLabel;
             },
             label: function(tooltipItem, data){
-              return data.datasets[tooltipItem.datasetIndex].label + "：" + tooltipItem.value + "名";
+              let suffix = {
+                ja: "名",
+                en: ""
+              };
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
             }
           }
         },
@@ -375,7 +477,7 @@ const init = () => {
               suggestedMin: 0,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString() + " 名";
+                return value.toString();
               }
             }
           }],
@@ -385,6 +487,9 @@ const init = () => {
             },
             ticks: {
               fontColor: "rgba(255,255,255,0.7)",
+              callback: function (value){
+                return LABELS[LANG].age[value];
+              }
             }
           }]
         }
@@ -445,7 +550,11 @@ const init = () => {
               return tooltipItem[0].yLabel;
             },
             label: function(tooltipItem, data){
-              return tooltipItem.xLabel + "名";
+              let suffix = {
+                ja: " 名",
+                en: " cases"
+              };
+              return tooltipItem.xLabel + suffix[LANG];
             }
           }
         },
@@ -459,7 +568,7 @@ const init = () => {
               suggestedMin: 0,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString() + " 名";
+                return value.toString();
               }
             }
           }],
@@ -481,7 +590,7 @@ const init = () => {
 
     gData.prefectures.forEach(function(pref, i){
       if (pref.value >= 1) {
-        config.data.labels.push(pref.jp);
+        config.data.labels.push(pref[LANG]);
         config.data.datasets[0].data.push(pref.value);
 
         if (targetRegion === pref.code) {
