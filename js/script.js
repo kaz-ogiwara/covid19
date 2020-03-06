@@ -530,7 +530,7 @@ const init = () => {
         }]
       },
       options: {
-        aspectRatio: 0.8,
+        aspectRatio: 0.6,
         animation: {
           duration: 1000
         },
@@ -584,8 +584,8 @@ const init = () => {
       }
     };
 
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.0;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.2;
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 0.8;
+    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.0;
     if (targetRegion !== "") config.options.animation.duration = 0;
 
     gData.prefectures.forEach(function(pref, i){
