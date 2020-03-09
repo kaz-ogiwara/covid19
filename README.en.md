@@ -1,9 +1,9 @@
-# covid19
+# Coronavirus Disease (COVID-19) Situation Report in Japan
 The state of the infection of the new coronavirus (COVID19) in Japan was summarized visually from a press release from the Ministry of Health, Labor and Welfare.
 
 ### Public page
-- Toyo Keizai Online "Domestic Coronary Virus Infection"
-- https://toyokeizai.net/sp/visual/tko/covid19/
+- Toyo Keizai Online "Coronavirus Disease (COVID-19) Situation Report in Japan"
+- https://toyokeizai.net/sp/visual/tko/covid19/en.html
 
 ### Data source
 - Materials released by the Ministry of Health, Labor and Welfare
