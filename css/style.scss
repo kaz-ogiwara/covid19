@@ -199,39 +199,19 @@ html,body {
     max-width: 640px;
     margin: 32px auto;
 
-    #related-links {
-      margin: 16px auto;
-      width: 100%;
-      max-width: 400px;
+    p,small {
+      margin-top: 8px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
 
-      h3 {
-        font-size: 14px;
-        border-bottom: solid 1px rgba(255,255,255,0.2);
-        margin-bottom: 8px;
-      }
+      &.notes {
+        text-align: left;
 
-      .links {
-        .link {
-          display: inline-block;
-          width: calc(50% - 3px);
-
-          a {
-            display: block;
-            margin: 0 auto;
-            width: calc(100% - 16px);
-
-            img {
-              display: block;
-              width: 100%;
-              border-radius: 4px;
-            }
-          }
-
-          h4 {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-          }
+        a {
+          color: #ace;
+          font-size: 13px;
+          text-decoration: none;
         }
       }
     }
@@ -258,19 +238,72 @@ html,body {
       }
     }
 
-    p,small {
-      margin-top: 8px;
-      text-align: center;
-      color: #aaa;
-      font-size: 13px;
+    #faqs {
+      margin-top: 64px;
 
-      &.notes {
-        text-align: left;
+      h3 {
+        font-size: 20px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
 
-        a {
-          color: #ace;
-          font-size: 13px;
-          text-decoration: none;
+      section {
+        margin-top: 32px;
+
+        p {
+          text-align: left;
+          font-size: 15px;
+          color: #ccc;
+          line-height: 28px;
+
+          a {
+            color: #ace;
+            text-decoration: none;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    #related-links {
+      margin: 64px auto;
+      width: 100%;
+      max-width: 400px;
+
+      h3 {
+        font-size: 14px;
+      }
+
+      h4 {
+        margin: 2px 0 16px 0;
+        padding-bottom: 4px;
+        font-size: 13px;
+        color: #aaa;
+        border-bottom: solid 1px rgba(255,255,255,0.2);
+      }
+
+      .links {
+        .link {
+          display: inline-block;
+          width: calc(50% - 3px);
+
+          a {
+            display: block;
+            margin: 0 auto;
+            width: calc(100% - 16px);
+
+            img {
+              display: block;
+              width: 100%;
+              border-radius: 4px;
+            }
+          }
+
+          h4 {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+          }
         }
       }
     }
