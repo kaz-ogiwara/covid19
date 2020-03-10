@@ -43,7 +43,7 @@
         <div class="row">
           <div id="patients-block">
             <h3>Cases, Discharged, Deaths</h3>
-            <h5>As of 9 March 12:00</h5>
+            <h5>As of 10 March 12:00</h5>
             <div class="switches">
               <div class="switch selected" value="total">Total</div>
               <div class="switch" value="new">New cases</div>
@@ -53,7 +53,7 @@
           </div>
           <div id="surveys-block">
             <h3>PCR Tests, Positive, With symptoms</h3>
-            <h5>As of 9 March 12:00</h5>
+            <h5>As of 10 March 12:00</h5>
             <div class="switches">
               <div class="switch selected" value="total">Total</div>
               <div class="switch" value="new">New</div>
@@ -63,7 +63,7 @@
           </div>
           <div id="demography-block">
             <h3>Age and Gender</h3>
-            <h5>As of 9 March 12:00</h5>
+            <h5>As of 9 March</h5>
             <div id="demography-chart"></div>
             <p class="notes">Notes: Cases with unknown age or gender are excluded.</p>
           </div>
@@ -71,10 +71,10 @@
         <div class="row">
           <div id="region-block">
             <h3>Cases by Prefectures</h3>
-            <h5>As of 9 March 12:00</h5>
+            <h5>As of 10 March 12:00</h5>
   					<div id="japan-map"></div>
             <div id="region-chart"></div>
-            <p class="notes">Notes: Cases with unknown residence or abroad are excluded.</p>
+            <p class="notes">Notes: Cases with unknown residence or abroad are excluded. In Osaka, 1 patient is counted as 2 cases.</p>
           </div>
         </div>
       </div>
@@ -86,8 +86,32 @@
           <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
           <a class="twitter"  href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
         </div>
+        <div id="faqs">
+          <h3>Frequently Asked Questions</h3>
+          <section>
+            <h4>Q. Why is the number of PCR tests soaring since March 4?</h4>
+            <p>A. This is because the Ministry of Health, Labor and Welfare has expanded the range to be included in the published figures. The number of tests itself has not increased. Specifically, in addition to the symptom-based surveillance, tests for close contacts have been included in the published numbers. Usually, numbers with different standards should be handled in separate frames, but it is impossible to distinguish between the two because the announced numbers are overwritten. If we make a graph as it is, the number of inspections will appear to have increased sharply, so on this page the color of the graph is changed, and the reason for the increase in the note is added.</p>
+          </section>
+          <section>
+            <h4>Q. What is the difference between the number of infected people and the number of patients?</h4>
+            <p>A. "Infected person" refers to a person infected with the new coronavirus = a person who has tested positive by PCR. Except for those who have no symptoms (= asymptomatic pathogen carriers), those who actually have symptoms are called "patients". It is the same notation as the Ministry of Health, Labor and Welfare. Since the PCR test also targets close contacts of known infected people, there are cases in which "there are no symptoms but actually infected", and the number of infected people and the number of patients are not equal.</p>
+          </section>
+          <section>
+            <h4>Q. Why are the data different from the press and announcements from prefectures?</h4>
+            <p>A. It depends on the individual case, but it seems to be due to the difference from the MHLW standards. The MHLW receives reports from each prefecture and finally summarizes data nationwide by eliminating duplication. In the process, aggregation criteria, for example, regions, may differ. Another possibility is that the number of patients is confused with the number of infected people.</p>
+          </section>
+          <section>
+            <h4>Q. How can I access data sources?</h4>
+            <p>A. For example, here is the data as of March 9, 12:00. <a href="https://www.mhlw.go.jp/index.html" target="_blank">厚生労働省</a> [Japanese] - <a href="https://www.mhlw.go.jp/english/" target="_blank">English site</a> - <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/newpage_00032.html" target="_blank">Latest information on Coronavirus disease 2019 (COVID-19) is HERE.</a></p>
+          </section>
+          <section>
+            <h4>Q. Can I use data and source code on my SNS or blog?</h4>
+            <p>A. Feel free to use it for both commercial and non-commercial use. The specific standards are based on the MIT license. You don't have to ask for permission, but it's good to have a follow-up report, so contacting us will help us because we can easily tell the company "Let's keep publishing."</p>
+          </section>
+        </div>
         <div id="related-links">
-          <h3>Related articles [Japanese]</h3>
+          <h3>Related articles</h3>
+          <h4>Click to jump to related articles [Japanese]</h4>
           <div class="links">
             <div class="link">
               <a href="https://toyokeizai.net/category/corona-virus" target="_blank"><img src="img/image-series-01.jpg" /></a>
