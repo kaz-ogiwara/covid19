@@ -605,14 +605,22 @@ const init = () => {
     window.myChart = new Chart(ctx, config);
   }
 
+  const showUpdateDates = () => {
+    ["last", "transition", "demography", "prefectures"].forEach(function(cls){
+      $(".updated-" + cls).text(gData.updated[cls][LANG]);
+    });
+  }
+
   const loadData = () => {
     $.getJSON("data/data.json", function(data){
+    //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
       gData = data;
       drawSurveysChart();
       drawPatientsChart();
       drawDemographyChart();
       drawJapanMap();
       drawRegionChart("");
+      showUpdateDates();
       $("#container").addClass("show");
     })
   }
@@ -624,6 +632,7 @@ const init = () => {
       if ($(this).closest("#patients-block")[0]) drawPatientsChart();
       if ($(this).closest("#surveys-block")[0]) drawSurveysChart();
     });
+
   }
 
   loadData();
