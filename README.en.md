@@ -1,6 +1,8 @@
 # Coronavirus Disease (COVID-19) Situation Report in Japan
 The state of the infection of the new coronavirus (COVID19) in Japan was summarized visually from a press release from the Ministry of Health, Labor and Welfare.
 
+[JAPANESE](https://github.com/kaz-ogiwara/covid19/blob/master/README.md)
+
 ### Public page
 - Toyo Keizai Online "Coronavirus Disease (COVID-19) Situation Report in Japan"
 - https://toyokeizai.net/sp/visual/tko/covid19/en.html
@@ -11,7 +13,7 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
 
 ### CSV data
 - The data used is also available as a CSV file.
-- https://toyokeizai.net/sp/visual/tko/covid19/csv/data.csv
+- https://github.com/kaz-ogiwara/covid19/blob/master/data/individuals.csv
 
 ### Update data
 - It will be updated on an irregular basis according to the announcement by the Ministry of Health, Labor and Welfare.
