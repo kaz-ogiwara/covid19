@@ -1,16 +1,20 @@
 {
 	"updated": {
+		"last": {
+			"ja": "最終更新：2020年3月14日",
+			"en": "Last updated: 14 March 2020"
+		},
 		"transition": {
-			"ja": "3月13日 12:00",
-			"en": "13 March 12:00"
+			"ja": "3月13日 12:00時点",
+			"en": "As of 13 March 12:00"
 		},
 		"prefectures": {
-			"ja": "3月13日 12:00",
-			"en": "13 March 12:00"
+			"ja": "3月13日 12:00時点",
+			"en": "As of 13 March 12:00"
 		},
 		"demography": {
-			"ja": "3月12日",
-			"en": "12 March"
+			"ja": "3月13日時点",
+			"en": "As of 13 March"
 		}
 	},
 	"transition": [
