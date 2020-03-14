@@ -1,6 +1,9 @@
 # 新型コロナウイルス 国内感染の状況
 新型コロナウイルス（COVID19）の国内における感染の状況を厚生労働省の報道発表資料からビジュアルにまとめた。
 
+[ENGLISH](https://github.com/kaz-ogiwara/covid19/blob/master/README.en.md)
+
+
 ### 公開ページ
 - 東洋経済オンライン「新型コロナウイルス 国内感染の状況」
 - https://toyokeizai.net/sp/visual/tko/covid19/
@@ -11,7 +14,7 @@
 
 ### CSVデータ
 - 使用したデータはCSVファイルでも公開しています。
-- https://toyokeizai.net/sp/visual/tko/covid19/csv/data.csv
+- https://github.com/kaz-ogiwara/covid19/blob/master/data/individuals.csv
 
 ### データの更新
 - 厚生労働省の発表にあわせて不定期で更新する予定です。
