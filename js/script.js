@@ -422,6 +422,7 @@ const init = () => {
     $wrapper.empty();
     $wrapper.html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
+    let dataFieldName = $("#demography-block").find(".switch.selected").attr("value");
 
     let config = {
       type: "horizontalBar",
@@ -500,9 +501,9 @@ const init = () => {
     if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
 
     let dsi = 0;
-    for (let gender in gData.demography) {
-      for (let age in gData.demography[gender]) {
-        let value = gData.demography[gender][age];
+    for (let gender in gData.demography[dataFieldName]) {
+      for (let age in gData.demography[dataFieldName][gender]) {
+        let value = gData.demography[dataFieldName][gender][age];
         if (dsi === 0) config.data.labels.push(age);
         config.data.datasets[dsi].data.push(value);
       }
@@ -631,6 +632,7 @@ const init = () => {
       $(this).addClass("selected");
       if ($(this).closest("#patients-block")[0]) drawPatientsChart();
       if ($(this).closest("#surveys-block")[0]) drawSurveysChart();
+      if ($(this).closest("#demography-block")[0]) drawDemographyChart();
     });
 
   }
