@@ -1,20 +1,20 @@
 {
 	"updated": {
 		"last": {
-			"ja": "最終更新：2020年3月18日",
-			"en": "Last updated: 18 March 2020"
+			"ja": "最終更新：2020年3月19日",
+			"en": "Last updated: 19 March 2020"
 		},
 		"transition": {
-			"ja": "3月18日 12:00時点",
-			"en": "As of 18 March 12:00"
+			"ja": "3月19日 12:00時点",
+			"en": "As of 19 March 12:00"
 		},
 		"prefectures": {
-			"ja": "3月18日 12:00時点",
-			"en": "As of 18 March 12:00"
+			"ja": "3月19日 12:00時点",
+			"en": "As of 19 March 12:00"
 		},
 		"demography": {
-			"ja": "3月17日時点",
-			"en": "As of 17 March"
+			"ja": "3月18日時点",
+			"en": "As of 18 March"
 		}
 	},
 	"transition": [
@@ -59,31 +59,32 @@
 		[3, 15, 12, 12197, 762, 681, 123, 22, 0],
 		[3, 16, 12, 12239, 794, 702, 128, 24, 0],
 		[3, 17, 12, 14322, 809, 717, 133, 28, 0],
-		[3, 18, 12, 14525, 853, 758, 150, 29, 0]
+		[3, 18, 12, 14525, 853, 758, 150, 29, 0],
+		[3, 19, 12, 14072, 892, 794, 173, 31, 0]
 	],
 	"demography": {
 		"patients": {
 			"女性": {
 				"90代": 4,
-				"80代": 28,
-				"70代": 50,
-				"60代": 56,
-				"50代": 70,
-				"40代": 49,
-				"30代": 34,
-				"20代": 41,
+				"80代": 30,
+				"70代": 54,
+				"60代": 57,
+				"50代": 71,
+				"40代": 52,
+				"30代": 37,
+				"20代": 43,
 				"10代": 3,
 				"10歳未満": 4
 			},
 			"男性": {
 				"90代": 4,
-				"80代": 38,
-				"70代": 68,
-				"60代": 86,
-				"50代": 86,
-				"40代": 56,
-				"30代": 42,
-				"20代": 15,
+				"80代": 39,
+				"70代": 72,
+				"60代": 87,
+				"50代": 88,
+				"40代": 59,
+				"30代": 45,
+				"20代": 19,
 				"10代": 1,
 				"10歳未満": 8
 			}
@@ -119,52 +120,52 @@
 		"code": 1,
 		"ja": "北海道",
 		"en": "Hokkaido",
-		"value": 151
+		"value": 153
 	}, {
 		"code": 23,
 		"ja": "愛知県",
 		"en": "Aichi",
-		"value": 119
-	}, {
-		"code": 27,
-		"ja": "大阪府",
-		"en": "Osaka",
-		"value": 92
+		"value": 122
 	}, {
 		"code": 13,
 		"ja": "東京都",
 		"en": "Tokyo",
-		"value": 84
+		"value": 105
+	}, {
+		"code": 27,
+		"ja": "大阪府",
+		"en": "Osaka",
+		"value": 100
 	}, {
 		"code": 28,
 		"ja": "兵庫県",
 		"en": "Hyogo",
-		"value": 60
+		"value": 69
 	}, {
 		"code": 14,
 		"ja": "神奈川県",
 		"en": "Kanagawa",
-		"value": 48
-	}, {
-		"code": 12,
-		"ja": "千葉県",
-		"en": "Chiba",
-		"value": 29
+		"value": 52
 	}, {
 		"code": 11,
 		"ja": "埼玉県",
 		"en": "Saitama",
-		"value": 26
+		"value": 32
+	}, {
+		"code": 12,
+		"ja": "千葉県",
+		"en": "Chiba",
+		"value": 31
 	}, {
 		"code": 15,
 		"ja": "新潟県",
 		"en": "Niigata",
-		"value": 14
+		"value": 17
 	}, {
 		"code": 26,
 		"ja": "京都府",
 		"en": "Kyoto",
-		"value": 14
+		"value": 17
 	}, {
 		"code": 30,
 		"ja": "和歌山県",
@@ -179,7 +180,7 @@
 		"code": 10,
 		"ja": "群馬県",
 		"en": "Gunma",
-		"value": 6
+		"value": 10
 	}, {
 		"code": 17,
 		"ja": "石川県",
@@ -196,14 +197,34 @@
 		"en": "Kumamoto",
 		"value": 5
 	}, {
+		"code": 25,
+		"ja": "滋賀県",
+		"en": "Shiga",
+		"value": 4
+	}, {
 		"code": 29,
 		"ja": "奈良県",
 		"en": "Nara",
 		"value": 4
 	}, {
+		"code": 40,
+		"ja": "福岡県",
+		"en": "Fukuoka",
+		"value": 4
+	}, {
+		"code": 9,
+		"ja": "栃木県",
+		"en": "Tochigi",
+		"value": 3
+	}, {
 		"code": 20,
 		"ja": "長野県",
 		"en": "Nagano",
+		"value": 3
+	}, {
+		"code": 21,
+		"ja": "岐阜県",
+		"en": "Gifu",
 		"value": 3
 	}, {
 		"code": 22,
@@ -211,14 +232,9 @@
 		"en": "Shizuoka",
 		"value": 3
 	}, {
-		"code": 25,
-		"ja": "滋賀県",
-		"en": "Shiga",
-		"value": 3
-	}, {
-		"code": 40,
-		"ja": "福岡県",
-		"en": "Fukuoka",
+		"code": 45,
+		"ja": "宮崎県",
+		"en": "Miyazaki",
 		"value": 3
 	}, {
 		"code": 47,
@@ -231,9 +247,9 @@
 		"en": "Fukushima",
 		"value": 2
 	}, {
-		"code": 9,
-		"ja": "栃木県",
-		"en": "Tochigi",
+		"code": 8,
+		"ja": "茨城県",
+		"en": "Ibaraki",
 		"value": 2
 	}, {
 		"code": 19,
@@ -241,9 +257,9 @@
 		"en": "Yamanashi",
 		"value": 2
 	}, {
-		"code": 21,
-		"ja": "岐阜県",
-		"en": "Gifu",
+		"code": 38,
+		"ja": "愛媛県",
+		"en": "Ehime",
 		"value": 2
 	}, {
 		"code": 4,
@@ -256,6 +272,11 @@
 		"en": "Akita",
 		"value": 1
 	}, {
+		"code": 18,
+		"ja": "福井県",
+		"en": "Fukui",
+		"value": 1
+	}, {
 		"code": 34,
 		"ja": "広島県",
 		"en": "Hiroshima",
@@ -266,9 +287,9 @@
 		"en": "Yamaguchi",
 		"value": 1
 	}, {
-		"code": 38,
-		"ja": "愛媛県",
-		"en": "Ehime",
+		"code": 37,
+		"ja": "香川県",
+		"en": "Kagawa",
 		"value": 1
 	}, {
 		"code": 41,
@@ -279,11 +300,6 @@
 		"code": 44,
 		"ja": "大分県",
 		"en": "Oita",
-		"value": 1
-	}, {
-		"code": 45,
-		"ja": "宮崎県",
-		"en": "Miyazaki",
 		"value": 1
 	}, {
 		"code": 2,
@@ -301,19 +317,9 @@
 		"en": "Yamagata",
 		"value": 0
 	}, {
-		"code": 8,
-		"ja": "茨城県",
-		"en": "Ibaraki",
-		"value": 0
-	}, {
 		"code": 16,
 		"ja": "富山県",
 		"en": "Toyama",
-		"value": 0
-	}, {
-		"code": 18,
-		"ja": "福井県",
-		"en": "Fukui",
 		"value": 0
 	}, {
 		"code": 31,
@@ -334,11 +340,6 @@
 		"code": 36,
 		"ja": "徳島県",
 		"en": "Tokushima",
-		"value": 0
-	}, {
-		"code": 37,
-		"ja": "香川県",
-		"en": "Kagawa",
 		"value": 0
 	}, {
 		"code": 42,
