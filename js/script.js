@@ -191,6 +191,7 @@ const init = () => {
             stacked: false,
             gridLines: {
               display: true,
+              zeroLineColor: "rgba(255,255,255,0.7)",
               color: "rgba(255, 255, 255, 0.3)"
             },
             ticks: {
@@ -204,6 +205,18 @@ const init = () => {
         }
       }
     };
+
+    if (switchValue === "new") {
+      config.type = "line";
+      config.data.datasets.forEach(function(dataset){
+        dataset.fill = false;
+        dataset.lineTension = 0.1;
+        dataset.pointBackgroundColor = "#242a3c";
+        dataset.pointBorderWidth = 1.5;
+        dataset.pointRadius = 2.5;
+        dataset.borderWidth = 4;
+      });
+    }
 
     if ($wrapper.width() >= 400) config.options.aspectRatio = 1.5;
     if ($wrapper.width() >= 600) config.options.aspectRatio = 1.8;
@@ -305,11 +318,13 @@ const init = () => {
 
               if (switchValue === "new" && tooltipItem.index >= 1) {
                 const prev = gData.transition[tooltipItem.index - 1];
-                ret = [
-                  LABELS[LANG].chart.surveys.test     + ": " + (row[3] - prev[3]) + suffix[LANG],
-                  LABELS[LANG].chart.surveys.positive + ": " + (row[4] - prev[4]) + suffix[LANG],
-                  LABELS[LANG].chart.surveys.patient  + ": " + (row[5] - prev[5]) + suffix[LANG]
-                ];
+                if (prev[3] !== "") {
+                  ret = [
+                    LABELS[LANG].chart.surveys.test     + ": " + (row[3] - prev[3]) + suffix[LANG],
+                    LABELS[LANG].chart.surveys.positive + ": " + (row[4] - prev[4]) + suffix[LANG],
+                    LABELS[LANG].chart.surveys.patient  + ": " + (row[5] - prev[5]) + suffix[LANG]
+                  ];
+                }
               } else {
                 ret = [
                   LABELS[LANG].chart.surveys.test     + ": " + row[3] + suffix[LANG],
@@ -336,6 +351,7 @@ const init = () => {
             stacked: false,
             gridLines: {
               display: true,
+              zeroLineColor: "rgba(255,255,255,0.7)",
               color: "rgba(255, 255, 255, 0.3)"
             },
             ticks: {
@@ -349,6 +365,18 @@ const init = () => {
         }
       }
     };
+
+    if (switchValue === "new") {
+      config.type = "line";
+      config.data.datasets.forEach(function(dataset){
+        dataset.fill = false;
+        dataset.lineTension = 0.1;
+        dataset.pointBackgroundColor = "#242a3c";
+        dataset.pointBorderWidth = 1.5;
+        dataset.pointRadius = 2.5;
+        dataset.borderWidth = 4;
+      });
+    }
 
     if ($wrapper.width() >= 400) config.options.aspectRatio = 1.5;
     if ($wrapper.width() >= 600) config.options.aspectRatio = 1.8;
@@ -612,8 +640,7 @@ const init = () => {
   }
 
   const loadData = () => {
-    $.getJSON("data/data.json", function(data){
-    //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
+    $.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
       gData = data;
       drawSurveysChart();
       drawPatientsChart();
