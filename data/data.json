@@ -90,20 +90,190 @@
 		}
 	},
 	"prefectures": [{
+		"code": 1,
+		"ja": "北海道",
+		"en": "Hokkaido",
+		"value": 156
+	}, {
+		"code": 23,
+		"ja": "愛知県",
+		"en": "Aichi",
+		"value": 127
+	}, {
+		"code": 13,
+		"ja": "東京都",
+		"en": "Tokyo",
+		"value": 112
+	}, {
+		"code": 27,
+		"ja": "大阪府",
+		"en": "Osaka",
+		"value": 102
+	}, {
+		"code": 28,
+		"ja": "兵庫県",
+		"en": "Hyogo",
+		"value": 69
+	}, {
 		"code": 14,
 		"ja": "神奈川県",
 		"en": "Kanagawa",
 		"value": 57
+	}, {
+		"code": 11,
+		"ja": "埼玉県",
+		"en": "Saitama",
+		"value": 36
+	}, {
+		"code": 12,
+		"ja": "千葉県",
+		"en": "Chiba",
+		"value": 34
+	}, {
+		"code": 15,
+		"ja": "新潟県",
+		"en": "Niigata",
+		"value": 17
+	}, {
+		"code": 26,
+		"ja": "京都府",
+		"en": "Kyoto",
+		"value": 17
 	}, {
 		"code": 30,
 		"ja": "和歌山県",
 		"en": "Wakayama",
 		"value": 14
 	}, {
-		"code": 1,
-		"ja": "北海道",
-		"en": "Hokkaido",
-		"value": 0
+		"code": 39,
+		"ja": "高知県",
+		"en": "Kochi",
+		"value": 11
+	}, {
+		"code": 10,
+		"ja": "群馬県",
+		"en": "Gunma",
+		"value": 10
+	}, {
+		"code": 24,
+		"ja": "三重県",
+		"en": "Mie",
+		"value": 6
+	}, {
+		"code": 43,
+		"ja": "熊本県",
+		"en": "Kumamoto",
+		"value": 6
+	}, {
+		"code": 17,
+		"ja": "石川県",
+		"en": "Ishikawa",
+		"value": 5
+	}, {
+		"code": 40,
+		"ja": "福岡県",
+		"en": "Fukuoka",
+		"value": 5
+	}, {
+		"code": 25,
+		"ja": "滋賀県",
+		"en": "Shiga",
+		"value": 4
+	}, {
+		"code": 29,
+		"ja": "奈良県",
+		"en": "Nara",
+		"value": 4
+	}, {
+		"code": 8,
+		"ja": "茨城県",
+		"en": "Ibaraki",
+		"value": 3
+	}, {
+		"code": 9,
+		"ja": "栃木県",
+		"en": "Tochigi",
+		"value": 3
+	}, {
+		"code": 20,
+		"ja": "長野県",
+		"en": "Nagano",
+		"value": 3
+	}, {
+		"code": 21,
+		"ja": "岐阜県",
+		"en": "Gifu",
+		"value": 3
+	}, {
+		"code": 22,
+		"ja": "静岡県",
+		"en": "Shizuoka",
+		"value": 3
+	}, {
+		"code": 44,
+		"ja": "大分県",
+		"en": "Oita",
+		"value": 3
+	}, {
+		"code": 45,
+		"ja": "宮崎県",
+		"en": "Miyazaki",
+		"value": 3
+	}, {
+		"code": 47,
+		"ja": "沖縄県",
+		"en": "Okinawa",
+		"value": 3
+	}, {
+		"code": 7,
+		"ja": "福島県",
+		"en": "Fukushima",
+		"value": 2
+	}, {
+		"code": 19,
+		"ja": "山梨県",
+		"en": "Yamanashi",
+		"value": 2
+	}, {
+		"code": 38,
+		"ja": "愛媛県",
+		"en": "Ehime",
+		"value": 2
+	}, {
+		"code": 4,
+		"ja": "宮城県",
+		"en": "Miyagi",
+		"value": 1
+	}, {
+		"code": 5,
+		"ja": "秋田県",
+		"en": "Akita",
+		"value": 1
+	}, {
+		"code": 18,
+		"ja": "福井県",
+		"en": "Fukui",
+		"value": 1
+	}, {
+		"code": 34,
+		"ja": "広島県",
+		"en": "Hiroshima",
+		"value": 1
+	}, {
+		"code": 35,
+		"ja": "山口県",
+		"en": "Yamaguchi",
+		"value": 1
+	}, {
+		"code": 37,
+		"ja": "香川県",
+		"en": "Kagawa",
+		"value": 1
+	}, {
+		"code": 41,
+		"ja": "佐賀県",
+		"en": "Saga",
+		"value": 1
 	}, {
 		"code": 2,
 		"ja": "青森県",
@@ -115,129 +285,14 @@
 		"en": "Iwate",
 		"value": 0
 	}, {
-		"code": 4,
-		"ja": "宮城県",
-		"en": "Miyagi",
-		"value": 0
-	}, {
-		"code": 5,
-		"ja": "秋田県",
-		"en": "Akita",
-		"value": 0
-	}, {
 		"code": 6,
 		"ja": "山形県",
 		"en": "Yamagata",
 		"value": 0
 	}, {
-		"code": 7,
-		"ja": "福島県",
-		"en": "Fukushima",
-		"value": 0
-	}, {
-		"code": 8,
-		"ja": "茨城県",
-		"en": "Ibaraki",
-		"value": 0
-	}, {
-		"code": 9,
-		"ja": "栃木県",
-		"en": "Tochigi",
-		"value": 0
-	}, {
-		"code": 10,
-		"ja": "群馬県",
-		"en": "Gunma",
-		"value": 0
-	}, {
-		"code": 11,
-		"ja": "埼玉県",
-		"en": "Saitama",
-		"value": 0
-	}, {
-		"code": 12,
-		"ja": "千葉県",
-		"en": "Chiba",
-		"value": 0
-	}, {
-		"code": 13,
-		"ja": "東京都",
-		"en": "Tokyo",
-		"value": 0
-	}, {
-		"code": 15,
-		"ja": "新潟県",
-		"en": "Niigata",
-		"value": 0
-	}, {
 		"code": 16,
 		"ja": "富山県",
 		"en": "Toyama",
-		"value": 0
-	}, {
-		"code": 17,
-		"ja": "石川県",
-		"en": "Ishikawa",
-		"value": 0
-	}, {
-		"code": 18,
-		"ja": "福井県",
-		"en": "Fukui",
-		"value": 0
-	}, {
-		"code": 19,
-		"ja": "山梨県",
-		"en": "Yamanashi",
-		"value": 0
-	}, {
-		"code": 20,
-		"ja": "長野県",
-		"en": "Nagano",
-		"value": 0
-	}, {
-		"code": 21,
-		"ja": "岐阜県",
-		"en": "Gifu",
-		"value": 0
-	}, {
-		"code": 22,
-		"ja": "静岡県",
-		"en": "Shizuoka",
-		"value": 0
-	}, {
-		"code": 23,
-		"ja": "愛知県",
-		"en": "Aichi",
-		"value": 0
-	}, {
-		"code": 24,
-		"ja": "三重県",
-		"en": "Mie",
-		"value": 0
-	}, {
-		"code": 25,
-		"ja": "滋賀県",
-		"en": "Shiga",
-		"value": 0
-	}, {
-		"code": 26,
-		"ja": "京都府",
-		"en": "Kyoto",
-		"value": 0
-	}, {
-		"code": 27,
-		"ja": "大阪府",
-		"en": "Osaka",
-		"value": 0
-	}, {
-		"code": 28,
-		"ja": "兵庫県",
-		"en": "Hyogo",
-		"value": 0
-	}, {
-		"code": 29,
-		"ja": "奈良県",
-		"en": "Nara",
 		"value": 0
 	}, {
 		"code": 31,
@@ -255,44 +310,9 @@
 		"en": "Okayama",
 		"value": 0
 	}, {
-		"code": 34,
-		"ja": "広島県",
-		"en": "Hiroshima",
-		"value": 0
-	}, {
-		"code": 35,
-		"ja": "山口県",
-		"en": "Yamaguchi",
-		"value": 0
-	}, {
 		"code": 36,
 		"ja": "徳島県",
 		"en": "Tokushima",
-		"value": 0
-	}, {
-		"code": 37,
-		"ja": "香川県",
-		"en": "Kagawa",
-		"value": 0
-	}, {
-		"code": 38,
-		"ja": "愛媛県",
-		"en": "Ehime",
-		"value": 0
-	}, {
-		"code": 39,
-		"ja": "高知県",
-		"en": "Kochi",
-		"value": 0
-	}, {
-		"code": 40,
-		"ja": "福岡県",
-		"en": "Fukuoka",
-		"value": 0
-	}, {
-		"code": 41,
-		"ja": "佐賀県",
-		"en": "Saga",
 		"value": 0
 	}, {
 		"code": 42,
@@ -300,29 +320,9 @@
 		"en": "Nagasaki",
 		"value": 0
 	}, {
-		"code": 43,
-		"ja": "熊本県",
-		"en": "Kumamoto",
-		"value": 0
-	}, {
-		"code": 44,
-		"ja": "大分県",
-		"en": "Oita",
-		"value": 0
-	}, {
-		"code": 45,
-		"ja": "宮崎県",
-		"en": "Miyazaki",
-		"value": 0
-	}, {
 		"code": 46,
 		"ja": "鹿児島県",
 		"en": "Kagoshima",
-		"value": 0
-	}, {
-		"code": 47,
-		"ja": "沖縄県",
-		"en": "Okinawa",
 		"value": 0
 	}]
 }
