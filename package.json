@@ -1,0 +1,18 @@
+{
+  "name": "babel_env",
+  "version": "1.0.0",
+  "scripts": {
+    "build:babel": "babel js/script.js -o js/script.min.js",
+    "build:sass": "node-sass css/style.scss css/style.min.css --output-style compressed --source-map css/style.css.map",
+    "build": "run-p -l build:babel build:sass"
+  },
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "babel-preset-minify": "^0.5.1",
+    "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5"
+  }
+}
