@@ -159,7 +159,7 @@ html,body {
       margin-top: 16px;
       margin-bottom: 16px;
       padding: 4px;
-      width: fit-content;
+      display: table;
       background-color: rgb(71,79,98);
       border: none;
       border-radius: 50px;
@@ -217,7 +217,7 @@ html,body {
     }
 
     #social-buttons {
-      width: fit-content;
+      display: table;
       margin: 32px auto 32px auto;
 
       a {

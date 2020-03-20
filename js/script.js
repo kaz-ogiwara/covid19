@@ -1,3 +1,4 @@
+"use strict";
 let gData;
 let gRegions = [];
 
@@ -446,10 +447,10 @@ const init = () => {
   }
 
   const drawDemographyChart = () => {
-    $wrapper = $("#demography-chart");
+    let $wrapper = $("#demography-chart");
     $wrapper.empty();
     $wrapper.html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
+    let $canvas = $wrapper.find("canvas")[0];
 
     let config = {
       type: "horizontalBar",
