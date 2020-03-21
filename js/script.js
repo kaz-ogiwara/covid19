@@ -107,7 +107,7 @@ const STOPCOVID_URLS= {
   "三重県": "https://covid19-mie.netlify.com/",
   "滋賀県": "",
   "京都府": "",
-  "大阪府": "",
+  "大阪府": "https://covid19-osaka.info/",
   "兵庫県": "https://stop-covid19-hyogo.org/",
   "奈良県": "https://stopcovid19.code4nara.org/",
   "和歌山県": "",
