@@ -80,6 +80,55 @@ const LABELS = {
   }
 };
 
+const STOPCOVID_URLS= {
+  "北海道": "https://stopcovid19.hokkaido.dev/",
+  "青森県": "",
+  "岩手県": "",
+  "宮城県": "",
+  "秋田県": "",
+  "山形県": "",
+  "福島県": "",
+  "茨城県": "",
+  "栃木県": "",
+  "群馬県": "https://covid19-gunma.com/",
+  "埼玉県": "https://stopcovid19.e-toda.jp/",
+  "千葉県": "https://chiba-covid19.mypl.net/",
+  "東京都": "https://stopcovid19.metro.tokyo.lg.jp/about",
+  "神奈川県": "https://www.pref.kanagawa.jp/osirase/1369/",
+  "新潟県": "",
+  "富山県": "",
+  "石川県": "",
+  "福井県": "",
+  "山梨県": "https://stopcovid19.yamanashi.dev/",
+  "長野県": "https://stop-covid19-nagano.netlify.com/",
+  "岐阜県": "https://covid19-gifu.netlify.com/",
+  "静岡県": "",
+  "愛知県": "https://stopcovid19.code4.nagoya/",
+  "三重県": "https://covid19-mie.netlify.com/",
+  "滋賀県": "",
+  "京都府": "",
+  "大阪府": "",
+  "兵庫県": "https://stop-covid19-hyogo.org/",
+  "奈良県": "https://stopcovid19.code4nara.org/",
+  "和歌山県": "",
+  "鳥取県": "",
+  "島根県": "",
+  "岡山県": "https://okayama.stopcovid19.jp/",
+  "広島県": "",
+  "山口県": "https://yamaguchi.stopcovid19.jp/",
+  "徳島県": "",
+  "香川県": "https://covid19-kagawa.netlify.com/",
+  "愛媛県": "https://ehime-covid19.com/",
+  "高知県": "https://covid19-kochi.netlify.com/",
+  "福岡県": "",
+  "佐賀県": "",
+  "長崎県": "",
+  "熊本県": "",
+  "大分県": "",
+  "宮崎県": "",
+  "鹿児島県": "https://covid19.codeforkagoshima.dev/",
+  "沖縄県": ""
+};
 
 const init = () => {
   const drawPatientsChart = () => {
@@ -440,7 +489,29 @@ const init = () => {
       movesIslands : true,
       fontSize : 11,
       onHover : function(data){
+        if (STOPCOVID_URLS[data.name] !== "") {
+          // 都道府県の新型コロナウイルス対策サイトが存在する場合はアイコンを表示させる。
+          $("#info_cursor").css("display", "block");
+        } else {
+          $("#info_cursor").css("display", "none");
+        }
         drawRegionChart(data.code, 0);
+      },
+      onSelect : function(data){
+        // 地図クリック時に各都道府県の新型コロナウイルス対策サイトを開く。
+        if (STOPCOVID_URLS[data.name] !== "") {
+          window.open(STOPCOVID_URLS[data.name]);
+          $("#info_cursor").css("display", "none");  // アイコンが残ったままになるので非表示にする。
+        }
+      }
+    });
+    $("#japan-map").mousemove(function(event){
+      // アイコンとして使用するDIV要素をマウスカーソルの位置に配置する。
+      // マウスカーソルの右下にアイコンを表示させるようx,yを+10する。
+      $("#info_cursor").offset({top: event.pageY+10, left: event.pageX+10});
+      if ($("#japan-map").children("canvas").css("cursor") === "default"){
+        // マウスカーソルが地図の外に出たらアイコンを非表示にする。
+        $("#info_cursor").css("display", "none");
       }
     });
   }
