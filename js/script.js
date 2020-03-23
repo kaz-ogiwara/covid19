@@ -10,7 +10,7 @@ const COLORS = {
   discharge: "#3CA",
   test: "#3DC",
   dead: "#E95",
-  positive: "#E95",
+  positive: "#ED9",
   selected: "#EC2",
   gender: {
     f: "#FE9",
@@ -22,8 +22,8 @@ const LABELS = {
     chart: {
       patients: {
         dead: "死亡数",
-        discharge: "退院数",
-        patient: "患者数"
+        discharge: "回復者数",
+        positive: "陽性者数"
       },
       surveys: {
         patient: "有症数",
@@ -96,19 +96,19 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: LABELS[LANG].chart.patients.dead,
-          backgroundColor: COLORS.dead,
-          borderColor: COLORS.dead,
-          data: []
-        },{
           label: LABELS[LANG].chart.patients.discharge,
           backgroundColor: COLORS.discharge,
           borderColor: COLORS.discharge,
           data: []
         },{
-          label: LABELS[LANG].chart.patients.patient,
-          backgroundColor: COLORS.patient,
-          borderColor: COLORS.patient,
+          label: LABELS[LANG].chart.patients.dead,
+          backgroundColor: COLORS.dead,
+          borderColor: COLORS.dead,
+          data: []
+        },{
+          label: LABELS[LANG].chart.patients.positive,
+          backgroundColor: COLORS.positive,
+          borderColor: COLORS.positive,
           data: []
         }]
       },
@@ -161,13 +161,13 @@ const init = () => {
               if (switchValue === "new" && tooltipItem.index >= 1) {
                 const prev = gData.transition[tooltipItem.index - 1];
                 ret = [
-                  LABELS[LANG].chart.patients.patient   + ": " + (row[5] - prev[5]) + suffix[LANG],
+                  LABELS[LANG].chart.patients.positive   + ": " + (row[4] - prev[4]) + suffix[LANG],
                   LABELS[LANG].chart.patients.discharge + ": " + (row[6] - prev[6]) + suffix[LANG],
                   LABELS[LANG].chart.patients.dead      + ": " + (row[7] - prev[7]) + suffix[LANG]
                 ];
               } else {
                 ret = [
-                  LABELS[LANG].chart.patients.patient   + ": " + row[5] + suffix[LANG],
+                  LABELS[LANG].chart.patients.positive   + ": " + row[4] + suffix[LANG],
                   LABELS[LANG].chart.patients.discharge + ": " + row[6] + suffix[LANG],
                   LABELS[LANG].chart.patients.dead      + ": " + row[7] + suffix[LANG]
                 ];
@@ -226,13 +226,13 @@ const init = () => {
 
       if (switchValue === "new" && i >= 1) {
         let prev = gData.transition[i - 1];
-        config.data.datasets[2].data.push(date[5] - prev[5]);
-        config.data.datasets[1].data.push(date[6] - prev[6]);
-        config.data.datasets[0].data.push(date[7] - prev[7]);
+        config.data.datasets[2].data.push(date[4] - prev[4]);
+        config.data.datasets[0].data.push(date[6] - prev[6]);
+        config.data.datasets[1].data.push(date[7] - prev[7]);
       } else {
-        config.data.datasets[2].data.push(date[5]);
-        config.data.datasets[1].data.push(date[6]);
-        config.data.datasets[0].data.push(date[7]);
+        config.data.datasets[2].data.push(date[4]);
+        config.data.datasets[0].data.push(date[6]);
+        config.data.datasets[1].data.push(date[7]);
       }
     });
 
@@ -254,15 +254,15 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: LABELS[LANG].chart.surveys.patient,
-          backgroundColor: [],
-          borderColor: COLORS.patient,
-          data: []
-        },{
           label: LABELS[LANG].chart.surveys.positive,
           backgroundColor: [],
           borderColor: COLORS.positive,
           data: []
+//        },{
+//          label: LABELS[LANG].chart.surveys.positive,
+//          backgroundColor: [],
+//          borderColor: COLORS.positive,
+//          data: []
         },{
           label: LABELS[LANG].chart.surveys.test,
           backgroundColor: [],
@@ -322,14 +322,14 @@ const init = () => {
                   ret = [
                     LABELS[LANG].chart.surveys.test     + ": " + (row[3] - prev[3]) + suffix[LANG],
                     LABELS[LANG].chart.surveys.positive + ": " + (row[4] - prev[4]) + suffix[LANG],
-                    LABELS[LANG].chart.surveys.patient  + ": " + (row[5] - prev[5]) + suffix[LANG]
+                    //LABELS[LANG].chart.surveys.patient  + ": " + (row[5] - prev[5]) + suffix[LANG]
                   ];
                 }
               } else {
                 ret = [
                   LABELS[LANG].chart.surveys.test     + ": " + row[3] + suffix[LANG],
                   LABELS[LANG].chart.surveys.positive + ": " + row[4] + suffix[LANG],
-                  LABELS[LANG].chart.surveys.patient  + ": " + row[5] + suffix[LANG]
+                  //LABELS[LANG].chart.surveys.patient  + ": " + row[5] + suffix[LANG]
                 ];
               }
               return ret;
@@ -386,20 +386,20 @@ const init = () => {
 
       if (switchValue === "new" && i >= 1) {
         let prev = gData.transition[i - 1];
-        config.data.datasets[2].data.push(date[3] - prev[3]);
-        config.data.datasets[1].data.push(date[4] - prev[4]);
-        config.data.datasets[0].data.push(date[5] - prev[5]);
+        //config.data.datasets[2].data.push(date[3] - prev[3]);
+        config.data.datasets[1].data.push(date[3] - prev[3]);
+        config.data.datasets[0].data.push(date[4] - prev[4]);
       } else {
-        config.data.datasets[2].data.push(date[3]);
-        config.data.datasets[1].data.push(date[4]);
-        config.data.datasets[0].data.push(date[5]);
+        //config.data.datasets[2].data.push(date[3]);
+        config.data.datasets[1].data.push(date[3]);
+        config.data.datasets[0].data.push(date[4]);
       }
 
       let pcrTestColor = (date[0] >= 3 && date[1] >= 4) ? COLORS.dark: COLORS.test;
 
-      config.data.datasets[2].backgroundColor.push(pcrTestColor);
-      config.data.datasets[1].backgroundColor.push(COLORS.positive);
-      config.data.datasets[0].backgroundColor.push(COLORS.patient);
+      //config.data.datasets[2].backgroundColor.push(pcrTestColor);
+      config.data.datasets[1].backgroundColor.push(pcrTestColor);
+      config.data.datasets[0].backgroundColor.push(COLORS.positive);
     });
 
     let ctx = $canvas.getContext('2d');
@@ -640,7 +640,7 @@ const init = () => {
   }
 
   const loadData = () => {
-    $.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
+    $.getJSON("https://raw.githubusercontent.com/yoshitar/covid19/master/data/data_id.json", function(data){
       gData = data;
       drawSurveysChart();
       drawPatientsChart();
