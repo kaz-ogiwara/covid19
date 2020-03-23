@@ -12,10 +12,6 @@ const COLORS = {
   dead: "#E95",
   positive: "#ED9",
   selected: "#EC2",
-  gender: {
-    f: "#FE9",
-    m: "#2B9"
-  }
 };
 const LABELS = {
   ja: {
@@ -30,35 +26,19 @@ const LABELS = {
         positive: "陽性者数",
         test: "検査数"
       },
-      demography: {
-        f: "女性",
-        m: "男性"
-      }
     },
-    age: {
-      "10代": "10代",
-      "20代": "20代",
-      "30代": "30代",
-      "40代": "40代",
-      "50代": "50代",
-      "60代": "60代",
-      "70代": "70代",
-      "80代": "80代",
-      "90代": "90代",
-      "10歳未満": "10歳未満"
-    }
   },
   en: {
     chart: {
       patients: {
         dead: "Deaths",
-        discharge: "Discharged",
-        patient: "Cases"
+        discharge: "Recovered",
+        positive: "Cases"
       },
       surveys: {
         patient: "Cases",
         positive: "Positive",
-        test: "PCR Tests"
+        test: "Tests"
       },
       demography: {
         f: "Female",
@@ -413,226 +393,6 @@ const init = () => {
     return ret;
   }
 
-  const drawJapanMap = () => {
-    const WIDTH = $("#japan-map").width();
-
-    let prefs = [];
-    gData.prefectures.forEach(function(pref, i){
-      prefs.push({
-        code: pref.code,
-        jp: pref.jp,
-        en: pref.en,
-        color: getPrefColor(pref.value),
-        hoverColor: COLORS.selected,
-        prefectures: [pref.code]
-      });
-    });
-
-    $("#japan-map").japanMap({
-      areas: prefs,
-      width: WIDTH,
-      borderLineColor: "#fcfcfc",
-      borderLineWidth : 0.25,
-      lineColor : "#ccc",
-      lineWidth: 1,
-      drawsBoxLine: false,
-      showsPrefectureName: false,
-      movesIslands : true,
-      fontSize : 11,
-      onHover : function(data){
-        drawRegionChart(data.code, 0);
-      }
-    });
-  }
-
-  const drawDemographyChart = () => {
-    $wrapper = $("#demography-chart");
-    $wrapper.empty();
-    $wrapper.html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
-
-    let config = {
-      type: "horizontalBar",
-      data: {
-        labels: [],
-        datasets: [{
-          label: LABELS[LANG].chart.demography.f,
-          backgroundColor: COLORS.gender.f,
-          data: []
-        },{
-          label: LABELS[LANG].chart.demography.m,
-          backgroundColor: COLORS.gender.m,
-          data: []
-        }]
-      },
-      options: {
-        aspectRatio: 0.9,
-        responsive: true,
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgba(255, 255, 255, 0.7)"
-          }
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: true,
-          callbacks: {
-            title: function(tooltipItem){
-              return tooltipItem[0].yLabel;
-            },
-            label: function(tooltipItem, data){
-              let suffix = {
-                ja: "名",
-                en: ""
-              };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            position: "top",
-            color: "yellow",
-            gridLines: {
-              color: "rgba(255,255,255,0.2)"
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return value.toString();
-              }
-            }
-          }],
-          yAxes: [{
-            gridLines: {
-              color: "rgba(255,255,255,0.1)"
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function (value){
-                return LABELS[LANG].age[value];
-              }
-            }
-          }]
-        }
-      }
-    };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.1;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
-
-    let dsi = 0;
-    for (let gender in gData.demography) {
-      for (let age in gData.demography[gender]) {
-        let value = gData.demography[gender][age];
-        if (dsi === 0) config.data.labels.push(age);
-        config.data.datasets[dsi].data.push(value);
-      }
-      dsi++;
-    }
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
-
-  const drawRegionChart = (targetRegion) => {
-    let $wrapper = $("#region-chart");
-    $wrapper.empty();
-    $wrapper.html('<canvas></canvas>');
-    let $canvas = $wrapper.find("canvas")[0];
-
-    let config = {
-      type: "horizontalBar",
-      data: {
-        labels: [],
-        datasets: [{
-          label: "",
-          backgroundColor: [],
-          data: []
-        }]
-      },
-      options: {
-        aspectRatio: 0.6,
-        animation: {
-          duration: 1000
-        },
-        responsive: true,
-        legend: {
-          display: false
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: true,
-          callbacks: {
-            title: function(tooltipItem){
-              return tooltipItem[0].yLabel;
-            },
-            label: function(tooltipItem, data){
-              let suffix = {
-                ja: " 名",
-                en: " cases"
-              };
-              return tooltipItem.xLabel + suffix[LANG];
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            position: "top",
-            gridLines: {
-              color: "rgba(255,255,255,0.2)"
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return value.toString();
-              }
-            }
-          }],
-          yAxes: [{
-            gridLines: {
-              color: "rgba(255,255,255,0.1)"
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)",
-            }
-          }]
-        }
-      }
-    };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 0.8;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.0;
-    if (targetRegion !== "") config.options.animation.duration = 0;
-
-    gData.prefectures.forEach(function(pref, i){
-      if (pref.value >= 1) {
-        config.data.labels.push(pref[LANG]);
-        config.data.datasets[0].data.push(pref.value);
-
-        if (targetRegion === pref.code) {
-          config.data.datasets[0].backgroundColor.push(COLORS.selected);
-        } else {
-          config.data.datasets[0].backgroundColor.push(getPrefColor(pref.value));
-        }
-      }
-    });
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
-
   const showUpdateDates = () => {
     ["last", "transition", "demography", "prefectures"].forEach(function(cls){
       $(".updated-" + cls).text(gData.updated[cls][LANG]);
@@ -644,10 +404,6 @@ const init = () => {
       gData = data;
       drawSurveysChart();
       drawPatientsChart();
-      drawDemographyChart();
-      drawJapanMap();
-      drawRegionChart("");
-      showUpdateDates();
       $("#container").addClass("show");
     })
   }
