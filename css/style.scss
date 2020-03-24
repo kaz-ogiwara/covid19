@@ -60,6 +60,7 @@ html,body {
     p {
       margin-top: 16px;
       font-size: 14px;
+      line-height: 26px;
 
       @media only screen and (min-width: 400px) {
         font-size: 15px;
@@ -88,9 +89,9 @@ html,body {
 
   #main-block {
     margin: 0 auto;
-    max-width: 1280px;
+    max-width: 1800px;
 
-    @media only screen and (min-width: 960px) {
+    @media only screen and (min-width: 1080px) {
       display: flex;
       flex-wrap: wrap;
     }
@@ -102,28 +103,36 @@ html,body {
     max-width: 640px;
 
     @media only screen and (min-width: 960px) {
-      width: 50%;
+      width: calc(100% / 2);
 
       &:nth-child(1) {padding: 0 8px 0 16px;}
       &:nth-child(2) {padding: 0 16px 0 8px;}
+    }
+
+    @media only screen and (min-width: 1200px) {
+      width: calc(100% / 3);
+
+      &:nth-child(1) {padding: 0 8px 0 16px;}
+      &:nth-child(2) {padding: 0 8px 0 8px;}
+      &:nth-child(3) {padding: 0 16px 0 8px;}
     }
   }
 
   #region-block,
   #demography-block,
-  #patients-block,
-  #surveys-block {
+  .transition-block {
+    position: relative;
     margin: 0 auto;
     margin-top: 16px;
     width: 100%;
-    max-width: 640px;
     padding: 8px 16px;
     background-color: rgb(36,42,60);
     border: none;
     border-radius: 4px;
 
     h3 {
-      padding-left: 4px;
+      margin-left: -2px;
+      padding-left: 6px;
       font-size: 16px;
       font-weight: bold;
       border: none;
@@ -131,12 +140,12 @@ html,body {
 
       @media only screen and (min-width: 400px) {
         padding-left: 6px;
-        font-size: 20px;
+        font-size: 18px;
       }
 
       @media only screen and (min-width: 640px) {
         padding-left: 8px;
-        font-size: 24px;
+        font-size: 20px;
       }
     }
 
@@ -158,7 +167,7 @@ html,body {
       margin: 0 auto;
       margin-top: 16px;
       margin-bottom: 16px;
-      padding: 4px;
+      padding: 2px;
       width: fit-content;
       background-color: rgb(71,79,98);
       border: none;
@@ -169,8 +178,7 @@ html,body {
         color: #aaa;
         background-color: transparent;
         display: inline-block;
-        padding: 2px 16px 0 16px;
-        margin: 0 4px;
+        padding: 2px 16px;
         border-radius: 50px;
 
         &:hover {
@@ -180,17 +188,77 @@ html,body {
 
         &.selected {
           color: #fafafa;
-          background-color: #d72;
         }
 
-        &:nth-child(1) {margin-left:  0px;}
-        &:nth-child(3) {margin-right: 0px;}
+        &:nth-child(1) {&.selected {background-color: #d72/*29a*/;}}
+        &:nth-child(2) {&.selected {background-color: #d72;;}}
       }
     }
 
     p.notes {
+      position: relative;
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      line-height: 24px;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.7);
+    }
+  }
+
+  .transition-block {
+    .latest {
+      position: absolute;
+      top: 8px;
+      right: 16px;
+
+      .value {
+        font-size: 20px;
+
+        @media only screen and (min-width: 400px) {
+          font-size: 22px;
+        }
+
+        @media only screen and (min-width: 640px) {
+          font-size: 24px;
+        }
+      }
+
+      .type,.unit,.change {
+        font-size: 13px;
+        color: #ccc;
+      }
+
+      .change {
+        text-align: right;
+      }
+    }
+
+    p.notes {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-right: 72px;
+
+      a.more {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 13px;
+        color: #ace;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &.show {
+        white-space: inherit;
+        padding-right: 0;
+
+        a.more {
+          display: none;
+        }
+      }
     }
   }
 

@@ -43,7 +43,8 @@ html, body {
           font-size: 24px; } }
     #container #title-block p {
       margin-top: 16px;
-      font-size: 14px; }
+      font-size: 14px;
+      line-height: 26px; }
       @media only screen and (min-width: 400px) {
         #container #title-block p {
           font-size: 15px; } }
@@ -62,8 +63,8 @@ html, body {
             font-size: 16px; } }
   #container #main-block {
     margin: 0 auto;
-    max-width: 1280px; }
-    @media only screen and (min-width: 960px) {
+    max-width: 1800px; }
+    @media only screen and (min-width: 1080px) {
       #container #main-block {
         display: flex;
         flex-wrap: wrap; } }
@@ -73,28 +74,36 @@ html, body {
     max-width: 640px; }
     @media only screen and (min-width: 960px) {
       #container .row {
-        width: 50%; }
+        width: calc(100% / 2); }
         #container .row:nth-child(1) {
           padding: 0 8px 0 16px; }
         #container .row:nth-child(2) {
           padding: 0 16px 0 8px; } }
+    @media only screen and (min-width: 1200px) {
+      #container .row {
+        width: calc(100% / 3); }
+        #container .row:nth-child(1) {
+          padding: 0 8px 0 16px; }
+        #container .row:nth-child(2) {
+          padding: 0 8px 0 8px; }
+        #container .row:nth-child(3) {
+          padding: 0 16px 0 8px; } }
   #container #region-block,
   #container #demography-block,
-  #container #patients-block,
-  #container #surveys-block {
+  #container .transition-block {
+    position: relative;
     margin: 0 auto;
     margin-top: 16px;
     width: 100%;
-    max-width: 640px;
     padding: 8px 16px;
     background-color: #242a3c;
     border: none;
     border-radius: 4px; }
     #container #region-block h3,
     #container #demography-block h3,
-    #container #patients-block h3,
-    #container #surveys-block h3 {
-      padding-left: 4px;
+    #container .transition-block h3 {
+      margin-left: -2px;
+      padding-left: 6px;
       font-size: 16px;
       font-weight: bold;
       border: none;
@@ -102,87 +111,112 @@ html, body {
       @media only screen and (min-width: 400px) {
         #container #region-block h3,
         #container #demography-block h3,
-        #container #patients-block h3,
-        #container #surveys-block h3 {
+        #container .transition-block h3 {
           padding-left: 6px;
-          font-size: 20px; } }
+          font-size: 18px; } }
       @media only screen and (min-width: 640px) {
         #container #region-block h3,
         #container #demography-block h3,
-        #container #patients-block h3,
-        #container #surveys-block h3 {
+        #container .transition-block h3 {
           padding-left: 8px;
-          font-size: 24px; } }
+          font-size: 20px; } }
     #container #region-block h5,
     #container #demography-block h5,
-    #container #patients-block h5,
-    #container #surveys-block h5 {
+    #container .transition-block h5 {
       color: rgba(255, 255, 255, 0.5);
       font-size: 13px;
       margin: 4px 0 8px 10px; }
       @media only screen and (min-width: 400px) {
         #container #region-block h5,
         #container #demography-block h5,
-        #container #patients-block h5,
-        #container #surveys-block h5 {
+        #container .transition-block h5 {
           margin-left: 12px; } }
       @media only screen and (min-width: 640px) {
         #container #region-block h5,
         #container #demography-block h5,
-        #container #patients-block h5,
-        #container #surveys-block h5 {
+        #container .transition-block h5 {
           margin-left: 14px; } }
     #container #region-block .switches,
     #container #demography-block .switches,
-    #container #patients-block .switches,
-    #container #surveys-block .switches {
+    #container .transition-block .switches {
       margin: 0 auto;
       margin-top: 16px;
       margin-bottom: 16px;
-      padding: 4px;
+      padding: 2px;
       width: fit-content;
       background-color: #474f62;
       border: none;
       border-radius: 50px; }
       #container #region-block .switches .switch,
       #container #demography-block .switches .switch,
-      #container #patients-block .switches .switch,
-      #container #surveys-block .switches .switch {
+      #container .transition-block .switches .switch {
         font-size: 14px;
         color: #aaa;
         background-color: transparent;
         display: inline-block;
-        padding: 2px 16px 0 16px;
-        margin: 0 4px;
+        padding: 2px 16px;
         border-radius: 50px; }
         #container #region-block .switches .switch:hover,
         #container #demography-block .switches .switch:hover,
-        #container #patients-block .switches .switch:hover,
-        #container #surveys-block .switches .switch:hover {
+        #container .transition-block .switches .switch:hover {
           cursor: pointer;
           background-color: #1b354f; }
         #container #region-block .switches .switch.selected,
         #container #demography-block .switches .switch.selected,
-        #container #patients-block .switches .switch.selected,
-        #container #surveys-block .switches .switch.selected {
-          color: #fafafa;
+        #container .transition-block .switches .switch.selected {
+          color: #fafafa; }
+        #container #region-block .switches .switch:nth-child(1).selected,
+        #container #demography-block .switches .switch:nth-child(1).selected,
+        #container .transition-block .switches .switch:nth-child(1).selected {
           background-color: #d72; }
-        #container #region-block .switches .switch:nth-child(1),
-        #container #demography-block .switches .switch:nth-child(1),
-        #container #patients-block .switches .switch:nth-child(1),
-        #container #surveys-block .switches .switch:nth-child(1) {
-          margin-left: 0px; }
-        #container #region-block .switches .switch:nth-child(3),
-        #container #demography-block .switches .switch:nth-child(3),
-        #container #patients-block .switches .switch:nth-child(3),
-        #container #surveys-block .switches .switch:nth-child(3) {
-          margin-right: 0px; }
+        #container #region-block .switches .switch:nth-child(2).selected,
+        #container #demography-block .switches .switch:nth-child(2).selected,
+        #container .transition-block .switches .switch:nth-child(2).selected {
+          background-color: #d72; }
     #container #region-block p.notes,
     #container #demography-block p.notes,
-    #container #patients-block p.notes,
-    #container #surveys-block p.notes {
+    #container .transition-block p.notes {
+      position: relative;
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.5); }
+      line-height: 24px;
+      margin-top: 16px;
+      color: rgba(255, 255, 255, 0.7); }
+  #container .transition-block .latest {
+    position: absolute;
+    top: 8px;
+    right: 16px; }
+    #container .transition-block .latest .value {
+      font-size: 20px; }
+      @media only screen and (min-width: 400px) {
+        #container .transition-block .latest .value {
+          font-size: 22px; } }
+      @media only screen and (min-width: 640px) {
+        #container .transition-block .latest .value {
+          font-size: 24px; } }
+    #container .transition-block .latest .type, #container .transition-block .latest .unit, #container .transition-block .latest .change {
+      font-size: 13px;
+      color: #ccc; }
+    #container .transition-block .latest .change {
+      text-align: right; }
+  #container .transition-block p.notes {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 72px; }
+    #container .transition-block p.notes a.more {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 13px;
+      color: #ace; }
+      #container .transition-block p.notes a.more:hover {
+        cursor: pointer; }
+    #container .transition-block p.notes.show {
+      white-space: inherit;
+      padding-right: 0; }
+      #container .transition-block p.notes.show a.more {
+        display: none; }
   #container #footer-block {
     width: calc(100% - 32px);
     max-width: 640px;
