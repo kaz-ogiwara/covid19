@@ -5,12 +5,13 @@ const LANG = $("html").attr("lang");
 const REGION_THRESHOLD = 10;
 const COLORS = {
   default: "#3DC",
+  carriers: "#3DC",
+  cases: "#6DF",
+  dead: "#EB8",
+  discharged: "#9FC",
+  serious: "#FEA",
+  pcrtested: "#4CD",
   dark: "#399",
-  patient: "#ED9",
-  discharge: "#3CA",
-  test: "#3DC",
-  dead: "#E95",
-  positive: "#E95",
   selected: "#EC2",
   gender: {
     f: "#FE9",
@@ -19,21 +20,18 @@ const COLORS = {
 };
 const LABELS = {
   ja: {
-    chart: {
-      patients: {
-        dead: "死亡数",
-        discharge: "退院数",
-        patient: "患者数"
-      },
-      surveys: {
-        patient: "有症数",
-        positive: "陽性者数",
-        test: "検査数"
-      },
-      demography: {
-        f: "女性",
-        m: "男性"
-      }
+    change: "前日比",
+    unit: {
+      carriers: "名",
+      cases: "名",
+      discharged: "名",
+      pcrtested: "名",
+      serious: "名",
+      dead: "名"
+    },
+    demography: {
+      f: "女性",
+      m: "男性"
     },
     age: {
       "10代": "10代",
@@ -49,21 +47,18 @@ const LABELS = {
     }
   },
   en: {
-    chart: {
-      patients: {
-        dead: "Deaths",
-        discharge: "Discharged",
-        patient: "Cases"
-      },
-      surveys: {
-        patient: "Cases",
-        positive: "Positive",
-        test: "PCR Tests"
-      },
-      demography: {
-        f: "Female",
-        m: "Male"
-      }
+    change: "DoD: ",
+    unit: {
+      carriers: "",
+      cases: "",
+      discharged: "",
+      pcrtested: "",
+      serious: "",
+      dead: ""
+    },
+    demography: {
+      f: "Female",
+      m: "Male"
     },
     age: {
       "10代": "10s",
@@ -82,44 +77,49 @@ const LABELS = {
 
 
 const init = () => {
-  const drawPatientsChart = () => {
-    let $wrapper = $("#patients-chart");
-    $wrapper.empty();
-    $wrapper.html("<canvas></canvas>");
-    let $canvas = $wrapper.find("canvas")[0];
+  const addCommas = (num) => {
+    return String(num).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+  }
 
-    let switchValue = $("#patients-block").find(".switch.selected").attr("value");
-    let isStacked = (switchValue === "total") ? true: false;
+  const drawTransitionBlocks = () => {
+    $(".transition-block").each(function(){
+      let code = $(this).attr("code");
+      drawTransitionChart($(this), code);
+    });
+  }
+
+  const drawTransitionChart = ($block, code) => {
+    let $chart = $block.find(".chart").empty().html("<canvas></canvas>");
+    let $canvas = $chart.find("canvas")[0];
+    let switchValue = $block.find(".switch.selected").attr("value");
+
+    let rows = gData.transition[code];
+
+
+    let latestValue = rows[rows.length - 1][3];
+    let latestChange = latestValue - rows[rows.length - 2][3];
+        if (parseInt(latestChange) > 0) latestChange = "+" + latestChange.toString();
+    let $latest = $block.find(".latest");
+    $latest.find(".value").text(addCommas(latestValue));
+    $latest.find(".unit").text(LABELS[LANG].unit[code]);
+    $latest.find(".type").text($block.find(".switch[value=total]").text());
+    $latest.find(".change").text(LABELS[LANG].change + " " + latestChange);
 
     let config = {
       type: "bar",
       data: {
         labels: [],
         datasets: [{
-          label: LABELS[LANG].chart.patients.dead,
-          backgroundColor: COLORS.dead,
-          borderColor: COLORS.dead,
-          data: []
-        },{
-          label: LABELS[LANG].chart.patients.discharge,
-          backgroundColor: COLORS.discharge,
-          borderColor: COLORS.discharge,
-          data: []
-        },{
-          label: LABELS[LANG].chart.patients.patient,
-          backgroundColor: COLORS.patient,
-          borderColor: COLORS.patient,
+          label: $block.find("h3:first").text(),
+          backgroundColor: COLORS[code],
           data: []
         }]
       },
       options: {
-        aspectRatio: 1.2,
+        aspectRatio: 1.8,
         responsive: true,
         legend: {
-          display: true,
-          labels: {
-            fontColor: "rgba(255, 255, 255, 0.7)"
-          }
+          display: false
         },
         title: {
           display: false
@@ -130,60 +130,31 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              let prefix = {
-                ja: "",
-                en: "As of "
-              };
-
-              let dateTime = tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00";
-
-              let suffix = {
-                ja: {
-                  total: "時点 累計",
-                  new: "時点新規"
-                },
-                en: {
-                  total: " Total",
-                  new: " New cases"
-                }
-              };
-
-              return prefix[LANG] + dateTime + suffix[LANG][switchValue];
+              let dateTime = tooltipItem[0].xLabel + " " + "12:00";
+              if (LANG === "ja") dateTime = dateTime + "時点";
+              if (LANG === "en") dateTime = "As of " + dateTime;
+              let suffix = $block.find(".switch.selected").text();
+              return dateTime + " " + suffix;
             },
             label: function(tooltipItem, data){
-              let row = gData.transition[tooltipItem.index];
-              let ret;
-              let suffix = {
-                ja: "名",
-                en: ""
-              };
-
-              if (switchValue === "new" && tooltipItem.index >= 1) {
-                const prev = gData.transition[tooltipItem.index - 1];
-                ret = [
-                  LABELS[LANG].chart.patients.patient   + ": " + (row[5] - prev[5]) + suffix[LANG],
-                  LABELS[LANG].chart.patients.discharge + ": " + (row[6] - prev[6]) + suffix[LANG],
-                  LABELS[LANG].chart.patients.dead      + ": " + (row[7] - prev[7]) + suffix[LANG]
-                ];
-              } else {
-                ret = [
-                  LABELS[LANG].chart.patients.patient   + ": " + row[5] + suffix[LANG],
-                  LABELS[LANG].chart.patients.discharge + ": " + row[6] + suffix[LANG],
-                  LABELS[LANG].chart.patients.dead      + ": " + row[7] + suffix[LANG]
-                ];
-              }
+              let ret = data.datasets[0].label + ": " + addCommas(data.datasets[0].data[tooltipItem.index]) + " " + LABELS[LANG].unit[code];
               return ret;
             }
           }
         },
         scales: {
           xAxes: [{
-            stacked: isStacked,
+            stacked: false,
             gridLines: {
               display: false
             },
             ticks: {
-              fontColor: "rgba(255,255,255,0.7)"
+              fontColor: "rgba(255,255,255,0.7)",
+              maxRotation: 0,
+              minRotation: 0,
+              callback: (label) => {
+                return " " + label + " ";
+              }
             }
           }],
           yAxes: [{
@@ -198,7 +169,9 @@ const init = () => {
               beginAtZero: true,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString();
+                if (Math.floor(value) === value) {
+                  return addCommas(value.toString());
+                }
               }
             }
           }]
@@ -206,200 +179,19 @@ const init = () => {
       }
     };
 
-    if (switchValue === "new") {
-      config.type = "line";
-      config.data.datasets.forEach(function(dataset){
-        dataset.fill = false;
-        dataset.lineTension = 0.1;
-        dataset.pointBackgroundColor = "#242a3c";
-        dataset.pointBorderWidth = 1.5;
-        dataset.pointRadius = 2.5;
-        dataset.borderWidth = 4;
-      });
+    if ($block.width() >= 400) {
+      config.options.aspectRatio = 2.4;
     }
 
-    if ($wrapper.width() >= 400) config.options.aspectRatio = 1.5;
-    if ($wrapper.width() >= 600) config.options.aspectRatio = 1.8;
-
-    gData.transition.forEach(function(date, i){
-      config.data.labels.push(date[0] + "/" + date[1]);
-
-      if (switchValue === "new" && i >= 1) {
-        let prev = gData.transition[i - 1];
-        config.data.datasets[2].data.push(date[5] - prev[5]);
-        config.data.datasets[1].data.push(date[6] - prev[6]);
-        config.data.datasets[0].data.push(date[7] - prev[7]);
-      } else {
-        config.data.datasets[2].data.push(date[5]);
-        config.data.datasets[1].data.push(date[6]);
-        config.data.datasets[0].data.push(date[7]);
+    rows.forEach(function(row, i){
+      if (switchValue === "total") {
+        config.data.labels.push(row[1] + "/" + row[2]);
+        config.data.datasets[0].data.push(row[3]);
+      } else if (i >= 1) {
+        config.data.labels.push(row[1] + "/" + row[2]);
+        let prev = rows[i - 1];
+        config.data.datasets[0].data.push(row[3] - prev[3]);
       }
-    });
-
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
-  }
-
-  const drawSurveysChart = () => {
-    let $wrapper = $("#surveys-chart");
-    $wrapper.empty();
-    $wrapper.html("<canvas></canvas>");
-    let $canvas = $wrapper.find("canvas")[0];
-
-    let switchValue = $("#surveys-block").find(".switch.selected").attr("value");
-    let isStacked = (switchValue === "total") ? true: false;
-
-    let config = {
-      type: "bar",
-      data: {
-        labels: [],
-        datasets: [{
-          label: LABELS[LANG].chart.surveys.patient,
-          backgroundColor: [],
-          borderColor: COLORS.patient,
-          data: []
-        },{
-          label: LABELS[LANG].chart.surveys.positive,
-          backgroundColor: [],
-          borderColor: COLORS.positive,
-          data: []
-        },{
-          label: LABELS[LANG].chart.surveys.test,
-          backgroundColor: [],
-          borderColor: COLORS.test,
-          data: []
-        }]
-      },
-      options: {
-        aspectRatio: 1.2,
-        responsive: true,
-        legend: {
-          display: true,
-          labels: {
-            fontColor: "rgba(255, 255, 255, 0.7)"
-          }
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          displayColors: false,
-          callbacks: {
-            title: function(tooltipItem){
-              let prefix = {
-                ja: "",
-                en: "As of "
-              };
-
-              let dateTime = tooltipItem[0].xLabel + " " + gData.transition[tooltipItem[0].index][2] + ":00";
-
-              let suffix = {
-                ja: {
-                  total: "時点 累計",
-                  new: "時点新規"
-                },
-                en: {
-                  total: " Total",
-                  new: " New cases"
-                }
-              };
-
-              return prefix[LANG] + dateTime + suffix[LANG][switchValue];
-            },
-            label: function(tooltipItem, data){
-              let row = gData.transition[tooltipItem.index];
-              let ret;
-              let suffix = {
-                ja: "名",
-                en: ""
-              };
-
-              if (switchValue === "new" && tooltipItem.index >= 1) {
-                const prev = gData.transition[tooltipItem.index - 1];
-                if (prev[3] !== "") {
-                  ret = [
-                    LABELS[LANG].chart.surveys.test     + ": " + (row[3] - prev[3]) + suffix[LANG],
-                    LABELS[LANG].chart.surveys.positive + ": " + (row[4] - prev[4]) + suffix[LANG],
-                    LABELS[LANG].chart.surveys.patient  + ": " + (row[5] - prev[5]) + suffix[LANG]
-                  ];
-                }
-              } else {
-                ret = [
-                  LABELS[LANG].chart.surveys.test     + ": " + row[3] + suffix[LANG],
-                  LABELS[LANG].chart.surveys.positive + ": " + row[4] + suffix[LANG],
-                  LABELS[LANG].chart.surveys.patient  + ": " + row[5] + suffix[LANG]
-                ];
-              }
-              return ret;
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            stacked: isStacked,
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              fontColor: "rgba(255,255,255,0.7)"
-            }
-          }],
-          yAxes: [{
-            location: "bottom",
-            stacked: false,
-            gridLines: {
-              display: true,
-              zeroLineColor: "rgba(255,255,255,0.7)",
-              color: "rgba(255, 255, 255, 0.3)"
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                return value.toString();
-              }
-            }
-          }]
-        }
-      }
-    };
-
-    if (switchValue === "new") {
-      config.type = "line";
-      config.data.datasets.forEach(function(dataset){
-        dataset.fill = false;
-        dataset.lineTension = 0.1;
-        dataset.pointBackgroundColor = "#242a3c";
-        dataset.pointBorderWidth = 1.5;
-        dataset.pointRadius = 2.5;
-        dataset.borderWidth = 4;
-      });
-    }
-
-    if ($wrapper.width() >= 400) config.options.aspectRatio = 1.5;
-    if ($wrapper.width() >= 600) config.options.aspectRatio = 1.8;
-
-    gData.transition.forEach(function(date, i){
-      config.data.labels.push(date[0] + "/" + date[1]);
-
-      if (switchValue === "new" && i >= 1) {
-        let prev = gData.transition[i - 1];
-        config.data.datasets[2].data.push(date[3] - prev[3]);
-        config.data.datasets[1].data.push(date[4] - prev[4]);
-        config.data.datasets[0].data.push(date[5] - prev[5]);
-      } else {
-        config.data.datasets[2].data.push(date[3]);
-        config.data.datasets[1].data.push(date[4]);
-        config.data.datasets[0].data.push(date[5]);
-      }
-
-      let pcrTestColor = (date[0] >= 3 && date[1] >= 4) ? COLORS.dark: COLORS.test;
-
-      config.data.datasets[2].backgroundColor.push(pcrTestColor);
-      config.data.datasets[1].backgroundColor.push(COLORS.positive);
-      config.data.datasets[0].backgroundColor.push(COLORS.patient);
     });
 
     let ctx = $canvas.getContext('2d');
@@ -440,15 +232,14 @@ const init = () => {
       movesIslands : true,
       fontSize : 11,
       onHover : function(data){
+        console.log("a");
         drawRegionChart(data.code, 0);
       }
     });
   }
 
   const drawDemographyChart = () => {
-    $wrapper = $("#demography-chart");
-    $wrapper.empty();
-    $wrapper.html('<canvas></canvas>');
+    $wrapper = $("#demography-chart").empty().html('<canvas></canvas>');
     $canvas = $wrapper.find("canvas")[0];
 
     let config = {
@@ -456,11 +247,11 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: LABELS[LANG].chart.demography.f,
+          label: LABELS[LANG].demography.f,
           backgroundColor: COLORS.gender.f,
           data: []
         },{
-          label: LABELS[LANG].chart.demography.m,
+          label: LABELS[LANG].demography.m,
           backgroundColor: COLORS.gender.m,
           data: []
         }]
@@ -558,7 +349,7 @@ const init = () => {
         }]
       },
       options: {
-        aspectRatio: 0.6,
+        aspectRatio: 0.4,
         animation: {
           duration: 1000
         },
@@ -612,8 +403,7 @@ const init = () => {
       }
     };
 
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 0.8;
-    if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.0;
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 0.6;
     if (targetRegion !== "") config.options.animation.duration = 0;
 
     gData.prefectures.forEach(function(pref, i){
@@ -640,10 +430,10 @@ const init = () => {
   }
 
   const loadData = () => {
-    $.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
+    $.getJSON("data/data.json", function(data){
+    //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
       gData = data;
-      drawSurveysChart();
-      drawPatientsChart();
+      drawTransitionBlocks();
       drawDemographyChart();
       drawJapanMap();
       drawRegionChart("");
@@ -656,10 +446,12 @@ const init = () => {
     $(".switch").on("click",function(){
       $(this).siblings(".switch").removeClass("selected");
       $(this).addClass("selected");
-      if ($(this).closest("#patients-block")[0]) drawPatientsChart();
-      if ($(this).closest("#surveys-block")[0]) drawSurveysChart();
+      drawTransitionChart($(this).closest(".transition-block"), $(this).closest(".transition-block").attr("code"));
     });
 
+    $(".more").on("click",function(){
+      $(this).closest("p.notes").addClass("show");
+    });
   }
 
   loadData();
