@@ -225,7 +225,8 @@ html, body {
       margin-top: 8px;
       text-align: center;
       color: #aaa;
-      font-size: 13px; }
+      font-size: 13px;
+      line-height: 24px; }
       #container #footer-block p.notes, #container #footer-block small.notes {
         text-align: left; }
         #container #footer-block p.notes a, #container #footer-block small.notes a {
