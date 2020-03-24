@@ -41,31 +41,121 @@
       </div>
       <div id="main-block">
         <div class="row">
-          <div id="patients-block">
-            <h3>患者数の推移</h3>
+          <div class="transition-block" code="carriers">
+            <h3>感染者数</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
             <h5 class="updated-transition"><br /></h5>
             <div class="switches">
-              <div class="switch selected" value="total">累計</div>
-              <div class="switch" value="new">新規</div>
+              <div class="switch selected" value="new">新規</div>
+              <div class="switch" value="total">累計</div>
             </div>
-            <div id="patients-chart"></div>
-            <p class="notes">注）累計の退院数、死亡数は患者数の内数。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。2月17日の退院数は12名とした。</p>
+            <div class="chart"></div>
+            <p class="notes">厚生労働省の資料「PCR検査陽性者」の数。感染はしているが症状がないケース（＝無症状病原体保有者）も含む。日付は都道府県から厚生労働省への報告ベース。厚生労働省から発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
           </div>
-          <div id="surveys-block">
-            <h3>PCR検査実施人数の推移</h3>
+          <div class="transition-block" code="cases">
+            <h3>患者数</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
             <h5 class="updated-transition"><br /></h5>
             <div class="switches">
-              <div class="switch selected" value="total">累計</div>
-              <div class="switch" value="new">新規</div>
+              <div class="switch selected" value="new">新規</div>
+              <div class="switch" value="total">累計</div>
             </div>
-            <div id="surveys-chart"></div>
-            <p class="notes">注）3月19日のPCR検査人数減は、千葉県が検査人数ではなく件数を報告していたことが判明し差し引いたため。3月4日以降のPCR検査実施人数は疑似症サーベイランスに加え濃厚接触者に対する検査も含む（都道府県の回答ベース）。累計の陽性数、有症数はPCR検査実施人数の内数。有症数は患者数と等しい。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。国内事例のPCR検査実施人数は、疑似症報告制度の枠組みの中で報告が上がった数を計上しており、各自治体で行った全ての検査結果を反映しているものではない。</p>
+            <div class="chart"></div>
+            <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
+          </div>
+          <div class="transition-block" code="discharged">
+            <h3>退院患者数</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">新規</div>
+              <div class="switch" value="total">累計</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者＞うち退院した者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="transition-block" code="pcrtested">
+            <h3>PCR検査人数</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">新規</div>
+              <div class="switch" value="total">累計</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">厚生労働省の資料「PCR検査実施人数」の数。1名に複数回PCR検査を行った場合も「1名」とカウントする。3月19日のPCR検査人数減は、千葉県が検査人数ではなく件数を報告していたことが判明し、厚生労働省の発表資料からその分が差し引かれたため。当初はPCR検査人数として疑似症サーベイランス（疑わしい症状がある患者への調査）だけの数字が発表されていたが、3月4日からは濃厚接触者に対する検査も含むため、このページでは3月4日以降のデータのみ掲載している。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
+          </div>
+          <div class="transition-block" code="serious">
+            <h3>重症者数</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">新規</div>
+              <div class="switch" value="total">累計</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者＞うち入院を要する者＞うち人工呼吸器又は集中治療室に入院している者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
+          </div>
+          <div class="transition-block" code="dead">
+            <h3>死亡者数</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">新規</div>
+              <div class="switch" value="total">累計</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者＞うち死亡者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
           </div>
           <div id="demography-block">
             <h3>年齢・性別</h3>
             <h5 class="updated-demography"><br /></h5>
             <div id="demography-chart"></div>
-            <p class="notes">注）性別・年齢が不明（調査中）のケースは除く。</p>
+            <p class="notes">性別・年齢が不明（調査中）のケースは除く。</p>
           </div>
         </div>
         <div class="row">
@@ -74,12 +164,12 @@
             <h5 class="updated-prefectures"><br /></h5>
   					<div id="japan-map"></div>
             <div id="region-chart"></div>
-            <p class="notes">注）中国在住、不明など、都道府県に割り振れないケースは除く。大阪府ではこのうち1名の患者が2例としてカウントされている。</p>
+            <p class="notes">中国在住、不明など、都道府県に割り振れないケースは除く。大阪府ではこのうち1名の患者が2例としてカウントされている。</p>
           </div>
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">注）武漢からの政府チャーター便帰国者、およびダイヤモンド・プリンセス号の乗客・乗員は除く。</p>
+        <p class="notes">武漢からの政府チャーター便帰国者、およびダイヤモンド・プリンセス号の乗客・乗員は除く。</p>
         <p class="notes">データソース：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。</p>
         <p class="notes">更新履歴・ソースコード：<a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/blob/master/data/individuals.csv" download="data.csv" target="_blank">CSVデータのダウンロード</a></p>
         <div id="social-buttons">
@@ -90,15 +180,11 @@
           <h3>よくあるご質問</h3>
           <section>
             <h4>Q. 3月19日にPCR検査人数がマイナスになっているのは何故ですか？</h4>
-            <p>A. 千葉県からの報告がPCR検査「人数」ではなく「件数」だったことが判明し、その分を差し引いたためです。</p>
+            <p>A. 千葉県からの報告がPCR検査「人数」ではなく「件数」だったことが判明し、その分が厚生労働省の発表数字から差し引かれたためです。こうしたケースでは通常であれば過去分を遡って訂正することが多いですが、過去分のデータが存在しないか日次での発表に間に合わないため、マイナス値で発表していると思われます。</p>
           </section>
           <section>
             <h4>Q. このページからPCR検査件数を見ることはできますか？</h4>
             <p>A. できません。このページで表示しているのは（今のところ）検査「人数」だけです。PCR検査は1名に複数回検査を行うことがあります。その場合、検査人数は「1」とカウントされます。したがって多くの場合、数字は「検査人数＜検査件数」となります。</p>
-          </section>
-          <section>
-            <h4>Q. 3月4日からPCR検査実施人数が急増しているのは何故ですか？</h4>
-            <p>A. 厚生労働省が公表数字に含める範囲を広げたためです。検査数そのものが増えたわけではありません。具体的には、今までの疑似症サーベイランスに加えて濃厚接触者への検査も公表数に含められています。本来であれば基準の異なる数字は別枠で扱うべきですが、発表数字がそのまま上書きされているため両者の区別ができません。そのままグラフ化すると検査実施人数そのものが急増したように見えてしまうため、このページでは急増の理由を注記に載せつつグラフの色を変えています。</p>
           </section>
           <section>
             <h4>Q. 感染者数と患者数の違いは何ですか？</h4>

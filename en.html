@@ -37,35 +37,125 @@
         <p>Confirmed cases of COVID-19 in Japan. Data provided by the Ministry of Health, Labor and Welfare.</p>
         <p>By <a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F+%E5%92%8C%E6%A8%B9" target="_blank">Kazuki OGIWARA</a> (Toyo Keizai Online Editor)</p>
         <p class="updated-last"><br /></p>
-        <p><a href="index.html">JAPANESE</a></p>
+        <p><a href="./">JAPANESE</a></p>
       </div>
       <div id="main-block">
         <div class="row">
-          <div id="patients-block">
-            <h3>Cases, Discharged, Deaths</h3>
+          <div class="transition-block" code="carriers">
+            <h3>Tested Positive</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
             <h5 class="updated-transition"><br /></h5>
             <div class="switches">
-              <div class="switch selected" value="total">Total</div>
-              <div class="switch" value="new">New cases</div>
+              <div class="switch selected" value="new">NEW</div>
+              <div class="switch" value="total">TOTAL</div>
             </div>
-            <div id="patients-chart"></div>
-            <p class="notes">Notes: Number of total cases includes that of discharged and deaths. Dates with no data (8, 9, 11, 15, 16 February) were assumed to be the same as the previous day. Discharged on 17 February was assumed to be 12.</p>
+            <div class="chart"></div>
+            <p class="notes">Confirmed number of "PCR tested positive" in MHLW publication. The number includes cases with no symptom.<a class="more">READ MORE</a></p>
           </div>
-          <div id="surveys-block">
-            <h3>People PCR Tested, Positive, With symptoms</h3>
+          <div class="transition-block" code="cases">
+            <h3>With Symptoms</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
             <h5 class="updated-transition"><br /></h5>
             <div class="switches">
-              <div class="switch selected" value="total">Total</div>
-              <div class="switch" value="new">New</div>
+              <div class="switch selected" value="new">NEW</div>
+              <div class="switch" value="total">TOTAL</div>
             </div>
-            <div id="surveys-chart"></div>
-            <p class="notes">Notes: The decrease in the number of PCR tested cases on March 19 was due to exclusion of Chiba prefecture, which had been reporting the number of tests instead of tested cases. On and after 4 March, number of people PCR tested includes tests for those who were in close contact with suspected carriers (based on reports from prefectures). Number of total people PCR tested includes that of positive cases and cases with symptoms. Dates with no data (8, 9, 11, 15, 16 February) were assumed to be the same as the previous day. In this chart PCR tests does not include all tests conducted in Japan.</p>
+            <div class="chart"></div>
+            <p class="notes">Confirmed number of "PCR tested positive > With symptoms" in MHLW publication.<a class="more">READ MORE</a></p>
+          </div>
+          <div class="transition-block" code="discharged">
+            <h3>Discharged Patients</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">NEW</div>
+              <div class="switch" value="total">TOTAL</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">Confirmed number of "PCR tested positive > With symptoms > Already discharged from hospital" in MHLW publication. <a class="more">READ MORE</a></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="transition-block" code="pcrtested">
+            <h3>PCR Tested</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">NEW</div>
+              <div class="switch" value="total">TOTAL</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">Confirmed number of "PCR tested" cases in MHLW publication. The PCR test may be performed multiple times for one person. It will be counted as 1 tested case. The decrease in the number of PCR tested cases on March 19 was due to exclusion of Chiba prefecture, which had been reporting the number of tests instead of tested cases. Initially, only pseudosymptomatic surveillance (a survey of patients with suspicious symptoms) was reported as the number of PCR tests, but from March 4, tests on people who were in close contact with suspected carriers were included, so only data from March 4 onwards are shown on this page. <a class="more">READ MORE</a></p>
+          </div>
+          <div class="transition-block" code="serious">
+            <h3>Serious Cases</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">NEW</div>
+              <div class="switch" value="total">TOTAL</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">Confirmed number of "PCR tested positive > With symptoms > Need inpatient treatment > Hospitalized with a ventilator or intensive care unit" cases in MHLW publication. <a class="more">READ MORE</a></p>
+          </div>
+          <div class="transition-block" code="dead">
+            <h3>Dead Cases</h3>
+            <div class="latest">
+              <div>
+                <span class="type"></span>
+                <span class="value"></span>
+                <span class="unit"></span>
+              </div>
+              <div class="change"></div>
+            </div>
+            <h5 class="updated-transition"><br /></h5>
+            <div class="switches">
+              <div class="switch selected" value="new">NEW</div>
+              <div class="switch" value="total">TOTAL</div>
+            </div>
+            <div class="chart"></div>
+            <p class="notes">Confirmed number of "PCR tested positive > With symptoms > Death" cases in MHLW publication. <a class="more">READ MORE</a></p>
           </div>
           <div id="demography-block">
             <h3>Age and Gender</h3>
             <h5 class="updated-demography"><br /></h5>
             <div id="demography-chart"></div>
-            <p class="notes">Notes: Cases with unknown age or gender are excluded.</p>
+            <p class="notes">Cases with unknown age or gender are excluded.</p>
           </div>
         </div>
         <div class="row">
@@ -74,12 +164,12 @@
             <h5 class="updated-prefectures"><br /></h5>
   					<div id="japan-map"></div>
             <div id="region-chart"></div>
-            <p class="notes">Notes: Cases with unknown residence or abroad are excluded. In Osaka, 1 patient is counted as 2 cases.</p>
+            <p class="notes">Cases with unknown residence or abroad are excluded. In Osaka, 1 patient is counted as 2 cases.</p>
           </div>
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on the Diamond Princess, are excluded.</p>
+        <p class="notes">Notes: "DoD" means the number compared to the day before. Returnees on government charter flights from Wuhan, and passengers and crew on the Diamond Princess, are excluded. Dates are based on reports from each prefecture. Dates with no data (8, 9, 11, 15, 16 February) were assumed to be the same as the previous day.</p>
         <p class="notes">Data source: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">Press release from MHLW</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Used <a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a> to draw prefectures map.</p>
         <p class="notes">Change log and source code: <a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/blob/master/data/individuals.csv" download="data.csv" target="_blank">Download CSV data</a></p>
         <div id="social-buttons">
