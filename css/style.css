@@ -12,7 +12,7 @@
 
 html, body {
   width: 100%;
-  background-color: #061a2b; }
+  background-color: #ffffff; }
 
 #container {
   overflow-x: hidden;
@@ -87,9 +87,10 @@ html, body {
     width: 100%;
     max-width: 640px;
     padding: 8px 16px;
-    background-color: #242a3c;
+    background-color: #241c77;
     border: none;
-    border-radius: 4px; }
+    border-radius: 4px;
+    }
     #container #region-block h3,
     #container #demography-block h3,
     #container #patients-block h3,
