@@ -19,5 +19,5 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
 - It will be updated on an irregular basis according to the announcement by the Ministry of Health, Labor and Welfare.
 
 ### License
-- MIT license. Feel free to use it for research, research, news, and other commercial and non-commercial purposes.
+- MIT license. Feel free to use it for research, news, and other commercial and non-commercial purposes.
 - However, the developer assumes no responsibility arising from this project.
