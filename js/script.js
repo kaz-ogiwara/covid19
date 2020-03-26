@@ -7,7 +7,7 @@ const COLORS = {
   default: "#3DC",
   carriers: "#3DC",
   cases: "#6DF",
-  dead: "#EB8",
+  deaths: "#EB8",
   discharged: "#9FC",
   serious: "#FEA",
   pcrtested: "#4CD",
@@ -27,24 +27,28 @@ const LABELS = {
       discharged: "名",
       pcrtested: "名",
       serious: "名",
-      dead: "名"
+      deaths: "名"
     },
     demography: {
-      f: "女性",
-      m: "男性"
+      deaths: "死亡",
+      serious: "重症",
+      discharged: "退院",
+      misc: "その他",
+      nosym: "無症状"
     },
-    age: {
-      "10代": "10代",
-      "20代": "20代",
-      "30代": "30代",
-      "40代": "40代",
-      "50代": "50代",
-      "60代": "60代",
-      "70代": "70代",
-      "80代": "80代",
-      "90代": "90代",
-      "10歳未満": "10歳未満"
-    }
+    age: [
+      "10歳未満",
+      "10代",
+      "20代",
+      "30代",
+      "40代",
+      "50代",
+      "60代",
+      "70代",
+      "80代",
+      "90代",
+      "非公表"
+    ]
   },
   en: {
     change: "DoD: ",
@@ -54,24 +58,28 @@ const LABELS = {
       discharged: "",
       pcrtested: "",
       serious: "",
-      dead: ""
+      deaths: ""
     },
     demography: {
-      f: "Female",
-      m: "Male"
+      deaths: "Deaths",
+      serious: "Serious",
+      discharged: "Discharged",
+      misc: "Misc",
+      nosym: "No Symptom"
     },
-    age: {
-      "10代": "10s",
-      "20代": "20s",
-      "30代": "30s",
-      "40代": "40s",
-      "50代": "50s",
-      "60代": "60s",
-      "70代": "70s",
-      "80代": "80s",
-      "90代": "90s",
-      "10歳未満": "Under 10"
-    }
+    age: [
+      "Under 10",
+      "10s",
+      "20s",
+      "30s",
+      "40s",
+      "50s",
+      "60s",
+      "70s",
+      "80s",
+      "90s",
+      "Unknown"
+    ]
   }
 };
 
@@ -95,10 +103,10 @@ const init = () => {
 
     let rows = gData.transition[code];
 
-
     let latestValue = rows[rows.length - 1][3];
     let latestChange = latestValue - rows[rows.length - 2][3];
-        if (parseInt(latestChange) > 0) latestChange = "+" + latestChange.toString();
+        latestChange = addCommas(latestChange).toString();
+        if (latestChange.charAt(0) !== "-") latestChange = "+" + latestChange;
     let $latest = $block.find(".latest");
     $latest.find(".value").text(addCommas(latestValue));
     $latest.find(".unit").text(LABELS[LANG].unit[code]);
@@ -247,12 +255,28 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: LABELS[LANG].demography.f,
-          backgroundColor: COLORS.gender.f,
+          label: LABELS[LANG].demography.deaths,
+          backgroundColor: COLORS.deaths,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
           data: []
         },{
-          label: LABELS[LANG].demography.m,
-          backgroundColor: COLORS.gender.m,
+          label: LABELS[LANG].demography.serious,
+          backgroundColor: COLORS.serious,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.misc,
+          backgroundColor: COLORS.dark,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.nosym,
+          backgroundColor: COLORS.cases,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
           data: []
         }]
       },
@@ -274,12 +298,22 @@ const init = () => {
           displayColors: true,
           callbacks: {
             title: function(tooltipItem){
-              return tooltipItem[0].yLabel;
+              let suffix = {
+                ja: "名",
+                en: "cases"
+              };
+              let age = tooltipItem[0].yLabel;
+              let total = 0;
+              tooltipItem.forEach(function(item, i){
+                total += item.xLabel;
+              });
+
+              return age + ": " + total + " " + suffix[LANG];
             },
             label: function(tooltipItem, data){
               let suffix = {
                 ja: "名",
-                en: ""
+                en: " cases"
               };
               return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
             }
@@ -287,8 +321,8 @@ const init = () => {
         },
         scales: {
           xAxes: [{
+            stacked: true,
             position: "top",
-            color: "yellow",
             gridLines: {
               color: "rgba(255,255,255,0.2)"
             },
@@ -301,14 +335,13 @@ const init = () => {
             }
           }],
           yAxes: [{
+            stacked: true,
+            barPercentage: 0.8,
             gridLines: {
               color: "rgba(255,255,255,0.1)"
             },
             ticks: {
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function (value){
-                return LABELS[LANG].age[value];
-              }
+              fontColor: "rgba(255,255,255,0.7)"
             }
           }]
         }
@@ -318,15 +351,12 @@ const init = () => {
     if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.1;
     if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
 
-    let dsi = 0;
-    for (let gender in gData.demography) {
-      for (let age in gData.demography[gender]) {
-        let value = gData.demography[gender][age];
-        if (dsi === 0) config.data.labels.push(age);
-        config.data.datasets[dsi].data.push(value);
+    gData.demography.forEach(function(age, index){
+      config.data.labels.push(LABELS[LANG].age[index]);
+      for (let i = 0; i < 4; i++) {
+        config.data.datasets[i].data.push(age[i]);
       }
-      dsi++;
-    }
+    });
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
@@ -403,7 +433,7 @@ const init = () => {
       }
     };
 
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 0.6;
+    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 0.4;
     if (targetRegion !== "") config.options.animation.duration = 0;
 
     gData.prefectures.forEach(function(pref, i){
@@ -430,7 +460,8 @@ const init = () => {
   }
 
   const loadData = () => {
-    $.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
+    $.getJSON("data/data.json", function(data){
+    //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
       gData = data;
       drawTransitionBlocks();
       drawDemographyChart();
