@@ -460,8 +460,7 @@ const init = () => {
   }
 
   const loadData = () => {
-    $.getJSON("data/data.json", function(data){
-    //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
+    $.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
       gData = data;
       drawTransitionBlocks();
       drawDemographyChart();
