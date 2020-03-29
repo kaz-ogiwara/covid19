@@ -11,6 +11,7 @@ const COLORS = {
   discharged: "#9FC",
   serious: "#FEA",
   pcrtested: "#4CD",
+  checking: "#abc",
   dark: "#399",
   selected: "#EC2",
   gender: {
@@ -34,7 +35,8 @@ const LABELS = {
       serious: "重症",
       discharged: "退院",
       misc: "その他",
-      nosym: "無症状"
+      nosym: "無症状",
+      checking: "確認中"
     },
     age: [
       "10歳未満",
@@ -47,7 +49,7 @@ const LABELS = {
       "70代",
       "80代",
       "90代",
-      "非公表"
+      "不明"
     ]
   },
   en: {
@@ -65,7 +67,8 @@ const LABELS = {
       serious: "Serious",
       discharged: "Discharged",
       misc: "Misc",
-      nosym: "No Symptom"
+      nosym: "No Symptom",
+      checking: "Checking"
     },
     age: [
       "Under 10",
@@ -278,6 +281,12 @@ const init = () => {
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
+        },{
+          label: LABELS[LANG].demography.checking,
+          backgroundColor: COLORS.checking,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
         }]
       },
       options: {
@@ -353,7 +362,7 @@ const init = () => {
 
     gData.demography.forEach(function(age, index){
       config.data.labels.push(LABELS[LANG].age[index]);
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         config.data.datasets[i].data.push(age[i]);
       }
     });
