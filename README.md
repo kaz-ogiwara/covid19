@@ -1,5 +1,5 @@
 # 新型コロナウイルス 国内感染の状況
-新型コロナウイルス（COVID19）の国内における感染の状況を厚生労働省の報道発表資料からビジュアルにまとめた。
+新型コロナウイルス感染症（COVID-19）の国内における状況を厚生労働省の報道発表資料からビジュアルにまとめた。
 
 [ENGLISH](https://github.com/kaz-ogiwara/covid19/blob/master/README.en.md)
 
