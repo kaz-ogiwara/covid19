@@ -14,7 +14,7 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
 ### CSV data
 - The data used is also available as a CSV file.
 - https://github.com/kaz-ogiwara/covid19/blob/master/data/individuals.csv
-- Due to the change of the ublication format by the Ministry of Health, Labor and Welfare, we are currently suspending update. We will soon resume updates with new data structures.
+- Due to the change of the publication format by the Ministry of Health, Labor and Welfare, we are currently suspending update. We will soon resume updates with new data structures.
 
 ### Update data
 - It will be updated on an irregular basis according to the announcement by the Ministry of Health, Labor and Welfare.
