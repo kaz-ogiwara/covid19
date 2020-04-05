@@ -52,9 +52,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">NEW</div>
-              <div class="switch" value="total">TOTAL</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">NEW</div>
+              <div class="switch total-switch" value="total">TOTAL</div>
             </div>
             <div class="chart"></div>
             <p class="notes">Confirmed number of "PCR tested positive" in MHLW publication. The number includes cases with no symptom.<a class="more">READ MORE</a></p>
@@ -70,9 +70,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">NEW</div>
-              <div class="switch" value="total">TOTAL</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">NEW</div>
+              <div class="switch total-switch" value="total">TOTAL</div>
             </div>
             <div class="chart"></div>
             <p class="notes">Confirmed number of "PCR tested positive > With symptoms" in MHLW publication.<a class="more">READ MORE</a></p>
@@ -88,9 +88,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">NEW</div>
-              <div class="switch" value="total">TOTAL</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">NEW</div>
+              <div class="switch total-switch" value="total">TOTAL</div>
             </div>
             <div class="chart"></div>
             <p class="notes">Confirmed number of "Already discharged from hospital" in MHLW publication. It includes both cases with symptoms and no symptom. <a class="more">READ MORE</a></p>
@@ -108,9 +108,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">NEW</div>
-              <div class="switch" value="total">TOTAL</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">NEW</div>
+              <div class="switch total-switch" value="total">TOTAL</div>
             </div>
             <div class="chart"></div>
             <p class="notes">Confirmed number of "PCR tested" cases in MHLW publication. The PCR test may be performed multiple times for one person. It will be counted as 1 tested case. The decrease in the number of PCR tested cases on March 19 was due to exclusion of Chiba prefecture, which had been reporting the number of tests instead of tested cases. Initially, only pseudosymptomatic surveillance (a survey of patients with suspicious symptoms) was reported as the number of PCR tests, but from March 4, tests on people who were in close contact with suspected carriers were included, so only data from March 4 onwards are shown on this page. <a class="more">READ MORE</a></p>
@@ -126,9 +126,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">NEW</div>
-              <div class="switch" value="total">TOTAL</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">NEW</div>
+              <div class="switch total-switch" value="total">TOTAL</div>
             </div>
             <div class="chart"></div>
             <p class="notes">Confirmed number of "PCR tested positive > With symptoms > Need inpatient treatment > Hospitalized with a ventilator or intensive care unit" cases in MHLW publication. <a class="more">READ MORE</a></p>
@@ -144,27 +144,35 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">NEW</div>
-              <div class="switch" value="total">TOTAL</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">NEW</div>
+              <div class="switch total-switch" value="total">TOTAL</div>
             </div>
             <div class="chart"></div>
             <p class="notes">Confirmed number of "PCR tested positive > With symptoms > Death" in MHLW publication. <a class="more">READ MORE</a></p>
           </div>
-          <div id="demography-block">
+          <div id="demography-block" class="population-block">
             <h3>By Age</h3>
             <h5 class="updated-demography"><br /></h5>
+            <div class="switches population-switches">
+              <div class="switch population-switch selected" value="actual">Actual</div>
+              <div class="switch population-switch" value="by-population">Per 1M pop</div>
+            </div>
             <div id="demography-chart"></div>
-            <p class="notes">"Unknown" includes undisclosed or checking.</p>
+            <p class="notes">"Unknown" includes undisclosed or checking. Data source of population by age: <a href="https://www.stat.go.jp/data/jinsui/2.html" target="_blank">Statistics Bureau of Japan</a>, 2020/03/01<a class="more">READ MORE</a></p>
           </div>
         </div>
         <div class="row">
-          <div id="region-block">
+          <div id="region-block" class="population-block">
             <h3>By Prefecture</h3>
             <h5 class="updated-prefectures"><br /></h5>
   					<div id="japan-map"></div>
+            <div class="switches population-switches">
+              <div class="switch population-switch selected" value="actual">Actual</div>
+              <div class="switch population-switch" value="by-population">Per 1M pop</div>
+            </div>
             <div id="region-chart"></div>
-            <p class="notes">The number of cases, not carriers. Cases with no symptom, unknown residence, or abroad are excluded.</p>
+            <p class="notes">The number of cases, not carriers. Cases with no symptom, unknown residence, or abroad are excluded. Data source of population by prefecture: <a href="https://www.stat.go.jp/data/jinsui/2018np/index.html" target="_blank">Statistics Bureau of Japan</a>, 2018/10/01<a class="more">READ MORE</a></p>
           </div>
         </div>
       </div>

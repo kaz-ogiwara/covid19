@@ -52,9 +52,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">新規</div>
-              <div class="switch" value="total">累計</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">新規</div>
+              <div class="switch total-switch" value="total">累計</div>
             </div>
             <div class="chart"></div>
             <p class="notes">厚生労働省の資料「PCR検査陽性者」の数。感染はしているが症状がないケース（＝無症状病原体保有者）も含む。日付は都道府県から厚生労働省への報告ベース。厚生労働省から発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
@@ -70,9 +70,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">新規</div>
-              <div class="switch" value="total">累計</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">新規</div>
+              <div class="switch total-switch" value="total">累計</div>
             </div>
             <div class="chart"></div>
             <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
@@ -88,9 +88,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">新規</div>
-              <div class="switch" value="total">累計</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">新規</div>
+              <div class="switch total-switch" value="total">累計</div>
             </div>
             <div class="chart"></div>
             <p class="notes">厚生労働省の資料「退院した者」の数。有症者、無症状ともに含む。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
@@ -108,9 +108,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">新規</div>
-              <div class="switch" value="total">累計</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">新規</div>
+              <div class="switch total-switch" value="total">累計</div>
             </div>
             <div class="chart"></div>
             <p class="notes">厚生労働省の資料「PCR検査実施人数」の数。1名に複数回PCR検査を行った場合も「1名」とカウントする。3月19日のPCR検査人数減は、千葉県が検査人数ではなく件数を報告していたことが判明し、厚生労働省の発表資料からその分が差し引かれたため。当初はPCR検査人数として疑似症サーベイランス（疑わしい症状がある患者への調査）だけの数字が発表されていたが、3月4日からは濃厚接触者に対する検査も含むため、このページでは3月4日以降のデータのみ掲載している。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
@@ -126,9 +126,9 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">新規</div>
-              <div class="switch" value="total">累計</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">新規</div>
+              <div class="switch total-switch" value="total">累計</div>
             </div>
             <div class="chart"></div>
             <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者＞うち入院を要する者＞うち人工呼吸器又は集中治療室に入院している者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
@@ -144,27 +144,35 @@
               <div class="change"></div>
             </div>
             <h5 class="updated-transition"><br /></h5>
-            <div class="switches">
-              <div class="switch selected" value="new">新規</div>
-              <div class="switch" value="total">累計</div>
+            <div class="switches total-switches">
+              <div class="switch total-switch selected" value="new">新規</div>
+              <div class="switch total-switch" value="total">累計</div>
             </div>
             <div class="chart"></div>
             <p class="notes">厚生労働省の資料「PCR検査陽性者＞うち有症状者＞うち死亡者」の数。日付は都道府県から厚生労働省への報告ベース。発表のなかった日（2月8、9、11、15、16日）は前日と同数としている。<a class="more">もっと読む</a></p>
           </div>
-          <div id="demography-block">
+          <div id="demography-block" class="population-block">
             <h3>年齢別</h3>
             <h5 class="updated-demography"><br /></h5>
+            <div class="switches population-switches">
+              <div class="switch population-switch selected" value="actual">実数</div>
+              <div class="switch population-switch" value="by-population">百万人当たり</div>
+            </div>
             <div id="demography-chart"></div>
-            <p class="notes">「不明」には調査中や非公表も含む。</p>
+            <p class="notes">「不明」には調査中や非公表も含む。 年齢別人口出典：<a href="https://www.stat.go.jp/data/jinsui/2.html" target="_blank">総務省統計局 各月1日現在人口 人口推計</a> 2020年3月1日現在 (概算値)<a class="more">もっと読む</a></p>
           </div>
         </div>
         <div class="row">
-          <div id="region-block">
+          <div id="region-block" class="population-block">
             <h3>都道府県別</h3>
             <h5 class="updated-prefectures"><br /></h5>
   					<div id="japan-map"></div>
+            <div class="switches population-switches">
+              <div class="switch population-switch selected" value="actual">実数</div>
+              <div class="switch population-switch" value="by-population">百万人当たり</div>
+            </div>
             <div id="region-chart"></div>
-            <p class="notes">患者数ベース。無症状病原体保有者は除く。中国在住、不明など、都道府県に割り振れないケースは除く。</p>
+            <p class="notes">患者数ベース。無症状病原体保有者は除く。中国在住、不明など、都道府県に割り振れないケースは除く。 都道府県別人口出典：<a href="https://www.stat.go.jp/data/jinsui/2018np/index.html" target="_blank">総務省統計局 人口推計</a> （2018年（平成30年）10月1日現在）<a class="more">もっと読む</a></p>
           </div>
         </div>
       </div>
