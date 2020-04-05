@@ -1,3 +1,4 @@
+"use strict";
 let gData;
 let gRegions = [];
 
@@ -102,7 +103,7 @@ const init = () => {
   const drawTransitionChart = ($block, code) => {
     let $chart = $block.find(".chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
-    let switchValue = $block.find(".switch.selected").attr("value");
+    let totalSwitchValue = $block.find(".total-switch.selected").attr("value");
 
     let rows = gData.transition[code];
 
@@ -113,7 +114,7 @@ const init = () => {
     let $latest = $block.find(".latest");
     $latest.find(".value").text(addCommas(latestValue));
     $latest.find(".unit").text(LABELS[LANG].unit[code]);
-    $latest.find(".type").text($block.find(".switch[value=total]").text());
+    $latest.find(".type").text($block.find(".total-switch[value=total]").text());
     $latest.find(".change").text(LABELS[LANG].change + " " + latestChange);
 
     let config = {
@@ -144,7 +145,7 @@ const init = () => {
               let dateTime = tooltipItem[0].xLabel + " " + "12:00";
               if (LANG === "ja") dateTime = dateTime + "時点";
               if (LANG === "en") dateTime = "As of " + dateTime;
-              let suffix = $block.find(".switch.selected").text();
+              let suffix = $block.find(".total-switch.selected").text();
               return dateTime + " " + suffix;
             },
             label: function(tooltipItem, data){
@@ -195,7 +196,7 @@ const init = () => {
     }
 
     rows.forEach(function(row, i){
-      if (switchValue === "total") {
+      if (totalSwitchValue === "total") {
         config.data.labels.push(row[1] + "/" + row[2]);
         config.data.datasets[0].data.push(row[3]);
       } else if (i >= 1) {
@@ -250,8 +251,13 @@ const init = () => {
   }
 
   const drawDemographyChart = () => {
-    $wrapper = $("#demography-chart").empty().html('<canvas></canvas>');
-    $canvas = $wrapper.find("canvas")[0];
+    let $block = $("#demography-block");
+    let $wrapper = $("#demography-chart").empty().html('<canvas></canvas>');
+    let $canvas = $wrapper.find("canvas")[0];
+    let populationSwitchValue = $block.find(".population-switch.selected").attr("value");
+    let round = function (f) {
+      return Math.round(f * 100) / 100;
+    };
 
     let config = {
       type: "horizontalBar",
@@ -317,14 +323,14 @@ const init = () => {
                 total += item.xLabel;
               });
 
-              return age + ": " + total + " " + suffix[LANG];
+              return age + ": " + round(total) + " " + suffix[LANG];
             },
             label: function(tooltipItem, data){
               let suffix = {
                 ja: "名",
                 en: " cases"
               };
-              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + round(tooltipItem.value) + suffix[LANG];
             }
           }
         },
@@ -360,10 +366,16 @@ const init = () => {
     if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 1.1;
     if ($wrapper.outerWidth() >= 600) config.options.aspectRatio = 1.3;
 
-    gData.demography.forEach(function(age, index){
+    gData.demography.forEach(function (age, index) {
       config.data.labels.push(LABELS[LANG].age[index]);
       for (let i = 0; i < 5; i++) {
-        config.data.datasets[i].data.push(age[i]);
+        if (populationSwitchValue === "by-population") {
+          config.data.datasets[i].data.push(
+            age[i] / gData.population.by_age[index]
+          );
+        } else {
+          config.data.datasets[i].data.push(age[i]);
+        }
       }
     });
 
@@ -372,10 +384,15 @@ const init = () => {
   }
 
   const drawRegionChart = (targetRegion) => {
+    let $block = $("#region-block");
     let $wrapper = $("#region-chart");
     $wrapper.empty();
     $wrapper.html('<canvas></canvas>');
     let $canvas = $wrapper.find("canvas")[0];
+    let populationSwitchValue = $block.find(".population-switch.selected").attr("value");
+    let round = function (f) {
+      return Math.round(f * 100) / 100;
+    };
 
     let config = {
       type: "horizontalBar",
@@ -412,7 +429,7 @@ const init = () => {
                 ja: " 名",
                 en: " cases"
               };
-              return tooltipItem.xLabel + suffix[LANG];
+              return round(tooltipItem.xLabel) + suffix[LANG];
             }
           }
         },
@@ -448,7 +465,14 @@ const init = () => {
     gData.prefectures.forEach(function(pref, i){
       if (pref.value >= 1) {
         config.data.labels.push(pref[LANG]);
-        config.data.datasets[0].data.push(pref.value);
+
+        if (populationSwitchValue === "by-population") {
+          config.data.datasets[0].data.push(
+            pref.value / gData.population.by_prefecture[pref.code]
+          );
+        } else {
+          config.data.datasets[0].data.push(pref.value);
+        }
 
         if (targetRegion === pref.code) {
           config.data.datasets[0].backgroundColor.push(COLORS.selected);
@@ -481,10 +505,21 @@ const init = () => {
   }
 
   const bindEvents = () => {
-    $(".switch").on("click",function(){
-      $(this).siblings(".switch").removeClass("selected");
+    $(".total-switch").on("click",function(){
+      $(this).siblings(".total-switch").removeClass("selected");
       $(this).addClass("selected");
       drawTransitionChart($(this).closest(".transition-block"), $(this).closest(".transition-block").attr("code"));
+    });
+
+    $(".population-switch").on("click",function(){
+      $(this).siblings(".population-switch").removeClass("selected");
+      $(this).addClass("selected");
+      if($(this).closest(".population-block#demography-block").length > 0){
+        drawDemographyChart();
+      }
+      if($(this).closest(".population-block#region-block").length > 0){
+        drawRegionChart("");
+      }
     });
 
     $(".more").on("click",function(){

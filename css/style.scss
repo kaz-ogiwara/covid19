@@ -201,6 +201,36 @@ html,body {
       line-height: 24px;
       margin-top: 16px;
       color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-right: 72px;
+
+      a {
+        color: #ace;
+        font-size: 13px;
+        text-decoration: none;
+      }
+
+      a.more {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &.show {
+        white-space: inherit;
+        padding-right: 0;
+
+        a.more {
+          display: none;
+        }
+      }
     }
   }
 
@@ -229,35 +259,6 @@ html,body {
 
       .change {
         text-align: right;
-      }
-    }
-
-    p.notes {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      padding-right: 72px;
-
-      a.more {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 13px;
-        color: #ace;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      &.show {
-        white-space: inherit;
-        padding-right: 0;
-
-        a.more {
-          display: none;
-        }
       }
     }
   }
