@@ -142,6 +142,7 @@ const init = () => {
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
     let graphValue = $box.find(".graph.switch.selected").attr("value");
+    let graphType = "logarithmic";
 
     let rows = gData.transition[code];
     let latestValue = rows[rows.length - 1][3];
@@ -201,7 +202,7 @@ const init = () => {
             }
           }],
           yAxes: [{
-            type: (graphValue === "log" ? "logarithmic" : "liner"),
+            type: graphType,
             location: "bottom",
             stacked: false,
             gridLines: {
