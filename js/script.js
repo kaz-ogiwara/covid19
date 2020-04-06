@@ -664,7 +664,7 @@ const init = () => {
 
   const loadData = () => {
     //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
-    $.getJSON("data/data202004061527.json", function(data){
+    $.getJSON("data/data.json", function(data){
       gData = data;
       updateThresholds();
       drawTransitionBoxes();
