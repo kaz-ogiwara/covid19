@@ -225,7 +225,7 @@ const init = () => {
     };
 
     // debug
-    console.log(config.options.scales.yAxes.type);
+    console.log(config.options.scales.yAxes[0].type);
     console.log(graphValue);
     console.log(graphType);
 
