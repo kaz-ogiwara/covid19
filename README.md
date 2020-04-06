@@ -19,6 +19,8 @@
 - ファイル：https://github.com/kaz-ogiwara/covid19/blob/master/data/summary.csv
 - データソース：「新型コロナウイルス感染症の現在の状況について」
 - 開示例：https://www.mhlw.go.jp/stf/newpage_10700.html
+- 公表日ごとに全国のPCR検査陽性者、退院者などの主要項目を掲載。
+- 2月17日まではデータが公開されない日があるため、公開ページでは2月17日以降のみビジュアライズしている。
 
 #### prefectures.csv
 - ファイル：https://github.com/kaz-ogiwara/covid19/blob/master/data/prefectures.csv
