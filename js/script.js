@@ -200,6 +200,7 @@ const init = () => {
             }
           }],
           yAxes: [{
+            type: "logarithmic",
             location: "bottom",
             stacked: false,
             gridLines: {
