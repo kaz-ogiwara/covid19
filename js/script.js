@@ -224,6 +224,11 @@ const init = () => {
       }
     };
 
+    // debug
+    console.log(config.options.scales.yAxes.type);
+    console.log(graphValue);
+    console.log(graphType);
+
     if ($box.width() >= 400) {
       config.options.aspectRatio = 2.0;
     }
