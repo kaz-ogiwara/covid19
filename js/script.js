@@ -468,6 +468,7 @@ const init = () => {
             }
           }],
           yAxes: [{
+            type: "logarithmic",
             gridLines: {
               color: "rgba(255,255,255,0.1)"
             },
@@ -525,7 +526,6 @@ const init = () => {
     let $wrapper = $box.find(".chart").empty().html('<canvas></canvas>');
     let $canvas = $wrapper.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
-    let graphValue = $box.find(".graph.switch.selected").attr("value");
 
     let rows = gData["prefectures-data"][typeCode];
     let latestValue = rows[rows.length - 1][parseInt(prefCode) + 2];
@@ -589,7 +589,6 @@ const init = () => {
             }
           }],
           yAxes: [{
-            type: (graphValue == "log" ? "logarithmic" : "liner"),
             gridLines: {
               color: "rgba(255,255,255,0.2)"
             },
