@@ -142,7 +142,7 @@ const init = () => {
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
     let graphValue = $box.find(".graph.switch.selected").attr("value");
-    let graphType = (graphValue == "log" ? "logarithmic" : "liner");
+    let graphType = (graphValue == "liner" ? "liner" : "logarithmic");
 
     let rows = gData.transition[code];
     let latestValue = rows[rows.length - 1][3];
@@ -228,6 +228,9 @@ const init = () => {
     console.log(config.options.scales.yAxes[0].type);
     console.log(graphValue);
     console.log(graphType);
+
+    // set graph type
+    config.options.scales.yAxes[0].type = graphType;
 
     if ($box.width() >= 400) {
       config.options.aspectRatio = 2.0;
