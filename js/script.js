@@ -142,7 +142,7 @@ const init = () => {
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
     let graphValue = $box.find(".graph.switch.selected").attr("value");
-    let graphType = (graphValue == "liner" ? "liner" : "logarithmic");
+    let graphType = (graphValue == "liner" ? "linear" : "logarithmic");
 
     let rows = gData.transition[code];
     let latestValue = rows[rows.length - 1][3];
