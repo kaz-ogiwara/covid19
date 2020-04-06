@@ -178,7 +178,7 @@ const init = () => {
               if (LANG === "ja") dateTime = dateTime + "時点";
               if (LANG === "en") dateTime = "As of " + dateTime;
               let suffix = $box.find(".switch.selected").text();
-              return dateTime + " " + suffix + " " + graphType;
+              return dateTime + " " + suffix;
             },
             label: function(tooltipItem, data){
               let ret = data.datasets[0].label + ": " + addCommas(data.datasets[0].data[tooltipItem.index]) + " " + LABELS[LANG].unit[code];
@@ -202,7 +202,7 @@ const init = () => {
             }
           }],
           yAxes: [{
-            type: graphType,
+            type: "logarithmic",
             location: "bottom",
             stacked: false,
             gridLines: {
