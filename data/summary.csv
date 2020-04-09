@@ -1,4 +1,4 @@
-公表年,公表月,公表日,PCR検査陽性者,有症状者,退院した者,人工呼吸器又は集中治療室に入院している者,死亡者,PCR検査実施人数,URL
+年,月,日,PCR検査陽性者,有症状者,退院した者,人工呼吸器又は集中治療室に入院している者,死亡者,PCR検査実施人数,URL
 2020,2,6,16,16,4,,0,132,https://www.mhlw.go.jp/stf/newpage_09360.html
 2020,2,7,16,16,4,,0,151,https://www.mhlw.go.jp/stf/newpage_09396.html
 2020,2,10,16,16,9,0,0,174,https://www.mhlw.go.jp/stf/newpage_09418.html
@@ -57,3 +57,4 @@
 2020,4,6,3569,2395,575,79,73,40481,https://www.mhlw.go.jp/stf/newpage_10709.html
 2020,4,7,3817,2551,605,80,80,48357,https://www.mhlw.go.jp/stf/newpage_10723.html
 2020,4,8,4168,2771,615,99,81,52901,https://www.mhlw.go.jp/stf/newpage_10752.html
+2020,4,9,4667,3069,668,109,85,54284,https://www.mhlw.go.jp/stf/newpage_10770.html
