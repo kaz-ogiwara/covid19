@@ -1,4 +1,4 @@
-年,月,日,PCR検査陽性者,有症状者,退院した者,人工呼吸器又は集中治療室に入院している者,死亡者,PCR検査実施人数,URL
+year,month,day,PCR-hit,patient,recover,serious-ICU,dearh,PCR-implementation,URL
 2020,2,6,16,16,4,,0,132,https://www.mhlw.go.jp/stf/newpage_09360.html
 2020,2,7,16,16,4,,0,151,https://www.mhlw.go.jp/stf/newpage_09396.html
 2020,2,10,16,16,9,0,0,174,https://www.mhlw.go.jp/stf/newpage_09418.html
