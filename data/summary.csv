@@ -1,4 +1,4 @@
-id,year,month,day,PCR-hit,patient,recover,serious-ICU,dearh,PCR-implementation,URL
+id,year,month,day,PCR-hit,patient,recover,serious-ICU,death,PCR-implementation,URL
 1,2020,2,6,16,16,4,,0,132,https://www.mhlw.go.jp/stf/newpage_09360.html
 2,2020,2,7,16,16,4,,0,151,https://www.mhlw.go.jp/stf/newpage_09396.html
 3,2020,2,10,16,16,9,0,0,174,https://www.mhlw.go.jp/stf/newpage_09418.html
