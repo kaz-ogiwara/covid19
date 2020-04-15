@@ -15,7 +15,7 @@ id,year,month,day,PCR-hit,patient,recover,serious-ICU,death,PCR-implementation,U
 14,2020,3,28,1453,1251,388,60,49,26105,https://www.mhlw.go.jp/stf/newpage_10549.html
 15,2020,3,29,1647,1352,408,59,52,26401,https://www.mhlw.go.jp/stf/newpage_10555.html
 16,2020,3,30,1820,1420,409,59,54,26607,https://www.mhlw.go.jp/stf/newpage_10595.html
-17,2020,3,31,1887,1466,409,59,56,30088,https://www.mhlw.go.jp/stf/newpage_10636.html
+17,2020,3,31,1887,1466,410,59,56,30088,https://www.mhlw.go.jp/stf/newpage_10636.html
 18,2020,4,1,2107,1594,456,60,57,32002,https://www.mhlw.go.jp/stf/newpage_10651.html
 19,2020,4,2,2306,1693,489,62,60,32002,https://www.mhlw.go.jp/stf/newpage_10668.html
 20,2020,4,3,2541,1808,498,64,63,36687,https://www.mhlw.go.jp/stf/newpage_10688.html
