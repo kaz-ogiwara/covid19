@@ -198,6 +198,10 @@ html, body {
       line-height: 24px;
       margin-top: 16px;
       color: rgba(255, 255, 255, 0.7); }
+      #container #main-block .box p.notes a {
+        font-size: 13px;
+        color: #ace;
+        text-decoration: none; }
   #container #main-block .transition .latest,
   #container #main-block .prefecture-chart .latest {
     position: absolute;
