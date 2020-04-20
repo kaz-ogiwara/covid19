@@ -10,12 +10,12 @@ let gThresholds = {
 const LANG = $("html").attr("lang");
 const COLORS = {
   default: "#3DC",
-  carriers: "#3DC",
-  cases: "#6DF",
-  deaths: "#EB8",
-  discharged: "#9FC",
-  serious: "#FEA",
-  pcrtested: "#4CD",
+  carriers: ["#3DC", "#FEA", "#ABC"],
+  cases: ["#6DF"],
+  deaths: ["#EB8", "#ABC"],
+  discharged: ["#9FC"],
+  serious: ["#FEA"],
+  pcrtested: ["#4CD"],
   dark: "#399",
   selected: "#EC2",
   checking: "#abc",
@@ -27,6 +27,15 @@ const COLORS = {
 const LABELS = {
   ja: {
     change: "前日比",
+    total: "合計",
+    transition: {
+      carriers: ["有症状", "無症状", "確認中"],
+      cases: ["患者数"],
+      discharged: ["退院者数"],
+      deaths: ["確認済み", "都道府県発表との差"],
+      pcrtested: ["PCR検査人数"],
+      serious: ["重症者数"]
+    },
     unit: {
       carriers: "名",
       cases: "名",
@@ -38,14 +47,10 @@ const LABELS = {
     demography: {
       deaths: "死亡",
       serious: "重症",
-      discharged: "退院",
-      misc: "その他",
-      nosym: "無症状",
-      checking: "確認中"
+      misc: "軽症・無症状・確認中"
     },
     age: [
-      "90代",
-      "80代",
+      "80代以上",
       "70代",
       "60代",
       "50代",
@@ -59,6 +64,15 @@ const LABELS = {
   },
   en: {
     change: "Daily: ",
+    total: "Total",
+    transition: {
+      carriers: ["With Symptoms", "No Symptom", "Checking"],
+      cases: ["Active Cases"],
+      discharged: ["Discharged"],
+      deaths: ["MHLW Confirmed", "Difference from Preliminary by Prefectures"],
+      pcrtested: ["PCR Tested"],
+      serious: ["Serious"]
+    },
     unit: {
       carriers: "",
       cases: "",
@@ -70,14 +84,10 @@ const LABELS = {
     demography: {
       deaths: "Deaths",
       serious: "Serious",
-      discharged: "Discharged",
-      misc: "Misc",
-      nosym: "No Symptom",
-      checking: "Checking"
+      misc: "Mild, No symptom, Checking"
     },
     age: [
-      "90s",
-      "80s",
+      "80s+",
       "70s",
       "60s",
       "50s",
@@ -143,23 +153,22 @@ const init = () => {
     let switchValue = $box.find(".switch.selected").attr("value");
 
     let rows = gData.transition[code];
-    let latestValue = rows[rows.length - 1][3];
-    let latestChange = latestValue - rows[rows.length - 2][3];
-    drawLatestValue($box, latestValue, latestChange);
+    let valueLatest = 0;
+    let valuePrev   = 0;
+    for (let i = 3; i < rows[0].length; i++) {
+      valueLatest += rows[rows.length - 1][i];
+      valuePrev   += rows[rows.length - 2][i];
+    }
+    drawLatestValue($box, valueLatest, valueLatest - valuePrev);
 
     let config = {
       type: "bar",
       data: {
         labels: [],
-        datasets: [{
-          label: $box.find("h3:first").text(),
-          backgroundColor: COLORS[code],
-          data: []
-        }]
+        datasets: []
       },
       options: {
         aspectRatio: 1.6,
-        responsive: true,
         legend: {
           display: false
         },
@@ -172,21 +181,29 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              let dateTime = tooltipItem[0].xLabel + " " + "12:00";
+              let dateTime = tooltipItem[0].xLabel.trim() + " " + "12:00";
               if (LANG === "ja") dateTime = dateTime + "時点";
               if (LANG === "en") dateTime = "As of " + dateTime;
               let suffix = $box.find(".switch.selected").text();
               return dateTime + " " + suffix;
             },
             label: function(tooltipItem, data){
-              let ret = data.datasets[0].label + ": " + addCommas(data.datasets[0].data[tooltipItem.index]) + " " + LABELS[LANG].unit[code];
+              let ret = [];
+              let total = 0;
+              data.datasets.forEach(function(ds, i){
+                ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
+                total += ds.data[tooltipItem.index];
+              });
+              if (data.datasets.length >= 2) {
+                ret.push(LABELS[LANG].total + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
+              }
               return ret;
             }
           }
         },
         scales: {
           xAxes: [{
-            stacked: false,
+            stacked: true,
             gridLines: {
               display: false
             },
@@ -201,7 +218,7 @@ const init = () => {
           }],
           yAxes: [{
             location: "bottom",
-            stacked: false,
+            stacked: true,
             gridLines: {
               display: true,
               zeroLineColor: "rgba(255,255,255,0.7)",
@@ -225,14 +242,30 @@ const init = () => {
       config.options.aspectRatio = 2.0;
     }
 
+    for (let i = 3; i < rows[0].length; i++) {
+      config.data.datasets.push({
+        label: LABELS[LANG].transition[code][i - 3],
+        backgroundColor: COLORS[code][i - 3],
+        data: []
+      });
+    }
+
     rows.forEach(function(row, i){
       if (switchValue === "total") {
         config.data.labels.push(row[1] + "/" + row[2]);
-        config.data.datasets[0].data.push(row[3]);
+        for (let j = 3; j < rows[0].length; j++) {
+          config.data.datasets[j - 3].data.push(row[j]);
+        }
       } else if (i >= 1) {
         config.data.labels.push(row[1] + "/" + row[2]);
         let prev = rows[i - 1];
-        config.data.datasets[0].data.push(row[3] - prev[3]);
+        for (let j = 3; j < rows[0].length; j++) {
+          if (row[j] !== "" && prev[j] !== "") {
+            config.data.datasets[j - 3].data.push(row[j] - prev[j]);
+          } else {
+            config.data.datasets[j - 3].data.push(0);
+          }
+        }
       }
     });
 
@@ -296,31 +329,19 @@ const init = () => {
         labels: [],
         datasets: [{
           label: LABELS[LANG].demography.deaths,
-          backgroundColor: COLORS.deaths,
+          backgroundColor: COLORS.deaths[0],
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
         },{
           label: LABELS[LANG].demography.serious,
-          backgroundColor: COLORS.serious,
+          backgroundColor: COLORS.serious[0],
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
         },{
           label: LABELS[LANG].demography.misc,
-          backgroundColor: COLORS.dark,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.nosym,
-          backgroundColor: COLORS.cases,
-          borderWidth: 0.5,
-          borderColor: "#242a3c",
-          data: []
-        },{
-          label: LABELS[LANG].demography.checking,
-          backgroundColor: COLORS.checking,
+          backgroundColor: COLORS.default,
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
@@ -376,7 +397,7 @@ const init = () => {
               suggestedMin: 0,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString();
+                return addCommas(value);
               }
             }
           }],
@@ -399,7 +420,7 @@ const init = () => {
 
     gData.demography.forEach(function(age, index){
       config.data.labels.push(LABELS[LANG].age[index]);
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 3; i++) {
         config.data.datasets[i].data.push(age[i]);
       }
     });
@@ -441,6 +462,13 @@ const init = () => {
           displayColors: true,
           callbacks: {
             title: function(tooltipItem){
+              gData["prefectures-map"].forEach(function(pref, i){
+                if (pref.ja === tooltipItem[0].yLabel || pref.en === tooltipItem[0].yLabel) {
+                  if ($("#select-prefecture").val() !== pref.code) {
+                    drawPrefectureCharts(pref.code);
+                  }
+                }
+              });
               return tooltipItem[0].yLabel;
             },
             label: function(tooltipItem, data){
@@ -462,7 +490,7 @@ const init = () => {
               suggestedMin: 0,
               fontColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
-                return value.toString();
+                return addCommas(value);
               }
             }
           }],
@@ -539,7 +567,7 @@ const init = () => {
       options: {
         aspectRatio: 1.6,
         animation: {
-          duration: 1000
+          duration: 0
         },
         responsive: true,
         legend: {
@@ -565,7 +593,7 @@ const init = () => {
                   ja: " 名",
                   en: " cases"
                 };
-                return tooltipItem.xLabel + " " + tooltipItem.yLabel + suffix[LANG];
+                return tooltipItem.xLabel.trim() + ": " + tooltipItem.yLabel + suffix[LANG];
               }
             }
           }
@@ -609,7 +637,7 @@ const init = () => {
       fill: false,
       lineTension: 0.1,
       borderColor: COLORS.selected,
-      borderWidth: 4,
+      borderWidth: 3,
       pointRadius: 2,
       pointBorderWidth: 1,
       pointBackgroundColor: "#242a3c",
@@ -663,16 +691,20 @@ const init = () => {
 
   const loadData = () => {
     //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
-    $.getJSON("data/data202004061527.json", function(data){
+    $.getJSON("data/data.json", function(data){
       gData = data;
-      updateThresholds();
-      drawTransitionBoxes();
-      drawDemographyChart();
-      drawJapanMap();
-      drawRegionChart("");
-      drawPrefectureCharts("13");
-      showUpdateDates();
-      $("#container").addClass("show");
+      try {
+        updateThresholds();
+        drawTransitionBoxes();
+        drawDemographyChart();
+        drawJapanMap();
+        drawRegionChart("");
+        drawPrefectureCharts("13");
+        showUpdateDates();
+        $("#cover-block").fadeOut();
+      } catch (err) {
+        alert("error");
+      }
     })
   }
 
