@@ -30,6 +30,13 @@
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5CJSV5');</script>
   </head>
   <body>
+    <div id="cover-block">
+      <div>
+        <img src="img/logo-tko-white.png" />
+        <p>Loading data…</p>
+        <p><a href="./">Refresh page</a><br />if nothing visible.</p>
+      </div>
+    </div>
     <div id="container">
       <div id="title-block">
         <a href="https://toyokeizai.net/" target="_blank"><img id="img-logo" src="img/logo-tko-white.png" /></a>
@@ -63,12 +70,12 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">Confirmed number of "PCR test positives > PCR Tested positive" in MHLW publication. The number includes cases with no symptom. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
+              <p class="notes">Confirmed number of "PCR test positives > PCR Tested positive" in MHLW publication. Cases with symptoms are indicated in green, cases with no symptoms are indicated in yellow, and cases that are being checked for symptoms are indicated in gray. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
             <div class="box transition" code="cases">
-              <h3>With Symptoms</h3>
+              <h3>Active Cases</h3>
               <div class="latest">
                 <div>
                   <span class="type"></span>
@@ -83,7 +90,7 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">Confirmed number of "Number of symptom / no symptom when PCR test is positive > symptoms" in MHLW publication. It equals to the value of people PCR tested positive minus people with no symptoms and under confirmation. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
+              <p class="notes">Confirmed number of "Status of hospitalization and discharge > Need inpatient treatment" in MHLW publication. The number of infected persons (PCR tested positive) minus the number of discharged persons and deaths. This includes number of "Waiting for hospitalization" and "Under confirmation of the symptom". Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -163,7 +170,7 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">Confirmed number of "Status of hospitalization and discharge > Death" in MHLW publication. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
+              <p class="notes">While the number of deaths are published by MHLW after reports from each prefecture were confirmed, there may be a time lag in this process. Since MHLW started publishing the unconfirmed number of total deaths from each prefecture as a note, the value is shown in gray in this page. According to MHLW, this difference is eventually expected to be eliminated. Thus this page shows the total value of deaths from prefectures as the number of deaths. The confirmed number is equal to "Status of hospitalization and discharge > Death" in MHLW publication. Deaths by prefecture, displayed below, is based on confirmed value, except for Tokyo. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -319,7 +326,7 @@
                     <div class="switch selected" value="total">TOTAL</div>
                   </div>
                   <div class="chart"></div>
-                  <p class="notes">Since this is not the number of PCR tests but people PCR tested, it will be counted as 1 case when PCR tests were performed multiple times for one person. Since the MHLW does not, in principle, correct past numbers, the number may be significant increase or minus when reports from prefectures were corrected. Dates are based on reports from each prefecture. Numbers are supposed to be the same as the previous day when they are undetermined. The data in Tokyo does not include tests by medical institutions under insurance coverage. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23, because they had been reporting number of PCR tests instead of people PCR tested. As of these prefectures, numbers before the dates are treated as 0. The rapid increase in Chiba in 3/7 is considered as a misstatement (perhaps number of PCR tests), and treated as 0 at that day.<a class="more">READ MORE</a></p>
+                  <p class="notes">Since this is not the number of PCR tests but people PCR tested, it will be counted as 1 case when PCR tests were performed multiple times for one person. Since the MHLW does not, in principle, correct past numbers, the number may be significant increase or minus when reports from prefectures were corrected. Dates are based on reports from each prefecture. Numbers are supposed to be the same as the previous day when they are undetermined. The data in Tokyo does not include tests by medical institutions under insurance coverage. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23, because they had been reporting number of PCR tests instead of people PCR tested. As of these prefectures, numbers before the dates are treated as 0. The rapid increase in Chiba in 4/7 is considered as a misstatement (perhaps number of PCR tests), and treated as 0 at that day.<a class="more">READ MORE</a></p>
                 </div>
               </div>
             </div>

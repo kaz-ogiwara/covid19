@@ -30,6 +30,13 @@
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5CJSV5');</script>
   </head>
   <body>
+    <div id="cover-block">
+      <div>
+        <img src="img/logo-tko-white.png" />
+        <p>データを読み込んでいます…</p>
+        <p>表示されない場合は<br /><a id="link-reload">ページを更新</a>してください。</p>
+      </div>
+    </div>
     <div id="container">
       <div id="title-block">
         <a href="https://toyokeizai.net/" target="_blank"><img id="img-logo" src="img/logo-tko-white.png" /></a>
@@ -63,12 +70,12 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">厚生労働省の資料「PCR検査陽性者数＞PCR検査陽性者」の数。感染はしているが症状がないケース（＝無症状病原体保有者）や症状の確認中も含む。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
+              <p class="notes">厚生労働省の資料「PCR検査陽性者数＞PCR検査陽性者」の数。症状があるケース＝有症状はグリーン、感染はしているが症状がないケース＝無症状はイエロー、症状有無を確認中のケースはグレーで表示。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
           <div class="flex-row">
             <div class="box transition" code="cases">
-              <h3>患者数</h3>
+              <h3>現在の患者数</h3>
               <div class="latest">
                 <div>
                   <span class="type"></span>
@@ -83,7 +90,7 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">厚生労働省の資料「PCR検査陽性時の有症状・無症状の別＞有症状者」の数。感染者数から無症状病原体保有者と症状有無確認中の数字を引いた値。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
+              <p class="notes">感染者数から退院者数と死亡者数を除いた値。厚生労働省の資料「入退院等の状況＞入院治療を要する者等」の数。入院待機中や症状有無確認中も含む。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -163,7 +170,7 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">厚生労働省の資料「入退院等の状況＞死亡者」の数。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
+              <p class="notes">死亡者数は都道府県からの報告を厚生労働省が個々の感染者と突合して公式発表となるが、その過程でタイムラグが生じることがある。厚生労働省の発表に未照合の都道府県発表値も含まれるようになったため、その値をグレーで表示している。厚生労働省によると基準の違いなどではなく、最終的にはこの差は解消される見込みとのことであるため死亡者数は差分を含めた数値とした。確認済みの値は厚生労働省の資料「入退院等の状況＞死亡者」に等しい。なおページ下部の都道府県別死亡者数は東京都を除いて確認済みの値。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -319,7 +326,7 @@
                     <div class="switch selected" value="total">累計</div>
                   </div>
                   <div class="chart"></div>
-                  <p class="notes">検査「件数」ではなく「人数」であるため、1名に複数回PCR検査を行った場合は「1名」とカウントする。厚生労働省では原則として過去分の遡及訂正は行っていないため、都道府県からの報告に訂正があった場合は大幅な増加やマイナスになる場合がある。未確定または未集計などでその日の数値が確定できない場合、前日と同じ数値としている。東京都の検査実施人数には医療機関による保険適用での検査人数は含まれていない。3/11の秋田県は秋田市のみの数値。3/16-22の愛知県は名古屋市を除く。千葉県は3/21、大阪府は3/22、神奈川県は3/23からのみ計上。それ以前はPCR検査「件数」だったことが判明したため0と扱っている。3/7の千葉県の検査人数急増はPCR検査件数の誤記載と判断して新規0件と扱っている。<a class="more">もっと読む</a></p>
+                  <p class="notes">検査「件数」ではなく「人数」であるため、1名に複数回PCR検査を行った場合は「1名」とカウントする。厚生労働省では原則として過去分の遡及訂正は行っていないため、都道府県からの報告に訂正があった場合は大幅な増加やマイナスになる場合がある。未確定または未集計などでその日の数値が確定できない場合、前日と同じ数値としている。東京都の検査実施人数には医療機関による保険適用での検査人数は含まれていない。3/11の秋田県は秋田市のみの数値。3/16-22の愛知県は名古屋市を除く。千葉県は3/21、大阪府は3/22、神奈川県は3/23からのみ計上。それ以前はPCR検査「件数」だったことが判明したため0と扱っている。4/7の千葉県の検査人数急増はPCR検査件数の誤記載と判断して新規0件と扱っている。<a class="more">もっと読む</a></p>
                 </div>
               </div>
             </div>
