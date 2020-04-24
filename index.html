@@ -90,7 +90,7 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">感染者数から退院者数と死亡者数を除いた値。厚生労働省の資料「入退院等の状況＞入院治療を要する者等」の数。入院待機中や症状有無確認中も含む。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
+              <p class="notes">厚生労働省の資料「入退院等の状況＞入院治療を要する者等」の数。感染者数から退院者数と死亡者数を除いた値だが、確認中のケースも含まれるため誤差が生じる場合がある。入院待機中や症状有無確認中も含む。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -110,7 +110,7 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
-              <p class="notes">厚生労働省の資料「入退院等の状況＞退院した者」の数。症状の有無は問わない。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
+              <p class="notes">厚生労働省の資料「入退院等の状況＞退院した者」の数。症状の有無は問わない。4月22日からは都道府県からの報告を突合作業中である「確認中」を追加した。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -333,7 +333,7 @@
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">いずれのデータも武漢からの政府チャーター便帰国者、およびダイヤモンド・プリンセス号の乗客・乗員は除く。</p>
+        <p class="notes">いずれのデータも武漢からの政府チャーター便帰国者、および神奈川県・長崎県に停泊したクルーズ船の乗客・乗員は除く。</p>
         <p class="notes">データソース：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。アイコン：<a href="https://material.io/resources/icons/" target="_blank">Material Design</a>。</p>
         <p class="notes">更新履歴・ソースコード：<a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/tree/master/data" target="_blank">CSVデータのダウンロード</a></p>
         <div id="social-buttons">
@@ -382,7 +382,6 @@
         <p><small lang="en">© 2020 Toyo Keizai Inc.</small></p>
       </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="js/jquery.japan-map.min.js"></script>
