@@ -20,16 +20,48 @@ html,body {
   background-color: rgb(6,26,43);
 }
 
+#cover-block {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(6,26,43);
+  z-index: 1000;
+
+  div {
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    p {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 24px;
+
+      a {
+        color: #ace;
+        font-size: 13px;
+        text-decoration: none;
+      }
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 120px;
+      height: 45.2814px;
+    }
+  }
+}
 
 #container {
   overflow-x: hidden;
-  opacity: 0;
   transition: all ease 300ms;
   padding: 0 8px;
-
-  &.show {
-    opacity: 1;
-  }
 
   #title-block {
     margin: 0 auto;
@@ -269,6 +301,51 @@ html,body {
 
           &:nth-child(1) {&.selected {background-color: #d72;}}
           &:nth-child(2) {&.selected {background-color: #d72;}}
+        }
+      }
+
+      .checkboxes {
+        .checkbox {
+          text-indent: 42px;
+          cursor: pointer;
+          color: rgba(255, 255, 255, 0.4);
+          display: table;
+          margin: 16px auto;
+          font-size: 14px;
+          line-height: 25px;
+          transition: all ease 200ms;
+
+          &>div {
+            display: table-cell;
+            width: 32px;
+            height: 20px;
+            border-radius: 10px;
+            position: absolute;
+            margin-top: 2px;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: all ease 200ms;
+
+            &>div {
+              margin: 2px;
+              width: 16px;
+              height: 16px;
+              border-radius: 8px;
+              background-color: #fefefe;
+              transition: all ease 200ms;
+            }
+          }
+
+          &.on {
+            color: #fafafa;
+
+            &>div {
+              background-color: #392;
+
+              &>div {
+                margin-left: 14px;
+              }
+            }
+          }
         }
       }
 

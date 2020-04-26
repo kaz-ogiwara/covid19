@@ -14,13 +14,39 @@ html, body {
   width: 100%;
   background-color: #061a2b; }
 
+#cover-block {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #061a2b;
+  z-index: 1000; }
+  #cover-block div {
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+    #cover-block div p {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 24px; }
+      #cover-block div p a {
+        color: #ace;
+        font-size: 13px;
+        text-decoration: none; }
+    #cover-block div img {
+      display: block;
+      margin: 0 auto;
+      width: 120px;
+      height: 45.2814px; }
+
 #container {
   overflow-x: hidden;
-  opacity: 0;
   transition: all ease 300ms;
   padding: 0 8px; }
-  #container.show {
-    opacity: 1; }
   #container #title-block {
     margin: 0 auto;
     width: 100%;
@@ -192,6 +218,37 @@ html, body {
           background-color: #d72; }
         #container #main-block .box .switches .switch:nth-child(2).selected {
           background-color: #d72; }
+    #container #main-block .box .checkboxes .checkbox {
+      text-indent: 42px;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.4);
+      display: table;
+      margin: 16px auto;
+      font-size: 14px;
+      line-height: 25px;
+      transition: all ease 200ms; }
+      #container #main-block .box .checkboxes .checkbox > div {
+        display: table-cell;
+        width: 32px;
+        height: 20px;
+        border-radius: 10px;
+        position: absolute;
+        margin-top: 2px;
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: all ease 200ms; }
+        #container #main-block .box .checkboxes .checkbox > div > div {
+          margin: 2px;
+          width: 16px;
+          height: 16px;
+          border-radius: 8px;
+          background-color: #fefefe;
+          transition: all ease 200ms; }
+      #container #main-block .box .checkboxes .checkbox.on {
+        color: #fafafa; }
+        #container #main-block .box .checkboxes .checkbox.on > div {
+          background-color: #392; }
+          #container #main-block .box .checkboxes .checkbox.on > div > div {
+            margin-left: 14px; }
     #container #main-block .box p.notes {
       position: relative;
       font-size: 13px;
