@@ -33,7 +33,7 @@
     <div id="cover-block">
       <div>
         <p>Loading data…</p>
-        <p><a href="./en.html">Refresh page</a><br />if nothing visible.</p>
+        <p><a href="./">Refresh page</a><br />if nothing visible.</p>
       </div>
     </div>
     <div id="container">
@@ -65,6 +65,9 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
               <p class="notes">Confirmed number of "PCR test positives > PCR Tested positive" in MHLW publication. Cases with symptoms are indicated in green, cases with no symptoms are indicated in yellow, and cases that are being checked for symptoms are indicated in gray. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
@@ -85,6 +88,9 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
               <p class="notes">Confirmed number of "Status of hospitalization and discharge > Need inpatient treatment" in MHLW publication. While This is the number of infected persons (PCR tested positive) minus the number of discharged persons and deaths. Since it includes cases which MHLW is confirming, there may be difference with other values. This includes number of "Waiting for hospitalization" and "Under confirmation of the symptom". Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
@@ -105,6 +111,9 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
               <p class="notes">Confirmed number of "Status of hospitalization and discharge > Already discharged from hospital" in MHLW publication. It includes both cases with symptoms or no symptoms. From 22 April, "Confirming" was added as cases which MHLW is still confirming reports from prefectures. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
@@ -125,6 +134,9 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
               <p class="notes">Confirmed number of "PCR test positives > PCR tested" in MHLW publication. Since this is not the number of PCR tests but people PCR tested, it will be counted as 1 case when PCR tests were performed multiple times for one person. Since the MHLW does not, in principle, correct past numbers, the number may be significant increase or minus when reports from prefectures were corrected. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
@@ -145,6 +157,9 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
               <p class="notes">Confirmed number of "Status of hospitalization and discharge > Need inpatient treatment > Hospitalized with a ventilator or intensive care unit" in MHLW publication. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
@@ -165,6 +180,9 @@
                 <div class="switch" value="total">TOTAL</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
               <p class="notes">While the number of deaths are published by MHLW after reports from each prefecture were confirmed, there may be a time lag in this process. Since MHLW started publishing the unconfirmed number of total deaths from each prefecture as a note, the value is shown in gray in this page. According to MHLW, this difference is eventually expected to be eliminated. Thus this page shows the total value of deaths from prefectures as the number of deaths. The confirmed number is equal to "Status of hospitalization and discharge > Death" in MHLW publication. Deaths by prefecture, displayed below, is based on confirmed value, except for Tokyo. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
             </div>
           </div>
@@ -328,7 +346,7 @@
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded.</p>
+        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.</p>
         <p class="notes">Data source: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">Press release from MHLW</a>. Data in Tokyo is from <a href="https://stopcovid19.metro.tokyo.lg.jp/en" taret="_blank">Latest updates on COVID-19 in Tokyo</a>, since the number is quite different from MHLW. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Used <a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a> to draw prefectures map. Used icons from <a href="https://material.io/resources/icons/" target="_blank">Material Design</a>.</p>
         <p class="notes">Change log and source code: <a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/tree/master/data" target="_blank">Download CSV data</a></p>
         <div id="social-buttons">

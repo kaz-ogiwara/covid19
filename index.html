@@ -65,6 +65,9 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
               <p class="notes">厚生労働省の資料「PCR検査陽性者数＞PCR検査陽性者」の数。症状があるケース＝有症状はグリーン、感染はしているが症状がないケース＝無症状はイエロー、症状有無を確認中のケースはグレーで表示。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
@@ -85,6 +88,9 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
               <p class="notes">厚生労働省の資料「入退院等の状況＞入院治療を要する者等」の数。感染者数から退院者数と死亡者数を除いた値だが、確認中のケースも含まれるため誤差が生じる場合がある。入院待機中や症状有無確認中も含む。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
@@ -105,6 +111,9 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
               <p class="notes">厚生労働省の資料「入退院等の状況＞退院した者」の数。症状の有無は問わない。4月22日からは都道府県からの報告を突合作業中である「確認中」を追加した。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
@@ -125,6 +134,9 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
               <p class="notes">厚生労働省の資料「PCR検査陽性者数＞PCR検査実施人数」の数。検査「件数」ではなく「人数」であるため、1名に複数回PCR検査を行った場合は「1名」とカウントする。厚生労働省では原則として過去分の遡及訂正は行っていないため、都道府県からの報告に訂正があった場合は大幅な増加やマイナスになる場合がある。当初はPCR検査人数として疑似症サーベイランス（疑わしい症状がある患者への調査）だけの数字が発表されていたが、3月4日からは濃厚接触者に対する検査も含むため、このページでは3月4日以降のデータのみ掲載している。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
@@ -145,6 +157,9 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
                 <p class="notes">厚生労働省の資料「入退院等の状況＞入院治療を要する者＞うち人工呼吸器又は集中治療室に入院している者」の数。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
@@ -165,6 +180,9 @@
                 <div class="switch" value="total">累計</div>
               </div>
               <div class="chart"></div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
               <p class="notes">死亡者数は都道府県からの報告を厚生労働省が個々の感染者と突合して公式発表となるが、その過程でタイムラグが生じることがある。厚生労働省の発表に未照合の都道府県発表値も含まれるようになったため、その値をグレーで表示している。厚生労働省によると基準の違いなどではなく、最終的にはこの差は解消される見込みとのことであるため死亡者数は差分を含めた数値とした。確認済みの値は厚生労働省の資料「入退院等の状況＞死亡者」に等しい。なおページ下部の都道府県別死亡者数は東京都を除いて確認済みの値。日付は都道府県から厚生労働省への報告ベース。<a class="more">もっと読む</a></p>
             </div>
           </div>
@@ -328,7 +346,7 @@
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">いずれのデータも武漢からの政府チャーター便帰国者、および神奈川県・長崎県に停泊したクルーズ船の乗客・乗員は除く。</p>
+        <p class="notes">いずれのデータも武漢からの政府チャーター便帰国者、および神奈川県・長崎県に停泊したクルーズ船の乗客・乗員は除く。移動平均はいずれも後方7日移動平均値。</p>
         <p class="notes">データソース：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。ただし東京都のみ、厚生労働省の報道発表資料と数字に大きな差異があるため都発表のデータ（<a href="https://stopcovid19.metro.tokyo.lg.jp/" target="_blank">東京都新型コロナウイルス感染症対策サイト</a>）を使っている。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。アイコン：<a href="https://material.io/resources/icons/" target="_blank">Material Design</a>。</p>
         <p class="notes">更新履歴・ソースコード：<a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/tree/master/data" target="_blank">CSVデータのダウンロード</a></p>
         <div id="social-buttons">
