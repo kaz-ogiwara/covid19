@@ -13,7 +13,7 @@ const COLORS = {
   carriers: ["#3DC", "#FEA", "#ABC"],
   cases: ["#6DF"],
   deaths: ["#EB8", "#ABC"],
-  discharged: ["#9FC"],
+  discharged: ["#9FC", "#ABC"],
   serious: ["#FEA"],
   pcrtested: ["#4CD"],
   dark: "#399",
@@ -31,8 +31,8 @@ const LABELS = {
     transition: {
       carriers: ["有症状", "無症状", "確認中"],
       cases: ["患者数"],
-      discharged: ["退院者数"],
-      deaths: ["確認済み", "都道府県発表との差"],
+      discharged: ["確認済み", "確認中"],
+      deaths: ["確認済み", "確認中"],
       pcrtested: ["PCR検査人数"],
       serious: ["重症者数"]
     },
@@ -68,8 +68,8 @@ const LABELS = {
     transition: {
       carriers: ["With Symptoms", "No Symptom", "Checking"],
       cases: ["Active Cases"],
-      discharged: ["Discharged"],
-      deaths: ["MHLW Confirmed", "Difference from Preliminary by Prefectures"],
+      discharged: ["MHLW Confirmed", "Confirming"],
+      deaths: ["MHLW Confirmed", "Confirming"],
       pcrtested: ["PCR Tested"],
       serious: ["Serious"]
     },
@@ -151,6 +151,7 @@ const init = () => {
     let $chart = $box.find(".chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
+    let hasMovingAverage = ($box.find(".checkbox.moving-average").hasClass("on")) ? true: false;
 
     let rows = gData.transition[code];
     let valueLatest = 0;
@@ -268,6 +269,36 @@ const init = () => {
         }
       }
     });
+
+    if (hasMovingAverage) {
+      let days = 7;
+      let dataset = {
+        type: "line",
+        label: LABELS[LANG].movingAverage,
+        fill: false,
+        borderColor: "#EDA",
+        borderWidth: 3,
+        pointRadius: 0,
+        data: []
+      };
+
+      for (let i = 0; i < config.data.datasets[0].data.length; i++) {
+        let value = null;
+        if (i >= days) {
+          value = 0;
+          for (let j = 0; j < days; j++) {
+            config.data.datasets.forEach(function(dataset, dsi){
+              value += parseInt(dataset.data[i - j]);
+            });
+          }
+          value = value / days;
+        }
+
+        dataset.data.push(value);
+      }
+
+      config.data.datasets.unshift(dataset);
+    }
 
     let ctx = $canvas.getContext('2d');
     window.myChart = new Chart(ctx, config);
@@ -690,21 +721,16 @@ const init = () => {
   }
 
   const loadData = () => {
-    //$.getJSON("https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/data.json", function(data){
     $.getJSON("data/data.json", function(data){
       gData = data;
-      try {
-        updateThresholds();
-        drawTransitionBoxes();
-        drawDemographyChart();
-        drawJapanMap();
-        drawRegionChart("");
-        drawPrefectureCharts("13");
-        showUpdateDates();
-        $("#cover-block").fadeOut();
-      } catch (err) {
-        alert("error");
-      }
+      updateThresholds();
+      drawTransitionBoxes();
+      drawDemographyChart();
+      drawJapanMap();
+      drawRegionChart("");
+      drawPrefectureCharts("13");
+      showUpdateDates();
+      $("#cover-block").fadeOut();
     })
   }
 
@@ -735,6 +761,16 @@ const init = () => {
 
     $(".more").on("click",function(){
       $(this).closest("p.notes").addClass("show");
+    });
+
+    $(".checkboxes").find(".checkbox").on("click", function(){
+      if ($(this).hasClass("on")) {
+        $(this).removeClass("on");
+      } else {
+        $(this).addClass("on");
+      }
+      let $box = $(this).closest(".transition");
+      drawTransitionChart($box, $box.attr("code"));
     });
 
     $('a[href^="#"]').click(function() {
