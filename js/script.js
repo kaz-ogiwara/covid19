@@ -192,10 +192,13 @@ const init = () => {
               let ret = [];
               let total = 0;
               data.datasets.forEach(function(ds, i){
-                ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
-                total += ds.data[tooltipItem.index];
+                if (!hasMovingAverage || i >= 1) {
+                  ret.push(ds.label + ": " + addCommas(ds.data[tooltipItem.index]) + " " + LABELS[LANG].unit[code]);
+                  total += ds.data[tooltipItem.index];
+                }
               });
-              if (data.datasets.length >= 2) {
+              let showTotalLength = (hasMovingAverage) ? 3: 2;
+              if (data.datasets.length >= showTotalLength) {
                 ret.push(LABELS[LANG].total + ": " + addCommas(total) + " " + LABELS[LANG].unit[code]);
               }
               return ret;
