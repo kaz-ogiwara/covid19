@@ -148,85 +148,85 @@ const init = () => {
     });
   }
 
-  const drawTransitionChart = ($box, code) => {
-    const drawTransitionAxisChart = ($box, mainConfigData) => {
-      let $chart = $box.find(".axis-chart").empty().html("<canvas></canvas>");
-      let $canvas = $chart.find("canvas")[0];
+  const drawAxisChart = ($box, mainConfigData, isStacked) => {
+    let $chart = $box.find(".axis-chart").empty().html("<canvas></canvas>");
+    let $canvas = $chart.find("canvas")[0];
 
-      let axisConfig = {
-        type: "bar",
-        data: mainConfigData,
-        options: {
-          maintainAspectRatio: false,
-          legend: {
-            display: false
-          },
-          title: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              stacked: true,
+    let axisConfig = {
+      type: "bar",
+      data: mainConfigData,
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        title: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            stacked: isStacked,
+            drawBorder: false,
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              fontColor: "rgba(255,255,255,0.0)",
+              maxRotation: 0,
+              minRotation: 0
+            }
+          }],
+          yAxes: [{
+            id: "axisScale",
+            location: "bottom",
+            stacked: isStacked,
+            gridLines: {
               drawBorder: false,
-              gridLines: {
-                display: false
-              },
-              ticks: {
-                fontColor: "rgba(255,255,255,0.0)",
-                maxRotation: 0,
-                minRotation: 0
-              }
-            }],
-            yAxes: [{
-              id: "axisScale",
-              location: "bottom",
-              stacked: true,
-              gridLines: {
-                drawBorder: false,
-                display: false
-              },
-              ticks: {
-                beginAtZero: true,
-                fontColor: "rgba(255,255,255,0.7)",
-                callback: function(value, index, values) {
-                  if (Math.floor(value) === value) {
-                    return addCommas(value.toString());
-                  }
+              display: false
+            },
+            ticks: {
+              beginAtZero: true,
+              fontColor: "rgba(255,255,255,0.7)",
+              callback: function(value, index, values) {
+                if (Math.floor(value) === value) {
+                  return addCommas(value.toString());
                 }
               }
-            }]
-          }
+            }
+          }]
         }
-      };
-
-      axisConfig.data.datasets.forEach(function(dataset, i){
-        dataset.backgroundColor = "transparent";
-        dataset.borderColor = "transparent";
-      });
-
-      axisConfig.data.labels.forEach(function(label, i){
-        label = "";
-      });
-
-      window.myChart = new Chart($canvas.getContext('2d'), axisConfig);
-
-      let axisMax = window.myChart.scales.axisScale.max;
-      let axisMin = window.myChart.scales.axisScale.min;
-      let axisMaxLength = Math.max(axisMax.toString().length, axisMin.toString().length);
-      let axisCoverWidth = 0;
-      switch(axisMaxLength) {
-        case 1: axisCoverWidth = 22; break;
-        case 2: axisCoverWidth = 26; break;
-        case 3: axisCoverWidth = 34; break;
-        case 4: axisCoverWidth = 40; break;
-        case 5: axisCoverWidth = 52; break;
-        case 6: axisCoverWidth = 58; break;
-        case 7: axisCoverWidth = 64; break;
       }
+    };
 
-      $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
+    axisConfig.data.datasets.forEach(function(dataset, i){
+      dataset.backgroundColor = "transparent";
+      dataset.borderColor = "transparent";
+    });
+
+    axisConfig.data.labels.forEach(function(label, i){
+      label = "";
+    });
+
+    window.myChart = new Chart($canvas.getContext('2d'), axisConfig);
+
+    let axisMax = window.myChart.scales.axisScale.max;
+    let axisMin = window.myChart.scales.axisScale.min;
+    let axisMaxLength = Math.max(axisMax.toString().length, axisMin.toString().length);
+    let axisCoverWidth = 0;
+    switch(axisMaxLength) {
+      case 1: axisCoverWidth = 22; break;
+      case 2: axisCoverWidth = 26; break;
+      case 3: axisCoverWidth = 34; break;
+      case 4: axisCoverWidth = 40; break;
+      case 5: axisCoverWidth = 52; break;
+      case 6: axisCoverWidth = 58; break;
+      case 7: axisCoverWidth = 64; break;
     }
 
+    $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
+  }
+
+  const drawTransitionChart = ($box, code) => {
     let $chart = $box.find(".main-chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
@@ -305,7 +305,6 @@ const init = () => {
             stacked: true,
             gridLines: {
               display: true,
-              padding: 0,
               zeroLineColor: "rgba(255,255,255,0.7)",
               borderDash: [3, 1],
               color: "rgba(255, 255, 255, 0.3)"
@@ -383,8 +382,7 @@ const init = () => {
       config.data.datasets.unshift(dataset);
     }
 
-    let cloned = $.extend(true, {}, config.data);
-    drawTransitionAxisChart($box, cloned);
+    drawAxisChart($box, $.extend(true, {}, config.data), true);
 
     window.myChart = new Chart($canvas.getContext('2d'), config);
   }
@@ -663,6 +661,7 @@ const init = () => {
     $(".prefecture-chart").each(function(){
       let code = $(this).attr("code");
       drawPrefectureChart(prefCode, code);
+      moveToRight($(this));
     });
   }
 
@@ -670,8 +669,8 @@ const init = () => {
     let $box = $(".prefecture-chart[code=" + typeCode + "]");
     $box.find("h3").find("span").text(gData["prefectures-map"][parseInt(prefCode) - 1][LANG]);
 
-    let $wrapper = $box.find(".chart").empty().html('<canvas></canvas>');
-    let $canvas = $wrapper.find("canvas")[0];
+    let $chart = $box.find(".main-chart").empty().html('<canvas></canvas>');
+    let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
 
     let rows = gData["prefectures-data"][typeCode];
@@ -686,7 +685,7 @@ const init = () => {
         datasets: []
       },
       options: {
-        aspectRatio: 1.6,
+        maintainAspectRatio: false,
         animation: {
           duration: 0
         },
@@ -737,10 +736,12 @@ const init = () => {
           }],
           yAxes: [{
             gridLines: {
+              borderDash: [3, 1],
               color: "rgba(255,255,255,0.2)"
             },
             ticks: {
-              fontColor: "rgba(255,255,255,0.7)",
+              fontColor: "transparent",
+              zeroLineColor: "rgba(255,255,255,0.7)",
               callback: function(value, index, values) {
                 if (Math.floor(value) === value) {
                   return addCommas(value.toString());
@@ -748,11 +749,14 @@ const init = () => {
               }
             }
           }]
+        },
+        layout: {
+          padding: {
+            left: 10
+          }
         }
       }
     };
-
-    if ($wrapper.outerWidth() >= 400) config.options.aspectRatio = 2.0;
 
     config.data.datasets.push({
       fill: false,
@@ -800,8 +804,11 @@ const init = () => {
       }
     });
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+    $chart.width(Math.max(config.data.labels.length * 10, $chart.width()));
+
+    drawAxisChart($box, $.extend(true, {}, config.data), false);
+
+    window.myChart = new Chart($canvas.getContext('2d'), config);
   }
 
   const showUpdateDates = () => {
