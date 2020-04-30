@@ -195,7 +195,7 @@ const init = () => {
                 }
               }
             }]
-          },
+          }
         }
       };
 
@@ -219,9 +219,9 @@ const init = () => {
         case 2: axisCoverWidth = 26; break;
         case 3: axisCoverWidth = 34; break;
         case 4: axisCoverWidth = 40; break;
-        case 5: axisCoverWidth = 54; break;
+        case 5: axisCoverWidth = 52; break;
         case 6: axisCoverWidth = 58; break;
-        case 7: axisCoverWidth = 62; break;
+        case 7: axisCoverWidth = 64; break;
       }
 
       $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
@@ -318,10 +318,7 @@ const init = () => {
         },
         layout: {
           padding: {
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0
+            left: 10
           }
         }
       }
