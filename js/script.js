@@ -144,11 +144,90 @@ const init = () => {
     $(".transition").each(function(){
       let code = $(this).attr("code");
       drawTransitionChart($(this), code);
+      moveToRight($(this));
     });
   }
 
   const drawTransitionChart = ($box, code) => {
-    let $chart = $box.find(".chart").empty().html("<canvas></canvas>");
+    const drawTransitionAxisChart = ($box, mainConfigData) => {
+      let $chart = $box.find(".axis-chart").empty().html("<canvas></canvas>");
+      let $canvas = $chart.find("canvas")[0];
+
+      let axisConfig = {
+        type: "bar",
+        data: mainConfigData,
+        options: {
+          maintainAspectRatio: false,
+          legend: {
+            display: false
+          },
+          title: {
+            display: false
+          },
+          scales: {
+            xAxes: [{
+              stacked: true,
+              drawBorder: false,
+              gridLines: {
+                display: false
+              },
+              ticks: {
+                fontColor: "rgba(255,255,255,0.0)",
+                maxRotation: 0,
+                minRotation: 0
+              }
+            }],
+            yAxes: [{
+              id: "axisScale",
+              location: "bottom",
+              stacked: true,
+              gridLines: {
+                drawBorder: false,
+                display: false
+              },
+              ticks: {
+                beginAtZero: true,
+                fontColor: "rgba(255,255,255,0.7)",
+                callback: function(value, index, values) {
+                  if (Math.floor(value) === value) {
+                    return addCommas(value.toString());
+                  }
+                }
+              }
+            }]
+          },
+        }
+      };
+
+      axisConfig.data.datasets.forEach(function(dataset, i){
+        dataset.backgroundColor = "transparent";
+        dataset.borderColor = "transparent";
+      });
+
+      axisConfig.data.labels.forEach(function(label, i){
+        label = "";
+      });
+
+      window.myChart = new Chart($canvas.getContext('2d'), axisConfig);
+
+      let axisMax = window.myChart.scales.axisScale.max;
+      let axisMin = window.myChart.scales.axisScale.min;
+      let axisMaxLength = Math.max(axisMax.toString().length, axisMin.toString().length);
+      let axisCoverWidth = 0;
+      switch(axisMaxLength) {
+        case 1: axisCoverWidth = 22; break;
+        case 2: axisCoverWidth = 26; break;
+        case 3: axisCoverWidth = 34; break;
+        case 4: axisCoverWidth = 40; break;
+        case 5: axisCoverWidth = 54; break;
+        case 6: axisCoverWidth = 58; break;
+        case 7: axisCoverWidth = 62; break;
+      }
+
+      $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
+    }
+
+    let $chart = $box.find(".main-chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
     let hasMovingAverage = ($box.find(".checkbox.moving-average").hasClass("on")) ? true: false;
@@ -169,7 +248,7 @@ const init = () => {
         datasets: []
       },
       options: {
-        aspectRatio: 1.6,
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
@@ -209,7 +288,8 @@ const init = () => {
           xAxes: [{
             stacked: true,
             gridLines: {
-              display: false
+              display: false,
+              zeroLineColor: "rgba(255,255,0,0.7)"
             },
             ticks: {
               fontColor: "rgba(255,255,255,0.7)",
@@ -225,26 +305,27 @@ const init = () => {
             stacked: true,
             gridLines: {
               display: true,
+              padding: 0,
               zeroLineColor: "rgba(255,255,255,0.7)",
+              borderDash: [3, 1],
               color: "rgba(255, 255, 255, 0.3)"
             },
             ticks: {
               beginAtZero: true,
-              fontColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                if (Math.floor(value) === value) {
-                  return addCommas(value.toString());
-                }
-              }
+              fontColor: "transparent"
             }
           }]
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
         }
       }
     };
-
-    if ($box.width() >= 400) {
-      config.options.aspectRatio = 2.0;
-    }
 
     for (let i = 3; i < rows[0].length; i++) {
       config.data.datasets.push({
@@ -272,6 +353,8 @@ const init = () => {
         }
       }
     });
+
+    $chart.width(Math.max(config.data.labels.length * 8, $chart.width()));
 
     if (hasMovingAverage) {
       let days = 7;
@@ -303,8 +386,15 @@ const init = () => {
       config.data.datasets.unshift(dataset);
     }
 
-    let ctx = $canvas.getContext('2d');
-    window.myChart = new Chart(ctx, config);
+    let cloned = $.extend(true, {}, config.data);
+    drawTransitionAxisChart($box, cloned);
+
+    window.myChart = new Chart($canvas.getContext('2d'), config);
+  }
+
+  const moveToRight = ($box) => {
+    let $wrapper = $box.find(".main-chart-wrapper");
+    $wrapper.animate({scrollLeft: $wrapper.width()}, 0);
   }
 
   const getPrefColor = (prefCode) => {
