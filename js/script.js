@@ -226,7 +226,7 @@ const init = () => {
     $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
   }
 
-  const drawTransitionChart = ($box, code) => {
+  const drawTransitionChart = ($box, code, updateConfig = null) => {
     let $chart = $box.find(".main-chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
@@ -322,6 +322,9 @@ const init = () => {
         }
       }
     };
+    if (typeof updateConfig === 'function') {
+      updateConfig(config);
+    }
 
     for (let i = 3; i < rows[0].length; i++) {
       config.data.datasets.push({
@@ -867,7 +870,10 @@ const init = () => {
         $(this).addClass("on");
       }
       let $box = $(this).closest(".transition");
-      drawTransitionChart($box, $box.attr("code"));
+      drawTransitionChart($box, $box.attr("code"), (config) =>  {
+        // disable animation because what we do here is that just turning on/off moving-average.
+        config.options.animation = { duration: 0 };
+      });
     });
 
     $('a[href^="#"]').click(function() {
