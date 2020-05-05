@@ -16,6 +16,7 @@ const COLORS = {
   discharged: ["#9FC", "#ABC"],
   serious: ["#FEA"],
   pcrtested: ["#4CD"],
+  pcrtests: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
   dark: "#399",
   selected: "#EC2",
   checking: "#abc",
@@ -34,6 +35,7 @@ const LABELS = {
       discharged: ["確認済み", "確認中"],
       deaths: ["確認済み", "確認中"],
       pcrtested: ["PCR検査人数"],
+      pcrtests: ["国立感染症研究所","検疫所","地方衛生研究所・保健所","民間検査会社","大学等","医療機関"],
       serious: ["重症者数"]
     },
     unit: {
@@ -42,7 +44,8 @@ const LABELS = {
       discharged: "名",
       pcrtested: "名",
       serious: "名",
-      deaths: "名"
+      deaths: "名",
+      pcrtests: "名"
     },
     demography: {
       deaths: "死亡",
@@ -71,7 +74,8 @@ const LABELS = {
       discharged: ["MHLW Confirmed", "Confirming"],
       deaths: ["MHLW Confirmed", "Confirming"],
       pcrtested: ["PCR Tested"],
-      serious: ["Serious"]
+      serious: ["Serious"],
+      pcrtests: ["National Institute of Infectious Diseases","Quarantine Stations","Public Health Institute, Public Health Center","Private Testing Companies","Universities","Medical Institutions"]
     },
     unit: {
       carriers: "",
@@ -79,7 +83,8 @@ const LABELS = {
       discharged: "",
       pcrtested: "",
       serious: "",
-      deaths: ""
+      deaths: "",
+      pcrtests: ""
     },
     demography: {
       deaths: "Deaths",
