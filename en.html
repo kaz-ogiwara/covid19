@@ -43,6 +43,10 @@
         <p>Confirmed cases of COVID-19 in Japan. Data provided by the Ministry of Health, Labor and Welfare.</p>
         <p>By <a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F+%E5%92%8C%E6%A8%B9" target="_blank">Kazuki OGIWARA</a> (Toyo Keizai Online Editor)</p>
         <p class="updated-last"><br /></p>
+        <div class="alert">
+          <h4>What's New</h4>
+          <p>Added chart on PCR tests in Nationwide Situation section.</p>
+        </div>
         <p><a href="./">JAPANESE</a></p>
       </div>
       <div id="main-block">
@@ -162,6 +166,35 @@
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
               <p class="notes">Confirmed number of "PCR test positives > PCR tested" in MHLW publication. Since this is not the number of PCR tests but people PCR tested, it will be counted as 1 case when PCR tests were performed multiple times for one person. Since the MHLW does not, in principle, correct past numbers, the number may be significant increase or minus when reports from prefectures were corrected. Dates are based on reports from each prefecture.<a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition" code="pcrtests">
+              <h3>PCR Tests</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated-transition"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
+              <p class="notes">Data from the MHLW "Status of PCR testing for new coronaviruses in Japan". The most recent few days may not be updated since dates containing "under investigation" items are not displayed. The figures are provisional and subject to change. The dates are based on when the results of the tests were known. <a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -314,7 +347,13 @@
                     <div class="switch" value="new">NEW</div>
                     <div class="switch selected" value="total">TOTAL</div>
                   </div>
-                  <div class="chart"></div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
                   <p class="notes">The number includes cases with no symptom. Dates are based on reports from each prefecture. Cases in which a mistake was later corrected were retroactively corrected (Saitama in 3/14, Aomori in 3/25). Aichi in 4/11 was corrected as the prefecture reported the number was accidentally larger than it should be.<a class="more">READ MORE</a></p>
                 </div>
               </div>
@@ -334,7 +373,13 @@
                     <div class="switch" value="new">NEW</div>
                     <div class="switch selected" value="total">TOTAL</div>
                   </div>
-                  <div class="chart"></div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
                   <p class="notes">The number includes both cases with symptoms or no symptoms. Dates are based on reports from each prefecture. Cases in which a mistake was later corrected were retroactively corrected (Tochigi in 3/18-19).<a class="more">READ MORE</a></p>
                 </div>
               </div>
@@ -354,7 +399,13 @@
                     <div class="switch" value="new">NEW</div>
                     <div class="switch selected" value="total">TOTAL</div>
                   </div>
-                  <div class="chart"></div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
                   <p class="notes">Dates are based on reports from each prefecture. Cases in which a mistake was later corrected were retroactively corrected (Hokkaido in 3/18-19, Hyogo in 3/22-26, Aichi in 3/26).<a class="more">READ MORE</a></p>
                 </div>
               </div>
@@ -374,7 +425,13 @@
                     <div class="switch" value="new">NEW</div>
                     <div class="switch selected" value="total">TOTAL</div>
                   </div>
-                  <div class="chart"></div>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
                   <p class="notes">Since this is not the number of PCR tests but people PCR tested, it will be counted as 1 case when PCR tests were performed multiple times for one person. Since the MHLW does not, in principle, correct past numbers, the number may be significant increase or minus when reports from prefectures were corrected. Dates are based on reports from each prefecture. Numbers are supposed to be the same as the previous day when they are undetermined. The data in Tokyo does not include tests by medical institutions under insurance coverage. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23, because they had been reporting number of PCR tests instead of people PCR tested. As of these prefectures, numbers before the dates are treated as 0. The rapid increase in Chiba in 4/7 is considered as a misstatement (perhaps number of PCR tests), and treated as 0 at that day.<a class="more">READ MORE</a></p>
                 </div>
               </div>
