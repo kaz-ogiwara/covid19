@@ -153,6 +153,20 @@ const init = () => {
     });
   }
 
+  const drawLastDate = ($box, config) => {
+    let $updated = $box.find("h5.updated");
+    if (!$updated.hasClass("show")) {
+      let lastDate = config.data.labels[config.data.labels.length - 1];
+      let updatedDate = {
+        ja: lastDate.replace("/", "月") + "日時点",
+        en: "As of " + lastDate
+      };
+
+      $updated.text(updatedDate[LANG]);
+      $updated.addClass("show");
+    }
+  }
+
   const drawAxisChart = ($box, mainConfigData, isStacked) => {
     let $chart = $box.find(".axis-chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
@@ -390,6 +404,7 @@ const init = () => {
       config.data.datasets.unshift(dataset);
     }
 
+    drawLastDate($box, config);
     drawAxisChart($box, $.extend(true, {}, config.data), true);
 
     window.myChart = new Chart($canvas.getContext('2d'), config);
@@ -814,15 +829,14 @@ const init = () => {
 
     $chart.width(Math.max(config.data.labels.length * 10, $chart.width()));
 
+    drawLastDate($box, config);
     drawAxisChart($box, $.extend(true, {}, config.data), false);
 
     window.myChart = new Chart($canvas.getContext('2d'), config);
   }
 
-  const showUpdateDates = () => {
-    ["last", "transition", "demography", "prefectures"].forEach(function(cls){
-      $(".updated-" + cls).text(gData.updated[cls][LANG]);
-    });
+  const showUpdateDate = () => {
+    $(".updated-last").text(gData.updated.last[LANG]);
   }
 
   const loadData = () => {
@@ -834,7 +848,7 @@ const init = () => {
       drawJapanMap();
       drawRegionChart("");
       drawPrefectureCharts("13");
-      showUpdateDates();
+      showUpdateDate();
       $("#cover-block").fadeOut();
     })
   }
