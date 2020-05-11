@@ -10,20 +10,13 @@ let gThresholds = {
 const LANG = $("html").attr("lang");
 const COLORS = {
   default: "#3DC",
-  carriers: ["#3DC", "#FEA", "#ABC"],
-  cases: ["#6DF"],
-  deaths: ["#EB8", "#ABC"],
-  discharged: ["#9FC", "#ABC"],
-  serious: ["#FEA"],
-  pcrtested: ["#4CD"],
+  second: "#6DF",
+  third: "#FEA",
+  deaths: "#EB8",
+  serious: "#FEA",
   pcrtests: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
   dark: "#399",
-  selected: "#EC2",
-  checking: "#abc",
-  gender: {
-    f: "#FE9",
-    m: "#2B9"
-  }
+  selected: "#EC2"
 };
 const LABELS = {
   ja: {
@@ -348,28 +341,32 @@ const init = () => {
     for (let i = 3; i < rows[0].length; i++) {
       config.data.datasets.push({
         label: LABELS[LANG].transition[code][i - 3],
-        backgroundColor: COLORS[code][i - 3],
+        backgroundColor: [],
         data: []
       });
     }
 
+    let prevBarColor = "";
     rows.forEach(function(row, i){
-      if (switchValue === "total") {
-        config.data.labels.push(row[1] + "/" + row[2]);
-        for (let j = 3; j < rows[0].length; j++) {
-          config.data.datasets[j - 3].data.push(row[j]);
-        }
-      } else if (i >= 1) {
-        config.data.labels.push(row[1] + "/" + row[2]);
-        let prev = rows[i - 1];
-        for (let j = 3; j < rows[0].length; j++) {
-          if (row[j] !== "" && prev[j] !== "") {
-            config.data.datasets[j - 3].data.push(row[j] - prev[j]);
-          } else {
-            config.data.datasets[j - 3].data.push(0);
+      let curBarColor = getBarColor(code, row, i);
+
+      config.data.labels.push(row[1] + "/" + row[2]);
+
+      for (let j = 3; j < rows[0].length; j++) {
+        let value = row[j];
+
+        if (switchValue === "new") {
+          value = 0;
+          if (prevBarColor === curBarColor && row[j] !== "" && rows[i - 1][j] !== "") {
+            value = row[j] - rows[i - 1][j];
           }
         }
+
+        config.data.datasets[j - 3].data.push(value);
+        config.data.datasets[j - 3].backgroundColor.push(getBarColor(code, row, j - 3));
       }
+
+      prevBarColor = curBarColor;
     });
 
     $chart.width(Math.max(config.data.labels.length * 8, $chart.width()));
@@ -413,6 +410,33 @@ const init = () => {
   const moveToRight = ($box) => {
     let $wrapper = $box.find(".main-chart-wrapper");
     $wrapper.animate({scrollLeft: $wrapper.width()}, 0);
+  }
+
+  const getBarColor = (code, row, index) => {
+    let ret = COLORS.default;
+    let ymd = (parseInt(row[0]) * 10000) + (parseInt(row[1]) * 100) + parseInt(row[2]);
+
+    if (code === "deaths" && ymd >= 20200413) {
+      ret = COLORS.second;
+    }
+
+    if (code === "discharged" && ymd >= 20200420) {
+      ret = COLORS.second;
+    }
+
+    if (code === "pcrtested" && ymd >= 20200303) {
+      ret = COLORS.second;
+    }
+
+    if (ymd >= 20200508) {
+      ret = COLORS.third;
+    }
+
+    if (code === "pcrtests") {
+      ret = COLORS.pcrtests[index];
+    }
+
+    return ret;
   }
 
   const getPrefColor = (prefCode) => {
@@ -471,13 +495,13 @@ const init = () => {
         labels: [],
         datasets: [{
           label: LABELS[LANG].demography.deaths,
-          backgroundColor: COLORS.deaths[0],
+          backgroundColor: COLORS.deaths,
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
         },{
           label: LABELS[LANG].demography.serious,
-          backgroundColor: COLORS.serious[0],
+          backgroundColor: COLORS.serious,
           borderWidth: 0.5,
           borderColor: "#242a3c",
           data: []
