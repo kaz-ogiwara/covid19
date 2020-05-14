@@ -53,7 +53,7 @@
         <h2>全国の状況</h2>
         <div class="flex-container">
           <div class="flex-row">
-            <div class="box transition" code="carriers">
+            <div class="box transition nationwide" code="carriers" pref="">
               <h3>PCR検査陽性者数</h3>
               <div class="latest">
                 <div>
@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="cases">
+            <div class="box transition nationwide" code="cases" pref="">
               <h3>入院治療等を要する者</h3>
               <div class="latest">
                 <div>
@@ -111,7 +111,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="discharged">
+            <div class="box transition nationwide" code="discharged" pref="">
               <h3>退院・療養解除</h3>
               <div class="latest">
                 <div>
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="pcrtested">
+            <div class="box transition nationwide" code="pcrtested" pref="">
               <h3>PCR検査人数</h3>
               <div class="latest">
                 <div>
@@ -169,7 +169,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="pcrtests">
+            <div class="box transition nationwide" code="pcrtests" pref="">
               <h3>PCR検査件数</h3>
               <div class="latest">
                 <div>
@@ -198,7 +198,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="serious">
+            <div class="box transition nationwide" code="serious" pref="">
               <h3>重症者数</h3>
               <div class="latest">
                 <div>
@@ -227,7 +227,7 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="deaths">
+            <div class="box transition nationwide" code="deaths" pref="">
               <h3>死亡者数</h3>
               <div class="latest">
                 <div>
@@ -332,8 +332,8 @@
             </select>
             <div class="flex-container">
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="carriers">
-                  <h3><span></span>の感染者数</h3>
+                <div class="box transition prefecture" code="carriers" pref="">
+                  <h3><span></span>の検査陽性者数</h3>
                   <div class="latest">
                     <div>
                       <span class="type"></span>
@@ -344,8 +344,8 @@
                   </div>
                   <h5 class="updated"><br /></h5>
                   <div class="switches">
-                    <div class="switch" value="new">新規</div>
-                    <div class="switch selected" value="total">累計</div>
+                    <div class="switch selected" value="new">新規</div>
+                    <div class="switch" value="total">累計</div>
                   </div>
                   <div class="charts-wrapper">
                     <div class="main-chart-wrapper">
@@ -354,12 +354,15 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">感染はしているが症状がないケース（＝無症状病原体保有者）や症状の確認中も含む。日付は都道府県から厚生労働省への報告ベース。後から誤記を訂正したと思われるケースは遡及修正した（3/14の埼玉県、3/25の青森県）。4月11日の愛知県は感染者を23名多く計上していたと報告があったため訂正した。<a class="more">もっと読む</a></p>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+                  </div>
+                  <p class="notes">5月8日以降は厚生労働省による都道府県発表の転記、それ以前は厚生労働省が把握した個票を積み上げたもの。ただし東京都のみ<a href="https://stopcovid19.metro.tokyo.lg.jp/" target="_blank">東京都新型コロナウイルス感染症対策サイト</a>より。基準変更によって前日との継続性がない日は新規増減を0と見なし、グラフの色を変えている。厚生労働省が訂正を発表したケース、発表がなくても誤記を訂正したと思われるケースは遡及修正した。<a class="more">もっと読む</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="discharged">
-                  <h3><span></span>の退院者数</h3>
+                <div class="box transition prefecture" code="discharged" pref="">
+                  <h3><span></span>の退院・療養解除</h3>
                   <div class="latest">
                     <div>
                       <span class="type"></span>
@@ -370,8 +373,8 @@
                   </div>
                   <h5 class="updated"><br /></h5>
                   <div class="switches">
-                    <div class="switch" value="new">新規</div>
-                    <div class="switch selected" value="total">累計</div>
+                    <div class="switch selected" value="new">新規</div>
+                    <div class="switch" value="total">累計</div>
                   </div>
                   <div class="charts-wrapper">
                     <div class="main-chart-wrapper">
@@ -380,11 +383,14 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">症状の有無は問わない。日付は都道府県から厚生労働省への報告ベース。後から誤記を訂正したと思われるケースは遡及修正した（3/18-19の栃木県）。<a class="more">もっと読む</a></p>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+                  </div>
+                  <p class="notes">5月8日以降は厚生労働省による都道府県発表の転記、それ以前は厚生労働省が把握した個票を積み上げたもの。ただし東京都のみ<a href="https://stopcovid19.metro.tokyo.lg.jp/" target="_blank">東京都新型コロナウイルス感染症対策サイト</a>より。基準変更によって前日との継続性がない日は新規増減を0と見なし、グラフの色を変えている。症状の有無は問わない。厚生労働省が訂正を発表したケース、発表がなくても誤記を訂正したと思われるケースは遡及修正した。<a class="more">もっと読む</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="deaths">
+                <div class="box transition prefecture" code="deaths" pref="">
                   <h3><span></span>の死亡者数</h3>
                   <div class="latest">
                     <div>
@@ -396,8 +402,8 @@
                   </div>
                   <h5 class="updated"><br /></h5>
                   <div class="switches">
-                    <div class="switch" value="new">新規</div>
-                    <div class="switch selected" value="total">累計</div>
+                    <div class="switch selected" value="new">新規</div>
+                    <div class="switch" value="total">累計</div>
                   </div>
                   <div class="charts-wrapper">
                     <div class="main-chart-wrapper">
@@ -406,11 +412,14 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">日付は都道府県から厚生労働省への報告ベース。後から誤記を訂正したと思われるケースは遡及修正した（3/18-19の北海道、3/22-26の兵庫県、3/26の愛知県）。<a class="more">もっと読む</a></p>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+                  </div>
+                  <p class="notes">5月8日以降は厚生労働省による都道府県発表の転記、それ以前は厚生労働省が把握した個票を積み上げたもの。ただし東京都のみ<a href="https://stopcovid19.metro.tokyo.lg.jp/" target="_blank">東京都新型コロナウイルス感染症対策サイト</a>より。基準変更によって前日との継続性がない日は新規増減を0と見なし、グラフの色を変えている。厚生労働省が訂正を発表したケース、発表がなくても誤記を訂正したと思われるケースは遡及修正した。<a class="more">もっと読む</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="pcrtested">
+                <div class="box transition prefecture" code="pcrtested" pref="">
                   <h3><span></span>のPCR検査人数</h3>
                   <div class="latest">
                     <div>
@@ -422,8 +431,8 @@
                   </div>
                   <h5 class="updated"><br /></h5>
                   <div class="switches">
-                    <div class="switch" value="new">新規</div>
-                    <div class="switch selected" value="total">累計</div>
+                    <div class="switch selected" value="new">新規</div>
+                    <div class="switch" value="total">累計</div>
                   </div>
                   <div class="charts-wrapper">
                     <div class="main-chart-wrapper">
@@ -432,7 +441,10 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">検査「件数」ではなく「人数」であるため、1名に複数回PCR検査を行った場合は「1名」とカウントする。土日祝日は検査をしていても厚生労働省に報告が行われず検査数「0」となる場合がある。その際は休日分の検査数が判明すれば過去データを修正し、そうでなければ直近の平日に休日分も含めて検査数が加算される。厚生労働省では原則として過去分の遡及訂正は行っていないため、都道府県からの報告に訂正があった場合は大幅な増加やマイナスになる場合がある。未確定または未集計などでその日の数値が確定できない場合、前日と同じ数値としている。東京都の検査実施人数には医療機関による保険適用での検査人数は含まれていない。3/11の秋田県は秋田市のみの数値。3/16-22の愛知県は名古屋市を除く。千葉県は3/21、大阪府は3/22、神奈川県は3/23からのみ計上。それ以前はPCR検査「件数」だったことが判明したため0と扱っている。4/7の千葉県の検査人数急増はPCR検査件数の誤記載と判断して新規0件と扱っている。5月4日分はデータの開示がないため全都道府県「0」とした。<a class="more">もっと読む</a></p>
+                  <div class="checkboxes">
+                    <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+                  </div>
+                  <p class="notes">5月8日以降は厚生労働省による都道府県発表の転記、それ以前は厚生労働省が把握した個票を積み上げたもの。ただし東京都のみ<a href="https://stopcovid19.metro.tokyo.lg.jp/" target="_blank">東京都新型コロナウイルス感染症対策サイト</a>より。基準変更によって前日との継続性がない日は新規増減を0と見なし、グラフの色を変えている。1名に複数回PCR検査を行った場合は「1名」とカウントする。土日祝日は検査をしていても厚生労働省に報告が行われず検査数「0」となる場合がある。その際は休日分の検査数が判明すれば過去データを修正し、そうでなければ直近の平日に休日分も含めて検査数が加算される。厚生労働省では原則として過去分の遡及訂正は行っていないため、都道府県からの報告に訂正があった場合は大幅な増加やマイナスになる場合がある。未確定または未集計などでその日の数値が確定できない場合、前日と同じ数値としている。東京都の検査実施人数には医療機関による保険適用での検査人数は含まれていない。3/11の秋田県は秋田市のみの数値。3/16-22の愛知県は名古屋市を除く。千葉県は3/21、大阪府は3/22、神奈川県は3/23からのみ計上。それ以前はPCR検査「件数」だったことが判明したため0と扱っている。4/7の千葉県の検査人数急増はPCR検査件数の誤記載と判断して新規0件と扱っている。5月4日分はデータの開示がないため全都道府県「0」とした。<a class="more">もっと読む</a></p>
                 </div>
               </div>
             </div>
@@ -440,7 +452,7 @@
       </div>
       <div id="footer-block">
         <p class="notes">いずれのデータも武漢からの政府チャーター便帰国者、および神奈川県・長崎県に停泊したクルーズ船の乗客・乗員は除く。移動平均はいずれも後方7日移動平均値。</p>
-        <p class="notes">データソース：<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。ただし東京都のみ、厚生労働省の報道発表資料と数字に大きな差異があるため都発表のデータ（<a href="https://stopcovid19.metro.tokyo.lg.jp/" target="_blank">東京都新型コロナウイルス感染症対策サイト</a>）を使っている。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。アイコン：<a href="https://material.io/resources/icons/" target="_blank">Material Design</a>。</p>
+        <p class="notes">データソース：原則として<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">厚生労働省の報道発表資料</a>。ただし一部に都道府県発表を含む。チャート描画：<a href="https://www.chartjs.org/" target="_blank">Chart.js</a>。マップ描画：<a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a>。アイコン：<a href="https://material.io/resources/icons/" target="_blank">Material Design</a>。</p>
         <p class="notes">更新履歴・ソースコード：<a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/tree/master/data" target="_blank">CSVデータのダウンロード</a></p>
         <div id="social-buttons">
           <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
@@ -450,19 +462,11 @@
           <h3>よくあるご質問</h3>
           <section>
             <h4>Q. PCR検査人数がマイナスになったり大きく増減しているのは何故ですか？</h4>
-            <p>A. 都道府県からの報告に訂正があった場合の調整を行っているためです。たとえば3月19日は千葉県、25日は大阪府がPCR検査「人数」ではなく「件数」を報告していたのを訂正したためマイナスになっています。また、それまで全国合計に含まれていなかった都道府県が新たに加わった場合は大きくプラスになります。こうしたケースは定義変更にあたるため過去分を遡って訂正することが一般的ですが、日次での発表を間に合わせるためそのまま発表していると思われます。</p>
+            <p>A. 都道府県からの報告に訂正があった場合の調整を行っているためです。また、それまで全国合計に含まれていなかった都道府県が新たに加わった場合は大きくプラスになります。</p>
           </section>
           <section>
-            <h4>Q. このページからPCR検査件数を見ることはできますか？</h4>
-            <p>A. できません。このページで表示しているのは（今のところ）検査「人数」だけです。PCR検査は1名に複数回検査を行うことがあります。その場合、検査人数は「1」とカウントされます。したがって多くの場合、数字は「検査人数＜検査件数」となります。</p>
-          </section>
-          <section>
-            <h4>Q. 感染者数と患者数の違いは何ですか？</h4>
-            <p>A. 「感染者」とは新型コロナウイルスに感染した人＝PCR検査で陽性が出た人を指します。そのうち症状がない人（＝無症状病原体保有者）を除き、実際に症状が出ている人を「患者」と呼びます。厚生労働省と同様の表記です。PCR検査は「判明した感染者の濃厚接触者」も対象としているため、こうした「症状がないけど実は感染していた」ケースがあり、感染者数と患者数がイコールになりません。</p>
-          </section>
-          <section>
-            <h4>Q. データが報道や自治体発表と異なるのは何故ですか？</h4>
-            <p>A. 個別のケースによりますが、厚生労働省の基準との違いによるものと思われます。厚生労働省では各自治体からの報告を受け、重複を除くなどして最終的に全国の集計をまとめています。その過程で、たとえば地域などの集計基準が異なる場合がありえます。もうひとつの可能性として「患者数」と「感染者数」が混同されているケースもありえます。</p>
+            <h4>Q. データが他社の報道と異なるのは何故ですか？</h4>
+            <p>A. 個別のケースによりますが、データソースの違い（厚生労働省か都道府県発表か）、集計締め切り時間の違い、または集計範囲の違い（クルーズ船や空港検疫を含めるか）などが考えられます。</p>
           </section>
           <section>
             <h4>Q. データソースにはどうやってアクセスできますか？</h4>
