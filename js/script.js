@@ -312,8 +312,8 @@ const init = () => {
           displayColors: false,
           callbacks: {
             title: function(tooltipItem){
-              let dateTime = tooltipItem[0].xLabel.trim() + " " + "12:00";
-              if (LANG === "ja") dateTime = dateTime + "時点";
+              let dateTime = tooltipItem[0].xLabel.trim();
+              if (LANG === "ja") dateTime = dateTime.replace("/","月") + "日時点";
               if (LANG === "en") dateTime = "As of " + dateTime;
               let suffix = $box.find(".switch.selected").text();
               return dateTime + " " + suffix;
