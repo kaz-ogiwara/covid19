@@ -23,21 +23,21 @@ const LABELS = {
     change: "前日比",
     total: "合計",
     transition: {
-      carriers: ["有症状", "無症状", "確認中"],
-      cases: ["患者数"],
-      discharged: ["確認済み", "確認中"],
-      deaths: ["確認済み", "確認中"],
+      carriers: ["PCR検査陽性者数"],
+      cases: ["入院治療等を要する者"],
+      discharged: ["退院・療養解除"],
+      serious: ["重症者数"],
+      deaths: ["死亡者数"],
       pcrtested: ["PCR検査人数"],
-      pcrtests: ["国立感染症研究所","検疫所","地方衛生研究所・保健所","民間検査会社","大学等","医療機関"],
-      serious: ["重症者数"]
+      pcrtests: ["国立感染症研究所","検疫所","地方衛生研究所・保健所","民間検査会社","大学等","医療機関"]
     },
     unit: {
       carriers: "名",
       cases: "名",
       discharged: "名",
-      pcrtested: "名",
       serious: "名",
       deaths: "名",
+      pcrtested: "名",
       pcrtests: "名"
     },
     demography: {
@@ -62,21 +62,21 @@ const LABELS = {
     change: "Daily: ",
     total: "Total",
     transition: {
-      carriers: ["With Symptoms", "No Symptom", "Checking"],
+      carriers: ["Tested Positive"],
       cases: ["Active Cases"],
-      discharged: ["MHLW Confirmed", "Confirming"],
-      deaths: ["MHLW Confirmed", "Confirming"],
-      pcrtested: ["PCR Tested"],
+      discharged: ["Discharged"],
       serious: ["Serious"],
+      deaths: ["Deaths"],
+      pcrtested: ["PCR Tested"],
       pcrtests: ["National Institute of Infectious Diseases","Quarantine Stations","Public Health Institute, Public Health Center","Private Testing Companies","Universities","Medical Institutions"]
     },
     unit: {
       carriers: "",
       cases: "",
       discharged: "",
-      pcrtested: "",
       serious: "",
       deaths: "",
+      pcrtested: "",
       pcrtests: ""
     },
     demography: {
@@ -139,9 +139,8 @@ const init = () => {
   }
 
   const drawTransitionBoxes = () => {
-    $(".transition").each(function(){
-      let code = $(this).attr("code");
-      drawTransitionChart($(this), code);
+    $(".transition.nationwide").each(function(){
+      drawTransitionChart($(this), $(this).attr("code"), $(this).attr("pref"), true);
       moveToRight($(this));
     });
   }
@@ -238,13 +237,50 @@ const init = () => {
     $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
   }
 
-  const drawTransitionChart = ($box, code, updateConfig = null) => {
+  const drawTransitionChart = ($box, code, prefCode, hasDuration = false) => {
+
+    const getBarColor = (code, prefCode, row, index) => {
+      let ret = COLORS.default;
+      let ymd = (parseInt(row[0]) * 10000) + (parseInt(row[1]) * 100) + parseInt(row[2]);
+
+      if (prefCode === "" && code === "deaths" && ymd >= 20200413) {
+        ret = COLORS.second;
+      }
+
+      if (prefCode === "" && code === "discharged" && ymd >= 20200420) {
+        ret = COLORS.second;
+      }
+
+      if (prefCode === "" && code === "pcrtested" && ymd >= 20200303) {
+        ret = COLORS.second;
+      }
+
+      if (ymd >= 20200508) {
+        ret = COLORS.third;
+      }
+
+      if (prefCode === "" && code === "pcrtests") {
+        ret = COLORS.pcrtests[index];
+      }
+
+      return ret;
+    }
+
+
     let $chart = $box.find(".main-chart").empty().html("<canvas></canvas>");
     let $canvas = $chart.find("canvas")[0];
     let switchValue = $box.find(".switch.selected").attr("value");
     let hasMovingAverage = ($box.find(".checkbox.moving-average").hasClass("on")) ? true: false;
 
     let rows = gData.transition[code];
+
+    if (prefCode !== "") {
+      rows = [];
+      gData["prefectures-data"][code].forEach(function(frow, i){
+        rows.push([frow[0], frow[1], frow[2], frow[parseInt(prefCode) + 2]]);
+      });
+    }
+
     let valueLatest = 0;
     let valuePrev   = 0;
     for (let i = 3; i < rows[0].length; i++) {
@@ -261,6 +297,9 @@ const init = () => {
       },
       options: {
         maintainAspectRatio: false,
+        animation: {
+          duration: (hasDuration) ? 1000: 0
+        },
         legend: {
           display: false
         },
@@ -334,9 +373,6 @@ const init = () => {
         }
       }
     };
-    if (typeof updateConfig === 'function') {
-      updateConfig(config);
-    }
 
     for (let i = 3; i < rows[0].length; i++) {
       config.data.datasets.push({
@@ -348,7 +384,7 @@ const init = () => {
 
     let prevBarColor = "";
     rows.forEach(function(row, i){
-      let curBarColor = getBarColor(code, row, i);
+      let curBarColor = getBarColor(code, prefCode, row, i);
 
       config.data.labels.push(row[1] + "/" + row[2]);
 
@@ -363,7 +399,7 @@ const init = () => {
         }
 
         config.data.datasets[j - 3].data.push(value);
-        config.data.datasets[j - 3].backgroundColor.push(getBarColor(code, row, j - 3));
+        config.data.datasets[j - 3].backgroundColor.push(getBarColor(code, prefCode, row, j - 3));
       }
 
       prevBarColor = curBarColor;
@@ -410,33 +446,6 @@ const init = () => {
   const moveToRight = ($box) => {
     let $wrapper = $box.find(".main-chart-wrapper");
     $wrapper.animate({scrollLeft: $wrapper.width()}, 0);
-  }
-
-  const getBarColor = (code, row, index) => {
-    let ret = COLORS.default;
-    let ymd = (parseInt(row[0]) * 10000) + (parseInt(row[1]) * 100) + parseInt(row[2]);
-
-    if (code === "deaths" && ymd >= 20200413) {
-      ret = COLORS.second;
-    }
-
-    if (code === "discharged" && ymd >= 20200420) {
-      ret = COLORS.second;
-    }
-
-    if (code === "pcrtested" && ymd >= 20200303) {
-      ret = COLORS.second;
-    }
-
-    if (ymd >= 20200508) {
-      ret = COLORS.third;
-    }
-
-    if (code === "pcrtests") {
-      ret = COLORS.pcrtests[index];
-    }
-
-    return ret;
   }
 
   const getPrefColor = (prefCode) => {
@@ -705,158 +714,12 @@ const init = () => {
 
   const drawPrefectureCharts = (prefCode) => {
     $("#select-prefecture").val(prefCode);
-    $(".prefecture-chart").each(function(){
-      let code = $(this).attr("code");
-      drawPrefectureChart(prefCode, code);
+    $(".transition.prefecture").each(function(){
+      $(this).attr("pref", prefCode);
+      $(this).find("h3").find("span").text(gData["prefectures-map"][parseInt(prefCode) - 1][LANG]);
+      drawTransitionChart($(this), $(this).attr("code"), $(this).attr("pref"), true);
       moveToRight($(this));
     });
-  }
-
-  const drawPrefectureChart = (prefCode, typeCode) => {
-    let $box = $(".prefecture-chart[code=" + typeCode + "]");
-    $box.find("h3").find("span").text(gData["prefectures-map"][parseInt(prefCode) - 1][LANG]);
-
-    let $chart = $box.find(".main-chart").empty().html('<canvas></canvas>');
-    let $canvas = $chart.find("canvas")[0];
-    let switchValue = $box.find(".switch.selected").attr("value");
-
-    let rows = gData["prefectures-data"][typeCode];
-    let latestValue = rows[rows.length - 1][parseInt(prefCode) + 2];
-    let latestChange = latestValue - rows[rows.length - 2][parseInt(prefCode) + 2];
-    drawLatestValue($box, latestValue, latestChange);
-
-    let config = {
-      type: "line",
-      data: {
-        labels: [],
-        datasets: []
-      },
-      options: {
-        maintainAspectRatio: false,
-        animation: {
-          duration: 0
-        },
-        responsive: true,
-        legend: {
-          display: false
-        },
-        title: {
-          display: false
-        },
-        tooltips: {
-          xPadding: 24,
-          yPadding: 12,
-          mode: 'x',
-          displayColors: false,
-          callbacks: {
-            title: function(tooltipItem){
-              if (tooltipItem[0].datasetIndex === 0) {
-                return $box.find("h3").text();
-              }
-            },
-            label: function(tooltipItem, data){
-              if (tooltipItem.datasetIndex === 0) {
-                let suffix = {
-                  ja: " 名",
-                  en: " cases"
-                };
-                return tooltipItem.xLabel.trim() + ": " + tooltipItem.yLabel + suffix[LANG];
-              }
-            }
-          }
-        },
-        scales: {
-          xAxes: [{
-            position: "bottom",
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              suggestedMin: 0,
-              fontColor: "rgba(255,255,255,0.7)",
-              maxRotation: 0,
-              minRotation: 0,
-              callback: (label) => {
-                return " " + label + " ";
-              }
-            }
-          }],
-          yAxes: [{
-            gridLines: {
-              borderDash: [3, 1],
-              color: "rgba(255,255,255,0.2)"
-            },
-            ticks: {
-              fontColor: "transparent",
-              zeroLineColor: "rgba(255,255,255,0.7)",
-              callback: function(value, index, values) {
-                if (Math.floor(value) === value) {
-                  return addCommas(value.toString());
-                }
-              }
-            }
-          }]
-        },
-        layout: {
-          padding: {
-            left: 10
-          }
-        }
-      }
-    };
-
-    config.data.datasets.push({
-      fill: false,
-      lineTension: 0.1,
-      borderColor: COLORS.selected,
-      borderWidth: 3,
-      pointRadius: 2,
-      pointBorderWidth: 1,
-      pointBackgroundColor: "#242a3c",
-      data: []
-    });
-
-    for (let i = 1; i <= 46; i++) {
-      config.data.datasets.push({
-        fill: false,
-        lineTension: 0.1,
-        borderColor: "#267",
-        borderWidth: 1,
-        pointRadius: 0,
-        data: []
-      });
-    }
-
-    rows.forEach(function(row, i){
-      if (switchValue === "total") {
-        config.data.labels.push(row[1] + "/" + row[2]);
-        config.data.datasets[0].data.push(row[parseInt(prefCode) + 2]);
-        for (let j = 1; j <= 46; j++) {
-          let k = (j >= parseInt(prefCode)) ? j + 1: j;
-          config.data.datasets[j].data.push(row[k + 2]);
-        }
-      } else {
-        if (i >= 1) {
-          config.data.labels.push(row[1] + "/" + row[2]);
-
-          let prev = rows[i - 1][parseInt(prefCode) + 2];
-          config.data.datasets[0].data.push(row[parseInt(prefCode) + 2] - prev);
-
-          for (let j = 1; j <= 46; j++) {
-            let k = (j >= parseInt(prefCode)) ? j + 1: j;
-            let prev = rows[i - 1][k + 2];
-            config.data.datasets[j].data.push(row[k + 2] - prev);
-          }
-        }
-      }
-    });
-
-    $chart.width(Math.max(config.data.labels.length * 10, $chart.width()));
-
-    drawLastDate($box, config);
-    drawAxisChart($box, $.extend(true, {}, config.data), false);
-
-    window.myChart = new Chart($canvas.getContext('2d'), config);
   }
 
   const showUpdateDate = () => {
@@ -882,14 +745,7 @@ const init = () => {
       let $box = $(this).closest(".transition");
       $(this).siblings(".switch").removeClass("selected");
       $(this).addClass("selected");
-      drawTransitionChart($box, $box.attr("code"));
-    });
-
-    $(".prefecture-chart").find(".switch").on("click",function(){
-      let $box = $(this).closest(".prefecture-chart");
-      $(this).siblings(".switch").removeClass("selected");
-      $(this).addClass("selected");
-      drawPrefectureChart($("#select-prefecture").val(), $box.attr("code"));
+      drawTransitionChart($box, $box.attr("code"), $box.attr("pref"), true);
     });
 
     $("#select-prefecture").on("change", function(){
@@ -913,10 +769,7 @@ const init = () => {
         $(this).addClass("on");
       }
       let $box = $(this).closest(".transition");
-      drawTransitionChart($box, $box.attr("code"), (config) =>  {
-        // disable animation because what we do here is that just turning on/off moving-average.
-        config.options.animation = { duration: 0 };
-      });
+      drawTransitionChart($box, $box.attr("code"), $box.attr("pref"), false);
     });
 
     $('a[href^="#"]').click(function() {
