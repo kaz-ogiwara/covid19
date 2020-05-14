@@ -38,7 +38,7 @@ const LABELS = {
       serious: "名",
       deaths: "名",
       pcrtested: "名",
-      pcrtests: "名"
+      pcrtests: "件"
     },
     demography: {
       deaths: "死亡",
