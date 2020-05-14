@@ -53,7 +53,7 @@
         <h2>Nationwide Situation</h2>
         <div class="flex-container">
           <div class="flex-row">
-            <div class="box transition" code="carriers">
+            <div class="box transition nationwide" code="carriers" pref="">
               <h3>Tested Positive</h3>
               <div class="latest">
                 <div>
@@ -78,11 +78,11 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Since the number includes people undergoing status checks, it may not be equal to the sum of "Active Cases", "Discharged", and "Deaths". Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "PCRTested Positive" by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="cases">
+            <div class="box transition nationwide" code="cases" pref="">
               <h3>Active Cases</h3>
               <div class="latest">
                 <div>
@@ -107,11 +107,11 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It includes "Serious" cases. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Need inpatient treatment" by MHLW. It includes "Critically ill". <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="discharged">
+            <div class="box transition nationwide" code="discharged" pref="">
               <h3>Discharged</h3>
               <div class="latest">
                 <div>
@@ -136,11 +136,11 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">The official title by MHLW is "Discharged from hospital or completed medical treatment". The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. Cases which MHLW is still confirming reports from prefectures are included on and after 20 April. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Discharge or end of medical treatment" by MHLW. The former title was "Discharged". Cases which MHLW is still confirming reports from prefectures are included on and after 20 April. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="pcrtested">
+            <div class="box transition nationwide" code="pcrtested" pref="">
               <h3>PCR Tested</h3>
               <div class="latest">
                 <div>
@@ -165,11 +165,11 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">The official title by MHLW is "Discharged from hospital or completed medical treatment". The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. Tests for those who have been in close contact with infected person are included on and after 3 March. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Since some prefectures report the number of PCR tests instead of people PCR tested, this total number should be larger than as it really is. Some prefectures do not publish the number. Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "PCR Tested" by MHLW. Tests for those who have been in close contact with infected person are included on and after 3 March. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="pcrtests">
+            <div class="box transition nationwide" code="pcrtests" pref="">
               <h3>PCR Tests</h3>
               <div class="latest">
                 <div>
@@ -194,12 +194,12 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">Data from the MHLW "Status of PCR testing for new coronaviruses in Japan". On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. In this case, the past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. The most recent few days may not be updated since dates containing "under investigation" items are not displayed. The figures are provisional and subject to change. The dates are based on when the results of the tests were known. <a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Status of PCR testing for new coronaviruses in Japan" by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. The most recent few days may not be updated since dates containing "under investigation" items are not displayed. The dates are based on when the results of the tests were known. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="serious">
-              <h3>Serious</h3>
+            <div class="box transition nationwide" code="serious" pref="">
+              <h3>Critically Ill</h3>
               <div class="latest">
                 <div>
                   <span class="type"></span>
@@ -223,11 +223,11 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is the number within "Active Cases". Former title was "Hospitalized with a ventilator or intensive care unit". It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Critically ill" by MHLW. The former title was "Hospitalized with a ventilator or intensive care unit". <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition" code="deaths">
+            <div class="box transition nationwide" code="deaths" pref="">
               <h3>Deaths</h3>
               <div class="latest">
                 <div>
@@ -252,7 +252,7 @@
               <div class="checkboxes">
                 <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
               </div>
-              <p class="notes">The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. Cases which MHLW is still confirming reports from prefectures are included on and after 13 April. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.<a class="more">READ MORE</a></p>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Death" by MHLW. Cases which MHLW is still confirming reports from prefectures are included on and after 13 April. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -332,7 +332,7 @@
             </select>
             <div class="flex-container">
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="carriers">
+                <div class="box transition prefecture" code="carriers" pref="">
                   <h3>Tested Positive in <span></span></h3>
                   <div class="latest">
                     <div>
@@ -354,11 +354,11 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">The number includes cases with no symptom. Dates are based on reports from each prefecture. Cases in which a mistake was later corrected were retroactively corrected (Saitama in 3/14, Aomori in 3/25). Aichi in 4/11 was corrected as the prefecture reported the number was accidentally larger than it should be.<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="discharged">
+                <div class="box transition prefecture" code="discharged" pref="">
                   <h3>Discharged in <span></span></h3>
                   <div class="latest">
                     <div>
@@ -380,11 +380,11 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">The number includes both cases with symptoms or no symptoms. Dates are based on reports from each prefecture. Cases in which a mistake was later corrected were retroactively corrected (Tochigi in 3/18-19).<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="deaths">
+                <div class="box transition prefecture" code="deaths" pref="">
                   <h3>Deaths in <span></span></h3>
                   <div class="latest">
                     <div>
@@ -406,11 +406,11 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">Dates are based on reports from each prefecture. Cases in which a mistake was later corrected were retroactively corrected (Hokkaido in 3/18-19, Hyogo in 3/22-26, Aichi in 3/26).<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
-                <div class="box prefecture-chart" code="pcrtested">
+                <div class="box transition prefecture" code="pcrtested" pref="">
                   <h3>PCR Tested in <span></span></h3>
                   <div class="latest">
                     <div>
@@ -432,15 +432,15 @@
                     <div class="axis-chart"></div>
                     <div class="axis-cover"></div>
                   </div>
-                  <p class="notes">Since this is not the number of PCR tests but people PCR tested, it will be counted as 1 case when PCR tests were performed multiple times for one person. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. In this case, the past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. Since the MHLW does not correct past numbers in principle, the number may be significant increase or minus when reports from prefectures were corrected. Dates are based on reports from each prefecture. Numbers are supposed to be the same as the previous day when they are undetermined. The data in Tokyo does not include tests by medical institutions under insurance coverage. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23, because they had been reporting number of PCR tests instead of people PCR tested. As of these prefectures, numbers before the dates are treated as 0. The rapid increase in Chiba in 4/7 is considered as a misstatement (perhaps number of PCR tests), and treated as 0 at that day. On 4 May, the number of PCR tests on all prefectures is treated as 0 because there was no disclosure from MHLW.<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23. <a href="#footer-notes">See below</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
                 </div>
               </div>
             </div>
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward.</p>
-        <p class="notes">Data source: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">Press release from MHLW</a>. Data in Tokyo is from <a href="https://stopcovid19.metro.tokyo.lg.jp/en" taret="_blank">Latest updates on COVID-19 in Tokyo</a>, since the number is quite different from MHLW. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Used <a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a> to draw prefectures map. Used icons from <a href="https://material.io/resources/icons/" target="_blank">Material Design</a>.</p>
+        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward. The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. The number of "Tested Positive" is basically equals to the sum of "Active Cases", "Discharged", and "Deaths", unless it includes confirming cases. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
+        <p class="notes">Data source: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">Press release from MHLW</a>, including data on each prefecture. Only data on Tokyo may be corrected later according to <a href="https://stopcovid19.metro.tokyo.lg.jp/en" taret="_blank">Latest updates on COVID-19 in Tokyo</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Used <a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a> to draw prefectures map. Used icons from <a href="https://material.io/resources/icons/" target="_blank">Material Design</a>.</p>
         <p class="notes">Change log and source code: <a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/tree/master/data" target="_blank">Download CSV data</a></p>
         <div id="social-buttons">
           <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2fcovid19%2f" target="_blank"></a>
