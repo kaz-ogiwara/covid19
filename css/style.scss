@@ -272,6 +272,33 @@ html,body {
         }
       }
 
+      .latest {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+
+        &>div {
+          text-align: right;
+        }
+
+        .value {
+          font-size: 20px;
+
+          @media only screen and (min-width: 400px) {
+            font-size: 22px;
+          }
+
+          @media only screen and (min-width: 640px) {
+            font-size: 24px;
+          }
+        }
+
+        .type,.unit,.change {
+          font-size: 13px;
+          color: #ccc;
+        }
+      }
+
       .switches {
         margin: 16px auto;
         padding: 2px;
@@ -398,60 +425,25 @@ html,body {
         line-height: 24px;
         margin-top: 16px;
         color: rgba(255,255,255,0.7);
-
-        a {
-          font-size: 13px;
-          color: #ace;
-          text-decoration: none;
-        }
-      }
-    }
-
-    .transition,
-    .prefecture-chart {
-      .latest {
-        position: absolute;
-        top: 8px;
-        right: 16px;
-
-        .value {
-          font-size: 20px;
-
-          @media only screen and (min-width: 400px) {
-            font-size: 22px;
-          }
-
-          @media only screen and (min-width: 640px) {
-            font-size: 24px;
-          }
-        }
-
-        .type,.unit,.change {
-          font-size: 13px;
-          color: #ccc;
-        }
-
-        .change {
-          text-align: right;
-        }
-      }
-
-      p.notes {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
         padding-right: 76px;
 
-        a.more {
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
+        a {
           font-size: 13px;
           color: #ace;
+          text-decoration: none;
 
-          &:hover {
-            cursor: pointer;
+          &.more {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
 

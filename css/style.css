@@ -193,6 +193,23 @@ html, body {
       @media only screen and (min-width: 640px) {
         #container #main-block .box h5 {
           margin-left: 14px; } }
+    #container #main-block .box .latest {
+      position: absolute;
+      top: 8px;
+      right: 16px; }
+      #container #main-block .box .latest > div {
+        text-align: right; }
+      #container #main-block .box .latest .value {
+        font-size: 20px; }
+        @media only screen and (min-width: 400px) {
+          #container #main-block .box .latest .value {
+            font-size: 22px; } }
+        @media only screen and (min-width: 640px) {
+          #container #main-block .box .latest .value {
+            font-size: 24px; } }
+      #container #main-block .box .latest .type, #container #main-block .box .latest .unit, #container #main-block .box .latest .change {
+        font-size: 13px;
+        color: #ccc; }
     #container #main-block .box .switches {
       margin: 16px auto;
       padding: 2px;
@@ -285,60 +302,27 @@ html, body {
       font-size: 13px;
       line-height: 24px;
       margin-top: 16px;
-      color: rgba(255, 255, 255, 0.7); }
+      color: rgba(255, 255, 255, 0.7);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-right: 76px; }
       #container #main-block .box p.notes a {
         font-size: 13px;
         color: #ace;
         text-decoration: none; }
-  #container #main-block .transition .latest,
-  #container #main-block .prefecture-chart .latest {
-    position: absolute;
-    top: 8px;
-    right: 16px; }
-    #container #main-block .transition .latest .value,
-    #container #main-block .prefecture-chart .latest .value {
-      font-size: 20px; }
-      @media only screen and (min-width: 400px) {
-        #container #main-block .transition .latest .value,
-        #container #main-block .prefecture-chart .latest .value {
-          font-size: 22px; } }
-      @media only screen and (min-width: 640px) {
-        #container #main-block .transition .latest .value,
-        #container #main-block .prefecture-chart .latest .value {
-          font-size: 24px; } }
-    #container #main-block .transition .latest .type, #container #main-block .transition .latest .unit, #container #main-block .transition .latest .change,
-    #container #main-block .prefecture-chart .latest .type,
-    #container #main-block .prefecture-chart .latest .unit,
-    #container #main-block .prefecture-chart .latest .change {
-      font-size: 13px;
-      color: #ccc; }
-    #container #main-block .transition .latest .change,
-    #container #main-block .prefecture-chart .latest .change {
-      text-align: right; }
-  #container #main-block .transition p.notes,
-  #container #main-block .prefecture-chart p.notes {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-right: 76px; }
-    #container #main-block .transition p.notes a.more,
-    #container #main-block .prefecture-chart p.notes a.more {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 13px;
-      color: #ace; }
-      #container #main-block .transition p.notes a.more:hover,
-      #container #main-block .prefecture-chart p.notes a.more:hover {
-        cursor: pointer; }
-    #container #main-block .transition p.notes.show,
-    #container #main-block .prefecture-chart p.notes.show {
-      white-space: inherit;
-      padding-right: 0; }
-      #container #main-block .transition p.notes.show a.more,
-      #container #main-block .prefecture-chart p.notes.show a.more {
-        display: none; }
+        #container #main-block .box p.notes a.more {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0; }
+          #container #main-block .box p.notes a.more:hover {
+            cursor: pointer; }
+      #container #main-block .box p.notes.show {
+        white-space: inherit;
+        padding-right: 0; }
+        #container #main-block .box p.notes.show a.more {
+          display: none; }
   #container #main-block #region-box {
     position: inherit; }
     #container #main-block #region-box select {
