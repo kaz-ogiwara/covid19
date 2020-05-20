@@ -50,7 +50,7 @@
         <div class="flex-container">
           <div class="flex-row">
             <div class="box transition nationwide" code="carriers" pref="">
-              <h3>PCR検査陽性者数</h3>
+              <h3>検査陽性者数</h3>
               <div class="latest">
                 <div>
                   <span class="type"></span>
@@ -136,6 +136,64 @@
             </div>
           </div>
           <div class="flex-row">
+            <div class="box transition nationwide" code="serious" pref="">
+              <h3>重症者数</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">新規</div>
+                <div class="switch" value="total">累計</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
+                <p class="notes">厚生労働省「新型コロナウイルス感染症の現在の状況と厚生労働省の対応について」＞「国内の状況について」＞「入院治療等を要する者」＞「うち重症者」。以前の表記は「人工呼吸器又は集中治療室に入院している者」。その他の定義や注意事項は<a href="#footer-notes">ページ下部の注記</a>を参照。<a class="more">もっと読む</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="deaths" pref="">
+              <h3>死亡者数</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">新規</div>
+                <div class="switch" value="total">累計</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
+              </div>
+              <p class="notes">厚生労働省「新型コロナウイルス感染症の現在の状況と厚生労働省の対応について」＞「国内の状況について」＞「死亡者」。4月13日以降は個々の陽性者との突合作業中も含む。その他の定義や注意事項は<a href="#footer-notes">ページ下部の注記</a>を参照。<a class="more">もっと読む</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
             <div class="box transition nationwide" code="pcrtested" pref="">
               <h3>PCR検査人数</h3>
               <div class="latest">
@@ -194,8 +252,8 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition nationwide" code="serious" pref="">
-              <h3>重症者数</h3>
+            <div class="box transition nationwide" code="reproduction" pref="">
+              <h3>実効再生産数</h3>
               <div class="latest">
                 <div>
                   <span class="type"></span>
@@ -205,10 +263,6 @@
                 <div class="change"></div>
               </div>
               <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">新規</div>
-                <div class="switch" value="total">累計</div>
-              </div>
               <div class="charts-wrapper">
                 <div class="main-chart-wrapper">
                   <div class="main-chart"></div>
@@ -216,39 +270,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
-              </div>
-                <p class="notes">厚生労働省「新型コロナウイルス感染症の現在の状況と厚生労働省の対応について」＞「国内の状況について」＞「入院治療等を要する者」＞「うち重症者」。以前の表記は「人工呼吸器又は集中治療室に入院している者」。その他の定義や注意事項は<a href="#footer-notes">ページ下部の注記</a>を参照。<a class="more">もっと読む</a></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="deaths" pref="">
-              <h3>死亡者数</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">新規</div>
-                <div class="switch" value="total">累計</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>移動平均線を表示</div>
-              </div>
-              <p class="notes">厚生労働省「新型コロナウイルス感染症の現在の状況と厚生労働省の対応について」＞「国内の状況について」＞「死亡者」。4月13日以降は個々の陽性者との突合作業中も含む。その他の定義や注意事項は<a href="#footer-notes">ページ下部の注記</a>を参照。<a class="more">もっと読む</a></p>
+              <p class="notes">実効再生産数とは「1人の感染者が平均して何人に感染させるか」を表す指標。計算式は「（直近7日間の新規陽性者数／その前7日間の新規陽性者数）^（平均世代時間／報告間隔）」。平均世代時間は5日、報告間隔は7日と仮定。リアルタイム性を重視して流行動態を把握するため、報告日ベースによる簡易的な計算式を用いている。精密な計算ではないこと、報告の遅れに影響を受けることに注意。モデルと監修は北海道大学大学院医学研究院・西浦博教授。計算式の詳細は<a href="https://github.com/contactmodel/COVID19-Japan-Reff" target="_blank">西浦教授の公開するGitHubリポジトリ</a>を参照。<a class="more">もっと読む</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -492,6 +514,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="js/jquery.japan-map.min.js"></script>
-    <script src="js/script.min.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

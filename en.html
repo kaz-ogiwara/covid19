@@ -136,6 +136,64 @@
             </div>
           </div>
           <div class="flex-row">
+            <div class="box transition nationwide" code="serious" pref="">
+              <h3>Critically Ill</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Critically ill" by MHLW. The former title was "Hospitalized with a ventilator or intensive care unit". <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="box transition nationwide" code="deaths" pref="">
+              <h3>Deaths</h3>
+              <div class="latest">
+                <div>
+                  <span class="type"></span>
+                  <span class="value"></span>
+                  <span class="unit"></span>
+                </div>
+                <div class="change"></div>
+              </div>
+              <h5 class="updated"><br /></h5>
+              <div class="switches">
+                <div class="switch selected" value="new">NEW</div>
+                <div class="switch" value="total">TOTAL</div>
+              </div>
+              <div class="charts-wrapper">
+                <div class="main-chart-wrapper">
+                  <div class="main-chart"></div>
+                </div>
+                <div class="axis-chart"></div>
+                <div class="axis-cover"></div>
+              </div>
+              <div class="checkboxes">
+                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
+              </div>
+              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Death" by MHLW. Cases which MHLW is still confirming reports from prefectures are included on and after 13 April. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+            </div>
+          </div>
+          <div class="flex-row">
             <div class="box transition nationwide" code="pcrtested" pref="">
               <h3>PCR Tested</h3>
               <div class="latest">
@@ -194,8 +252,8 @@
             </div>
           </div>
           <div class="flex-row">
-            <div class="box transition nationwide" code="serious" pref="">
-              <h3>Critically Ill</h3>
+            <div class="box transition nationwide" code="reproduction" pref="">
+              <h3>Effective Reproduction Number</h3>
               <div class="latest">
                 <div>
                   <span class="type"></span>
@@ -205,10 +263,6 @@
                 <div class="change"></div>
               </div>
               <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">NEW</div>
-                <div class="switch" value="total">TOTAL</div>
-              </div>
               <div class="charts-wrapper">
                 <div class="main-chart-wrapper">
                   <div class="main-chart"></div>
@@ -216,39 +270,7 @@
                 <div class="axis-chart"></div>
                 <div class="axis-cover"></div>
               </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
-              </div>
-              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Critically ill" by MHLW. The former title was "Hospitalized with a ventilator or intensive care unit". <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
-            </div>
-          </div>
-          <div class="flex-row">
-            <div class="box transition nationwide" code="deaths" pref="">
-              <h3>Deaths</h3>
-              <div class="latest">
-                <div>
-                  <span class="type"></span>
-                  <span class="value"></span>
-                  <span class="unit"></span>
-                </div>
-                <div class="change"></div>
-              </div>
-              <h5 class="updated"><br /></h5>
-              <div class="switches">
-                <div class="switch selected" value="new">NEW</div>
-                <div class="switch" value="total">TOTAL</div>
-              </div>
-              <div class="charts-wrapper">
-                <div class="main-chart-wrapper">
-                  <div class="main-chart"></div>
-                </div>
-                <div class="axis-chart"></div>
-                <div class="axis-cover"></div>
-              </div>
-              <div class="checkboxes">
-                <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
-              </div>
-              <p class="notes">Data source: "Coronavirus disease 2019 (COVID-19) situation within and outside the country" > "Death" by MHLW. Cases which MHLW is still confirming reports from prefectures are included on and after 13 April. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+              <p class="notes">Formula: (New cases in past 7 days / New cases in 7 days before that) ^ (mean generation time / length of reporting interval). Mean generation time is supposed to be 5 days, and length of reporting interval is supposed to be 7 days. For the purpose of understanding current trends in real time, this formula is simplified and based on reporting dates. Note that this formula is a simplified version and may be affected by reporting delays. Model and supervised by Professor Hiroshi Nishiura of Hokkaido University Graduate School of Medicine. Refer to <a href="https://github.com/contactmodel/COVID19-Japan-Reff" target="_blank">GitHub repository</a> published by Prof. Nishiura for further details.<a class="more">READ MORE</a></p>
             </div>
           </div>
           <div class="flex-row">
@@ -503,6 +525,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="js/jquery.japan-map.min.js"></script>
-    <script src="js/script.min.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
