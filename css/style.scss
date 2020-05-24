@@ -227,7 +227,7 @@ html,body {
 
       h3 {
         margin-left: -2px;
-        margin-right: 80px;
+        margin-right: 120px;
         padding-left: 6px;
         font-size: 16px;
         font-weight: bold;
@@ -264,17 +264,17 @@ html,body {
         margin: 4px 0 8px 10px;
 
         @media only screen and (min-width: 400px) {
-          margin-left: 12px;
+          margin-left: 10px;
         }
 
         @media only screen and (min-width: 640px) {
-          margin-left: 14px;
+          margin-left: 12px;
         }
       }
 
       .latest {
         position: absolute;
-        top: 8px;
+        top: 10px;
         right: 16px;
 
         &>div {

@@ -162,7 +162,7 @@ html, body {
     border-radius: 4px; }
     #container #main-block .box h3 {
       margin-left: -2px;
-      margin-right: 80px;
+      margin-right: 120px;
       padding-left: 6px;
       font-size: 16px;
       font-weight: bold;
@@ -189,13 +189,13 @@ html, body {
       margin: 4px 0 8px 10px; }
       @media only screen and (min-width: 400px) {
         #container #main-block .box h5 {
-          margin-left: 12px; } }
+          margin-left: 10px; } }
       @media only screen and (min-width: 640px) {
         #container #main-block .box h5 {
-          margin-left: 14px; } }
+          margin-left: 12px; } }
     #container #main-block .box .latest {
       position: absolute;
-      top: 8px;
+      top: 10px;
       right: 16px; }
       #container #main-block .box .latest > div {
         text-align: right; }
