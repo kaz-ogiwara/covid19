@@ -45,7 +45,7 @@
         <p class="updated-last"><br /></p>
         <div class="alert">
           <h4>What's New</h4>
-          <p>Add Effective Reproduction Number chart into Nationwide Situation section.</p>
+          <p>Added Effective Reproduction Number charts into "Nationwide Situation" and "Each Prefecture" sections.</p>
         </div>
         <p><a href="./">JAPANESE</a></p>
       </div>
@@ -282,7 +282,7 @@
               <h3>By Age</h3>
               <h5 class="updated-demography">As of 7 May</h5>
               <div id="demography-chart"></div>
-              <p class="notes">"Unknown" includes undisclosed or under confirmation. As MHLW stopped updating this data since 7 May, this chart also stops updating.</p>
+              <p class="notes">"Unknown" includes undisclosed or under confirmation. As MHLW stopped updating this data since 7 May, this chart also stops updating.<a class="more">READ MORE</a></p>
             </div>
           </div>
         </div>
@@ -379,7 +379,7 @@
                   <div class="checkboxes">
                     <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
                   </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
@@ -408,7 +408,7 @@
                   <div class="checkboxes">
                     <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
                   </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
@@ -437,7 +437,7 @@
                   <div class="checkboxes">
                     <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
                   </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. <a href="#footer-notes">See below</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes.<a class="more">READ MORE</a></p>
                 </div>
               </div>
               <div class="flex-row t03">
@@ -466,14 +466,36 @@
                   <div class="checkboxes">
                     <div class="checkbox moving-average on"><div><div></div></div>Show Moving Average</div>
                   </div>
-                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23. <a href="#footer-notes">See below</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
+                  <p class="notes">The data is based on transcription of the prefectural disclosures by MHLW. On weekends and holidays, the number of PCR tests may be announced as "0" because MHLW did not receive the report, even if tests have been performed. The past data will be corrected if the number of previous tests was known. If not, the number of tests on weekdays and holidays will be added on the next weekday. Akita in 3/11 is the number of only Akita city. Aichi in 3/16-22 excludes number of Nagoya city. The figures for Chiba are only counted from 3/21, Osaka from 3/22, and Kanagawa from 3/23. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
+                </div>
+              </div>
+              <div class="flex-row t03">
+                <div class="box transition prefecture" code="reproduction" pref="">
+                  <h3>Effective Reproduction Number in <span></span></h3>
+                  <div class="latest">
+                    <div>
+                      <span class="type"></span>
+                      <span class="value"></span>
+                      <span class="unit"></span>
+                    </div>
+                    <div class="change"></div>
+                  </div>
+                  <h5 class="updated"><br /></h5>
+                  <div class="charts-wrapper">
+                    <div class="main-chart-wrapper">
+                      <div class="main-chart"></div>
+                    </div>
+                    <div class="axis-chart"></div>
+                    <div class="axis-cover"></div>
+                  </div>
+                  <p class="notes">In prefectures with fewer cases, a few case variations may bring a large fluctuation of effective reproduction number. In uncountable cases, such as zero new positives in the previous week, the number of effective reproduction number is also assumed to be zero. See chart annotations in "Nationwide Situation" section or <a href="#footer-notes">footer notes</a> for further information such as definition or notes. <a class="more">READ MORE</a></p>
                 </div>
               </div>
             </div>
         </div>
       </div>
       <div id="footer-block">
-        <p class="notes">Notes: Returnees on government charter flights from Wuhan, and passengers and crew on cruise ships docked in Kanagawa and Nagasaki, are excluded. Moving averages are 7-day backward. The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. The number of "Tested Positive" is basically equals to the sum of "Active Cases", "Discharged", and "Deaths", unless it includes confirming cases. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
+        <p class="notes">Notes: Returnees on government charter flights from Wuhan, airport quarantine, and passengers and crew on cruise ships docked in Kanagawa, are excluded. Cases on cruise ship docked in Nagasaki are included in nationwide section but not in Nagasaki. Moving averages are 7-day backward. The number is based on disclosures from each prefecture on and after 8 May, and is confirmed by MHLW before that. It is assumed to be the same as the previous day if not updated. On the days with no continuity from the previous day due to change of standards, "New" number is treated as 0 and the bar color is changed. The number of "Tested Positive" is basically equals to the sum of "Active Cases", "Discharged", and "Deaths", unless it includes confirming cases. Data may be corrected by the developer when it is considered as an obvious misstatement, such as minus value of Tested Positive.</p>
         <p class="notes">Data source: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html" target="_blank">Press release from MHLW</a>, including data on each prefecture. Only data on Tokyo may be corrected later according to <a href="https://stopcovid19.metro.tokyo.lg.jp/en" taret="_blank">Latest updates on COVID-19 in Tokyo</a>. Used <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> to draw charts. Used <a href="https://github.com/takemaru-hirai/japan-map" target="_blank">Japan Map</a> to draw prefectures map. Used icons from <a href="https://material.io/resources/icons/" target="_blank">Material Design</a>.</p>
         <p class="notes">Change log and source code: <a href="https://github.com/kaz-ogiwara/covid19/" target="_blank">GitHub</a> | <a href="https://github.com/kaz-ogiwara/covid19/tree/master/data" target="_blank">Download CSV data</a></p>
         <div id="social-buttons">
@@ -483,32 +505,36 @@
         <div id="faqs">
           <h3>Frequently Asked Questions</h3>
           <section>
-            <h4>Q. Why are the numbers of cases PCR tested negative or largely increasing?</h4>
-            <p>A. Because there has been adjustments in case of corrections or additions of the report from each prefecture. For example, on March 19 and 25, the numbers of people PCR tested were minus, because Chiba and Osaka prefectures, respectively, corrected their reports (they had been reporting the number of PCR tests instead of that of people PCR tested). Also, the total number of people PCR tested would be large when MHLW added report of a prefecture which had not been reporting their number. Usually, in such cases, the past numbers should be corrected because it is a change of definition, but MHLW just correct only the latest number in order to, perhaps, make the daily publication in time.</p>
+            <h4>Q. Why does the color of the bar chart change halfway through?</h4>
+            <p>A. Because data source has been changed. Until 7 May, data from each prefecture is reported to MHLW in accordance with Infectious Disease Law, and is based on disclosures from each prefecture after that. Since this change caused a loss of continuity on a particular day, the bar on that day is changed its color and "New" value is treated as zero. In addition, the aggregation criteria of Deaths, Discharged, and PCR Tested were changed and the same process was applied to them. Please see the notes below charts for specific changes and dates.</p>
           </section>
           <section>
-            <h4>Q. Can I see the number of PCR tests on this page?</h4>
-            <p>A. No. This page (currently) shows only the number of PCR tested cases. The PCR test may be performed multiple times for one person. It will be counted as 1 tested case. Therefore, in many cases, the number of PCR tests is larger than that of tested cases.</p>
+            <h4>Q. Why some items such as PCR tests fluctuate greatly from day to day?</h4>
+            <p>A. This is because the actual number fluctuates, or because report to MHLW delays. As of later case, reporting number to MHLW tend to be lower in weekends and holidays. Numbers on weekends and holidays may be corrected later, or reported on the most recent weekday. In order to smooth out fluctuation due to the day of the week, each chart has moving average (7-day backward).</p>
           </section>
           <section>
-            <h4>Q. Why is the number of people PCR tested soaring since March 4?</h4>
-            <p>A. This is because the Ministry of Health, Labor and Welfare has expanded the range to be included in the published figures. The number of tests itself has not increased. Specifically, in addition to the symptom-based surveillance, tests for close contacts have been included in the published numbers. Usually, numbers with different standards should be handled in separate frames, but it is impossible to distinguish between the two because the announced numbers are overwritten. If we make a graph as it is, the number of inspections will appear to have increased sharply, so on this page the color of the graph is changed, and the reason for the increase in the note is added.</p>
+            <h4>Q. Why do some values record minus, even though they should not be?</h4>
+            <p>A. It happens when the past data was corrected. Since MHLW only discloses the latest total number of each items, only values on the latest day are corrected when the past numbers ontain errors.</p>
           </section>
           <section>
-            <h4>Q. What is the difference between the number of infected people and the number of patients?</h4>
-            <p>A. "Infected person" refers to a person infected with the new coronavirus = a person who has tested positive by PCR. Except for those who have no symptoms (= asymptomatic pathogen carriers), those who actually have symptoms are called "patients". It is the same notation as the Ministry of Health, Labor and Welfare. Since the PCR test also targets close contacts of known infected people, there are cases in which "there are no symptoms but actually infected", and the number of infected people and the number of patients are not equal.</p>
+            <h4>Q. What is Effective Reproduction Number?</h4>
+            <p>A. Effective Reproduction Number (ERN) is an index to see how many people are infected by one carrier. The calculation formula is "(number of new cases in the last 7 days / number of new cases in 7 days before that) ^ (average generation time / reporting interval)". In this page, the average generation time is assumed to be 5 days, and the reporting interval is assumed to be 7 days. In order to understand infection trends as soon as possible, this formula is a simplified version based on reporting date. Note that this index is not a precise calculation and may be affected by delays in reporting. This is based on a model and supervised by Professor Hiroshi Nishiura (Department of Hygiene, Graduate School of Medicine, Hokkaido University). Refer to <a href="https://github.com/contactmodel/COVID19-Japan-Reff" target="_blank">GitHub Repository published by Professor Nishiura</a> for further details. An increase in this indicator means the infection is spreading rapidly. On the other hand, if it continues to be less than 1, it means that the infection is on the phase of receding. Note that this indicator may be the same in spite of the number of people infected in the last 7 days. To understand the current status of the infection, check other indicators such as the number of positive cases.</p>
           </section>
           <section>
-            <h4>Q. Why are the data different from the press and announcements from prefectures?</h4>
-            <p>A. It depends on the individual case, but it seems to be due to the difference from the MHLW standards. The MHLW receives reports from each prefecture and finally summarizes data nationwide by eliminating duplication. In the process, aggregation criteria, for example, regions, may differ. Another possibility is that the number of patients is confused with the number of infected people.</p>
+            <h4>Q. What is the definition of "Critically Ill"?</h4>
+            <p>A. On and before 7 May, it means cases putting on a ventilator or treated in an Intensive Care Unit (ICU). Since the number is a total of reports from prefectures after that, the definition may vary by prefecture.</p>
+          </section>
+          <section>
+            <h4>Q. Why are some data different from other press?</h4>
+            <p>A. It depends on the individual case, but it is often due to several of the following: difference of data source (report from MHLW or prefecture), difference of time to close aggregation, or difference of aggregation range (including cases in cruise ships and airport quarantine or not).</p>
           </section>
           <section>
             <h4>Q. How can I access data sources?</h4>
-            <p>A. For example, here is the data as of March 9, 12:00. <a href="https://www.mhlw.go.jp/index.html" target="_blank">厚生労働省</a> [Japanese] - <a href="https://www.mhlw.go.jp/english/" target="_blank">English site</a> - <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/newpage_00032.html" target="_blank">Latest information on Coronavirus disease 2019 (COVID-19) is HERE.</a></p>
+            <p>A. The latest information page in English by MHLW is here: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/newpage_00032.html" target="_blank">About Coronavirus Disease 2019 (COVID-19)</a></p>
           </section>
           <section>
             <h4>Q. Can I use data and source code on my SNS or blog?</h4>
-            <p>A. Feel free to use it for both commercial or non-commercial use. The specific standards are based on the MIT license. You don't have to ask for permission, but it's good to have a follow-up report, so contacting us will help us because we can easily tell the company "Let's keep publishing."</p>
+            <p>A. Yes, feel free to use it for both commercial or non-commercial use. However, you must indicate the copyright holder, as "東洋経済オンライン" or "TOYO KEIZAI ONLINE". Other specific standards are based on the MIT license.</p>
           </section>
         </div>
         <div id="related-links">
