@@ -338,13 +338,7 @@ html,body {
           position: relative;
           overflow-x: scroll;
           -webkit-overflow-scrolling: touch;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
           z-index: 1;
-
-          &::-webkit-scrollbar {
-            display:none;
-          }
 
           .main-chart {
             width: 100%;
