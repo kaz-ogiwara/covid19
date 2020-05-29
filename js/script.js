@@ -123,9 +123,9 @@ const init = () => {
 
     for (thType in gThresholds) {
       let values = [];
-      let rows = gData["prefectures-data"][thType];
+      let rows = gData["prefectures-data"][thType].values;
       let latest = rows[rows.length - 1];
-      for (let i = 3; i < latest.length; i++) {
+      for (let i = 0; i < latest.length; i++) {
         values.push(latest[i]);
       }
       gThresholds[thType] = median(values);
@@ -155,11 +155,12 @@ const init = () => {
 
   const drawTransitionChart = ($box, code, prefCode, hasDuration = false) => {
 
-    const getBarColor = (code, prefCode, row, index) => {
+    const getBarColor = (code, prefCode, from, i, j) => {
       let ret = COLORS.default;
-      let ymd = (parseInt(row[0]) * 10000) + (parseInt(row[1]) * 100) + parseInt(row[2]);
+      let ymd = getDateValue(from, i, true);
 
       if (  (prefCode === "" && code === "deaths"     && ymd < 20200413)
+        ||  (prefCode === "" && code === "carriers"   && ymd < 20200331)
         ||  (prefCode === "" && code === "discharged" && ymd < 20200420)
         ||  (prefCode === "" && code === "pcrtested"  && ymd < 20200303)
       ) {
@@ -171,7 +172,7 @@ const init = () => {
       }
 
       if (prefCode === "" && code === "pcrtests") {
-        ret = COLORS.pcrtests[index];
+        ret = COLORS.pcrtests[j];
       }
 
       if (code === "reproduction") {
@@ -181,11 +182,37 @@ const init = () => {
       return ret;
     }
 
+    const getDateValue = (from, i, isYmd) => {
+      let dt = new Date(from[0], from[1] - 1, from[2]);
+          dt.setDate(dt.getDate() + i);
+
+      let ret = "";
+      let cy = dt.getFullYear();
+      let cm = dt.getMonth() + 1;
+      let cd = dt.getDate();
+
+      if (isYmd) {
+        let ymd = (parseInt(cy) * 10000) + (parseInt(cm) * 100) + parseInt(cd);
+        ret = ymd;
+
+      } else {
+        if (LANG === "ja") {
+          ret = cm + "/" + cd;
+        }
+
+        if (LANG === "en") {
+          ret = cm + "/" + cd;
+        }
+      }
+
+      return ret;
+    }
+
     const drawLatestValue = ($box, rows) => {
       let valueLatest = 0;
       let valuePrev   = 0;
 
-      for (let i = 3; i < rows[0].length; i++) {
+      for (let i = 0; i < rows[0].length; i++) {
         valueLatest += rows[rows.length - 1][i];
         valuePrev   += rows[rows.length - 2][i];
       }
@@ -284,12 +311,14 @@ const init = () => {
     let switchValue = $box.find(".switch.selected").attr("value");
     let hasMovingAverage = ($box.find(".checkbox.moving-average").hasClass("on")) ? true: false;
 
-    let rows = gData.transition[code];
+    let from = gData.transition[code].from;
+    let rows = gData.transition[code].values;
 
     if (prefCode !== "") {
+      from = gData["prefectures-data"][code].from;
       rows = [];
-      gData["prefectures-data"][code].forEach(function(frow, i){
-        rows.push([frow[0], frow[1], frow[2], frow[parseInt(prefCode) + 2]]);
+      gData["prefectures-data"][code].values.forEach(function(frow, i){
+        rows.push([frow[parseInt(prefCode) - 1]]);
       });
     }
 
@@ -380,9 +409,9 @@ const init = () => {
       }
     };
 
-    for (let i = 3; i < rows[0].length; i++) {
+    for (let i = 0; i < rows[0].length; i++) {
       config.data.datasets.push({
-        label: LABELS[LANG].transition[code][i - 3],
+        label: LABELS[LANG].transition[code][i],
         backgroundColor: [],
         data: []
       });
@@ -399,11 +428,11 @@ const init = () => {
 
     let prevBarColor = "";
     rows.forEach(function(row, i){
-      let curBarColor = getBarColor(code, prefCode, row, i);
+      let curBarColor = getBarColor(code, prefCode, from, i, 0);
 
-      config.data.labels.push(row[1] + "/" + row[2]);
+      config.data.labels.push(getDateValue(from, i, false));
 
-      for (let j = 3; j < rows[0].length; j++) {
+      for (let j = 0; j < rows[0].length; j++) {
         let value = row[j];
 
         if (switchValue === "new") {
@@ -413,8 +442,8 @@ const init = () => {
           }
         }
 
-        config.data.datasets[j - 3].data.push(value);
-        config.data.datasets[j - 3].backgroundColor.push(getBarColor(code, prefCode, row, j - 3));
+        config.data.datasets[j].data.push(value);
+        config.data.datasets[j].backgroundColor.push(getBarColor(code, prefCode, from, i, j));
       }
 
       prevBarColor = curBarColor;
@@ -466,7 +495,7 @@ const init = () => {
   const getPrefColor = (prefCode) => {
     let type = $("#select-pref-type").val();
     let ret = "rgba(90, 90, 90, 0.6)";
-    let value = gData["prefectures-data"][type][gData["prefectures-data"][type].length - 1][parseInt(prefCode) + 2];
+    let value = gData["prefectures-data"][type].values[gData["prefectures-data"][type].values.length - 1][parseInt(prefCode) - 1];
     if (value >= 1) {
       ret = COLORS.dark;
       if (gThresholds[type] === 0) ret = COLORS.default;
@@ -700,10 +729,12 @@ const init = () => {
     if (prefCode !== "") config.options.animation.duration = 0;
 
     let prefs = [];
-    gData["prefectures-data"][dataType][gData["prefectures-data"][dataType].length - 1].forEach(function(value, i){
-      if (i >= 3) {
-        prefs.push({name:gData["prefectures-map"][i - 3][LANG], value:value, code:(i - 2).toString()});
-      }
+    gData["prefectures-data"][dataType].values[gData["prefectures-data"][dataType].values.length - 1].forEach(function(value, i){
+      prefs.push({
+        name: gData["prefectures-map"][i][LANG],
+        value: value,
+        code: (i + 1).toString()
+      });
     });
 
     prefs.sort((a, b) => {
