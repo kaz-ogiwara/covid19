@@ -439,6 +439,9 @@ const init = () => {
           value = 0;
           if (prevBarColor === curBarColor && row[j] !== "" && rows[i - 1][j] !== "") {
             value = row[j] - rows[i - 1][j];
+            if (value < 0 && (code === "carriers" || code === "discharged" || code === "deaths" || code === "pcrtested" || code === "pcrtests")) {
+              value = 0;
+            }
           }
         }
 
