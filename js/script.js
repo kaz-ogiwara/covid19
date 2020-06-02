@@ -139,6 +139,14 @@ const init = () => {
     });
   }
 
+  const updateAxisChartHeight = () => {
+    $(".transition").each(function(){
+      let scrollbarWidth = $("body")[0].offsetWidth - $("body")[0].clientWidth;
+      $(this).find(".axis-chart").css("height", "calc(100% - " + scrollbarWidth + "px)");
+      $(this).find(".axis-cover").css("height", "calc(100% - " + scrollbarWidth + "px)");
+    });
+  }
+
   const drawLastDate = ($box, config) => {
     let $updated = $box.find("h5.updated");
     if (!$updated.hasClass("show")) {
@@ -785,6 +793,7 @@ const init = () => {
       drawRegionChart("");
       drawPrefectureCharts("13");
       showUpdateDate();
+      updateAxisChartHeight();
       $("#cover-block").fadeOut();
     })
   }
