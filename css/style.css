@@ -10,9 +10,10 @@
   color: #fafafa;
   letter-spacing: 0.03em; }
 
-html, body {
+body {
   width: 100%;
-  background-color: #061a2b; }
+  background-color: #061a2b;
+  overflow-y: scroll; }
 
 #cover-block {
   position: fixed;

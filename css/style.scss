@@ -15,9 +15,10 @@ $width-3col: 1080px;
   letter-spacing: 0.03em;
 }
 
-html,body {
+body {
   width: 100%;
   background-color: rgb(6,26,43);
+  overflow-y: scroll;
 }
 
 #cover-block {
