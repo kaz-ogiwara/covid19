@@ -7,7 +7,9 @@ let gThresholds = {
   pcrtested: 0
 };
 
+
 const LANG = $("html").attr("lang");
+const SCROLLBAR_WIDTH = window.innerWidth - $(window).width();
 const COLORS = {
   default: "#3DC",
   second: "#6DF",
@@ -141,11 +143,8 @@ const init = () => {
 
   const updateAxisChartHeight = () => {
     $(".transition").each(function(){
-      let scrollbarWidth = window.innerWidth - $(window).width();
-      //let scrollbarWidth = $("body")[0].offsetWidth - $("body")[0].clientWidth;
-      console.log(scrollbarWidth);
-      $(this).find(".axis-chart").css("height", "calc(100% - " + scrollbarWidth + "px)");
-      $(this).find(".axis-cover").css("height", "calc(100% - " + scrollbarWidth + "px)");
+      $(this).find(".axis-chart").css("height", "calc(100% - " + SCROLLBAR_WIDTH + "px)");
+      $(this).find(".axis-cover").css("height", "calc(100% - " + SCROLLBAR_WIDTH + "px)");
     });
   }
 
