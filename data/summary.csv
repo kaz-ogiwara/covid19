@@ -120,4 +120,5 @@ year,month,date,pcr_tested_positive,pcr_tested,hospitalized,serious,discharged,d
 2020,6,7,16964,263962,1060,99,14970,916,11,10375,46317,243854,146150,121377,45690,18474,22840,15295,515226,155146,https://www.mhlw.go.jp/stf/newpage_11749.html
 2020,6,8,16985,267069,1028,92,15035,916,12,10375,47415,244626,146665,121803,45729,18500,22940,15385,517750,155688,https://www.mhlw.go.jp/stf/newpage_11774.html
 2020,6,9,17015,269976,965,91,15120,919,12,,,,,,,,,,,,https://www.mhlw.go.jp/stf/newpage_11796.html
-2020,6,10,17051,273204,923,88,15200,920,12,,,,,,,,,,,,https://www.mhlw.go.jp/stf/newpage_11820.html
+2020,6,10,17050,273204,923,88,15200,920,12,,,,,,,,,,,,https://www.mhlw.go.jp/stf/newpage_11820.html
+2020,6,11,17090,276032,854,82,15308,922,10,,,,,,,,,,,,https://www.mhlw.go.jp/stf/newpage_11850.html
