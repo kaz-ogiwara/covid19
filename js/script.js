@@ -163,11 +163,19 @@ const init = () => {
         ||  (prefCode === "" && code === "discharged" && ymd < 20200420)
         ||  (prefCode === "" && code === "pcrtested"  && ymd < 20200303)
       ) {
-        ret = COLORS.third;
+        ret = COLORS.second;
       }
 
       if (ymd >= 20200508) {
         ret = COLORS.second;
+      }
+
+      if (prefCode === "" && code === "pcrtested" && 20200617 <= ymd) {
+        ret = COLORS.default;
+      }
+
+      if (prefCode === "13" && code === "pcrtested" && 20200617 <= ymd) {
+        ret = COLORS.default;
       }
 
       if (prefCode === "" && code === "pcrtests") {
