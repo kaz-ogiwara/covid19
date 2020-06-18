@@ -231,7 +231,16 @@ const init = () => {
           $latest.find(".value").text(addCommas(valueLatest));
           $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
           $latest.find(".type").text(capitalize($box.find(".switch[value=total]").text()));
-          $latest.find(".change").text(LABELS[LANG].change + " " + latestChange);
+
+          if ($box.attr("code") === "pcrtested" && ($box.attr("pref") === "" || $box.attr("pref") === "13")) {
+            let string = {
+              ja: "基準変更：注記を参照",
+              en: "NA: See notes"
+            };
+            $latest.find(".change").text(string[LANG]);
+          } else {
+            $latest.find(".change").text(LABELS[LANG].change + " " + latestChange);
+          }
     }
 
     const drawAxisChart = ($box, mainConfigData, isStacked) => {
