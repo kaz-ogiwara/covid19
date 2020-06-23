@@ -180,7 +180,10 @@ const init = () => {
         ret = COLORS.default;
       }
 
-      if (prefCode === "13" && code === "pcrtested" && 20200617 <= ymd) {
+      if ((prefCode === "13" && code === "pcrtested" && 20200617 <= ymd)
+      ||  (prefCode === "28" && code === "pcrtested" && 20200618 <= ymd)
+      ||  (prefCode === "22" && code === "pcrtested" && 20200621 <= ymd)
+        ) {
         ret = COLORS.default;
       }
 
