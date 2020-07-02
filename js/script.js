@@ -14,7 +14,7 @@ const COLORS = {
   default: "#3DC",
   second: "#6DF",
   third: "#399",
-  deaths: "#EB8",
+  deaths: "#FB8",
   serious: "#FEA",
   pcrtests: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
   dark: "#399",
@@ -43,6 +43,10 @@ const LABELS = {
       pcrtested: "名",
       pcrtests: "件",
       reproduction: ""
+    },
+    demography: {
+      deaths: "死亡者",
+      misc: "陽性者"
     },
     age: [
       "80代以上",
@@ -79,6 +83,10 @@ const LABELS = {
       pcrtested: "",
       pcrtests: "",
       reproduction: ""
+    },
+    demography: {
+      deaths: "Deaths",
+      misc: "Misc."
     },
     age: [
       "80s+",
@@ -182,8 +190,7 @@ const init = () => {
 
       if ((prefCode === "13" && code === "pcrtested" && 20200617 <= ymd)
       ||  (prefCode === "28" && code === "pcrtested" && 20200618 <= ymd)
-      ||  (prefCode === "22" && code === "pcrtested" && 20200621 <= ymd)
-        ) {
+      ||  (prefCode === "22" && code === "pcrtested" && 20200621 <= ymd)) {
         ret = COLORS.default;
       }
 
@@ -567,7 +574,13 @@ const init = () => {
       data: {
         labels: [],
         datasets: [{
-          label: "",
+          label: LABELS[LANG].demography.deaths,
+          backgroundColor: COLORS.deaths,
+          borderWidth: 0.5,
+          borderColor: "#242a3c",
+          data: []
+        },{
+          label: LABELS[LANG].demography.misc,
           backgroundColor: COLORS.default,
           borderWidth: 0.5,
           borderColor: "#242a3c",
@@ -578,7 +591,10 @@ const init = () => {
         aspectRatio: 0.9,
         responsive: true,
         legend: {
-          display: false
+          display: true,
+          labels: {
+            fontColor: "rgba(255, 255, 255, 0.7)"
+          }
         },
         title: {
           display: false
@@ -586,17 +602,27 @@ const init = () => {
         tooltips: {
           xPadding: 24,
           yPadding: 12,
-          displayColors: false,
+          displayColors: true,
           callbacks: {
             title: function(tooltipItem){
-              return tooltipItem[0].yLabel;
+              let suffix = {
+                ja: "名",
+                en: "cases"
+              };
+              let age = tooltipItem[0].yLabel;
+              let total = 0;
+              tooltipItem.forEach(function(item, i){
+                total += item.xLabel;
+              });
+
+              return age + ": " + total + " " + suffix[LANG];
             },
             label: function(tooltipItem, data){
               let suffix = {
                 ja: "名",
                 en: " cases"
               };
-              return addCommas(tooltipItem.value) + suffix[LANG];
+              return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.value + suffix[LANG];
             }
           }
         },
@@ -636,7 +662,9 @@ const init = () => {
 
     gData.demography.forEach(function(age, index){
       config.data.labels.push(LABELS[LANG].age[index]);
-      config.data.datasets[0].data.push(age);
+      for (let i = 0; i < 2; i++) {
+        config.data.datasets[i].data.push(age[i]);
+      }
     });
 
     let ctx = $canvas.getContext('2d');
