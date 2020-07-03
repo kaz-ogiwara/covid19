@@ -12,8 +12,7 @@ const LANG = $("html").attr("lang");
 const SCROLLBAR_WIDTH = window.innerWidth - $(window).width();
 const COLORS = {
   default: "#3DC",
-  second: "#6DF",
-  third: "#399",
+  second: "#FEA",
   deaths: "#FB8",
   serious: "#FEA",
   pcrtests: "#6F6587,#5987A5,#3BA9B0,#48C7A6,#86E18D,#D5F474".split(","),
@@ -172,26 +171,43 @@ const init = () => {
       let ret = COLORS.default;
       let ymd = getDateValue(from, i, true);
 
-      if (  (prefCode === "" && code === "deaths"     && ymd < 20200413)
-        ||  (prefCode === "" && code === "carriers"   && ymd < 20200331)
-        ||  (prefCode === "" && code === "discharged" && ymd < 20200420)
-        ||  (prefCode === "" && code === "pcrtested"  && ymd < 20200303)
-      ) {
-        ret = COLORS.second;
+      if (prefCode === "") {
+        if (code === "carriers") {
+          if (ymd < 20200331) ret = COLORS.second;
+        } else {
+          if (ymd < 20200508) ret = COLORS.second;
+        }
+
+        if (code === "deaths") {
+          if (ymd < 20200413) ret = COLORS.default;
+        }
+
+        if (code === "discharged") {
+          if (ymd < 20200420) ret = COLORS.default;
+        }
+
+        if (code === "pcrtested") {
+          if (ymd < 20200617) ret = COLORS.second;
+          if (ymd < 20200303) ret = COLORS.second;
+        }
       }
 
-      if (ymd >= 20200508) {
-        ret = COLORS.second;
+      if (prefCode === "13") {
+        if (code === "pcrtested") {
+          if (ymd < 20200507) ret = COLORS.second;
+        }
       }
 
-      if (prefCode === "" && code === "pcrtested" && 20200617 <= ymd) {
-        ret = COLORS.default;
+      if (prefCode === "28") {
+        if (code === "pcrtested") {
+          if (ymd < 20200619) ret = COLORS.second;
+        }
       }
 
-      if ((prefCode === "13" && code === "pcrtested" && 20200617 <= ymd)
-      ||  (prefCode === "28" && code === "pcrtested" && 20200618 <= ymd)
-      ||  (prefCode === "22" && code === "pcrtested" && 20200621 <= ymd)) {
-        ret = COLORS.default;
+      if (prefCode === "22") {
+        if (code === "pcrtested") {
+          if (ymd < 20200622) ret = COLORS.second;
+        }
       }
 
       if (prefCode === "" && code === "pcrtests") {
@@ -483,7 +499,7 @@ const init = () => {
         type: "line",
         label: LABELS[LANG].movingAverage,
         fill: false,
-        borderColor: "#EDA",
+        borderColor: "#FBA",
         borderWidth: 3,
         pointRadius: 0,
         data: []
