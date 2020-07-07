@@ -333,13 +333,13 @@ const init = () => {
       let axisMaxLength = Math.max(axisMax.toString().length, axisMin.toString().length);
       let axisCoverWidth = 0;
       switch(axisMaxLength) {
-        case 1: axisCoverWidth = 22; break;
-        case 2: axisCoverWidth = 26; break;
-        case 3: axisCoverWidth = 34; break;
-        case 4: axisCoverWidth = 40; break;
-        case 5: axisCoverWidth = 52; break;
-        case 6: axisCoverWidth = 58; break;
-        case 7: axisCoverWidth = 64; break;
+        case 1: axisCoverWidth = 28; break;
+        case 2: axisCoverWidth = 32; break;
+        case 3: axisCoverWidth = 40; break;
+        case 4: axisCoverWidth = 46; break;
+        case 5: axisCoverWidth = 58; break;
+        case 6: axisCoverWidth = 64; break;
+        case 7: axisCoverWidth = 70; break;
       }
 
       $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
