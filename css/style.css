@@ -262,7 +262,7 @@ body {
         height: 100%;
         z-index: 2;
         background: #242a3c;
-        background: linear-gradient(90deg, #242a3c 0%, #242a3c 90%, rgba(36, 42, 60, 0) 100%); }
+        background: linear-gradient(90deg, #242a3c 0%, #242a3c 70%, rgba(36, 42, 60, 0) 100%); }
     #container #main-block .box .checkboxes .checkbox {
       text-indent: 42px;
       cursor: pointer;
