@@ -14,6 +14,9 @@
 
 ### CSVデータ
 - 使用したデータはCSVファイルでも公開しています。
+- なお2020年7月3日より厚生労働省がオープンデータの提供を開始しました。
+  - https://www.mhlw.go.jp/stf/covid-19/open-data.html
+  - こちらもあわせてご参照ください。
 
   #### summary.csv
   - ファイル：https://github.com/kaz-ogiwara/covid19/blob/master/data/summary.csv
