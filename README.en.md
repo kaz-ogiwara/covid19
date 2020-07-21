@@ -18,7 +18,7 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
   - File: https://github.com/kaz-ogiwara/covid19/blob/master/data/summary.csv
   - Data source example [Japanese]: https://www.mhlw.go.jp/stf/newpage_10700.html
   - Nationwide main items such as number of people PCR tested or positive cases.
-  - The public page visualizes only on and after 17 February since MHLW started publishing data everyday after that.
+  - As MHLW started to publish Open Data, this file is no more updated since 15 July.
   
   #### prefectures.csv
   - File: https://github.com/kaz-ogiwara/covid19/blob/master/data/prefectures.csv
@@ -31,6 +31,12 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
   - Number of deaths, discharged cases, serious cases, and cases with no symptom, by age.
   - "Unknown", "Undisclosed", and "Checking" are all summarized as "Unknown".
   - The last updated date is 7 May since MHLW does not publish the data after that.
+  
+  #### summary.csv
+  - File: https://github.com/kaz-ogiwara/covid19/blob/master/data/serious.csv
+  - Data source example [Japanese]: https://www.mhlw.go.jp/stf/newpage_10700.html
+  - Nationwide serious cases.
+  - This file is updated instead of summary.csv because MHLW does not publish serious cases in their Open Data page.
 
 ### Update data
 - It will be updated on an irregular basis according to the announcement by the Ministry of Health, Labor and Welfare.
