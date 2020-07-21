@@ -23,7 +23,7 @@
   - データソース：「新型コロナウイルス感染症の現在の状況について」
   - 開示例：https://www.mhlw.go.jp/stf/newpage_10700.html
   - 公表日ごとに全国のPCR検査陽性者、退院者などの主要項目を掲載。
-  - 2月17日まではデータが公開されない日があるため、公開ページでは2月17日以降のみビジュアライズしている。
+  - 厚生労働省のオープンデータ公表に伴い、7月15日以降は更新していない。
 
   #### prefectures.csv
   - ファイル：https://github.com/kaz-ogiwara/covid19/blob/master/data/prefectures.csv
@@ -37,6 +37,13 @@
   - 開示例：https://www.mhlw.go.jp/content/10906000/000619074.pdf
   - 年齢別の死亡数、退院者数、重症者数、無症状者数を掲載。
   - 年齢「不明」「非公表」「調査中」はすべて「不明」としている。
+
+  #### serious.csv
+  - ファイル：https://github.com/kaz-ogiwara/covid19/blob/master/data/serious.csv
+  - データソース：「新型コロナウイルス感染症の現在の状況について」
+  - 開示例：https://www.mhlw.go.jp/stf/newpage_10700.html
+  - 公表日ごとに全国の重症者数を掲載。
+  - 厚生労働省のオープンデータには重症者数が載っていないので、summary.csvに代わってこのファイルを更新している。
 
 ### データの更新
 - 厚生労働省の発表にあわせて不定期で更新する予定です。
