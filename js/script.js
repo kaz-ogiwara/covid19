@@ -173,22 +173,20 @@ const init = () => {
 
       if (prefCode === "") {
         if (code === "carriers") {
-          if (ymd < 20200331) ret = COLORS.second;
-        } else {
           if (ymd < 20200508) ret = COLORS.second;
         }
 
         if (code === "deaths") {
-          if (ymd < 20200413) ret = COLORS.default;
+          if (ymd < 20200422) ret = COLORS.second;
         }
 
         if (code === "discharged") {
-          if (ymd < 20200420) ret = COLORS.default;
+          if (ymd < 20200508) ret = COLORS.second;
+          if (ymd < 20200422) ret = COLORS.default;
         }
 
         if (code === "pcrtested") {
           if (ymd < 20200617) ret = COLORS.second;
-          if (ymd < 20200303) ret = COLORS.second;
         }
       }
 
@@ -248,22 +246,31 @@ const init = () => {
     }
 
     const drawLatestValue = ($box, rows) => {
+      let valueTotal  = 0;
       let valueLatest = 0;
-      let valuePrev   = 0;
 
-      for (let i = 0; i < rows[0].length; i++) {
-        valueLatest += rows[rows.length - 1][i];
-        valuePrev   += rows[rows.length - 2][i];
+      for (let i = 0; i < rows.length; i++) {
+        for (let j = 0; j < rows[0].length; j++) {
+          valueTotal += rows[i][j];
+          if (i === rows.length - 1) valueLatest += rows[i][j];
+        }
       }
 
-      let latestChange = Math.round((valueLatest - valuePrev) * 100) / 100;
-      latestChange = addCommas(latestChange).toString();
-          if (latestChange.charAt(0) !== "-") latestChange = "+" + latestChange;
+      if ($box.attr("code") === "reproduction") {
+        valueTotal  = Math.round(rows[rows.length - 1][0] * 100) / 100;
+        valueLatest = Math.round((rows[rows.length - 1][0] - rows[rows.length - 2][0]) * 100) / 100;
+      }
+
+      valueTotal  = addCommas(valueTotal);
+      valueLatest = addCommas(valueLatest);
+
+      if (valueLatest.charAt(0) !== "-") valueLatest = "+" + valueLatest;
+
       let $latest = $box.find(".latest");
-          $latest.find(".value").text(addCommas(valueLatest));
+          $latest.find(".value").text(valueTotal);
           $latest.find(".unit").text(LABELS[LANG].unit[$box.attr("code")]);
           $latest.find(".type").text(capitalize($box.find(".switch[value=total]").text()));
-          $latest.find(".change").text(LABELS[LANG].change + " " + latestChange);
+          $latest.find(".change").text(LABELS[LANG].change + " " + valueLatest);
     }
 
     const drawAxisChart = ($box, mainConfigData, isStacked) => {
@@ -333,13 +340,13 @@ const init = () => {
       let axisMaxLength = Math.max(axisMax.toString().length, axisMin.toString().length);
       let axisCoverWidth = 0;
       switch(axisMaxLength) {
-        case 1: axisCoverWidth = 28; break;
-        case 2: axisCoverWidth = 32; break;
-        case 3: axisCoverWidth = 40; break;
-        case 4: axisCoverWidth = 46; break;
-        case 5: axisCoverWidth = 58; break;
-        case 6: axisCoverWidth = 64; break;
-        case 7: axisCoverWidth = 70; break;
+        case 1: axisCoverWidth = 36; break;
+        case 2: axisCoverWidth = 40; break;
+        case 3: axisCoverWidth = 48; break;
+        case 4: axisCoverWidth = 54; break;
+        case 5: axisCoverWidth = 66; break;
+        case 6: axisCoverWidth = 72; break;
+        case 7: axisCoverWidth = 78; break;
       }
 
       $box.find(".axis-cover").width(axisCoverWidth.toString() + "px");
@@ -466,22 +473,32 @@ const init = () => {
     }
 
     let prevBarColor = "";
+    let totalValues = [];
+        for (let i = 0; i < rows[0].length; i++) {totalValues.push(0);}
     rows.forEach(function(row, i){
-      let curBarColor = getBarColor(code, prefCode, from, i, 0);
 
+      let curBarColor = getBarColor(code, prefCode, from, i, 0);
       config.data.labels.push(getDateValue(from, i, false));
 
       for (let j = 0; j < rows[0].length; j++) {
+        totalValues[j] += row[j];
+
         let value = row[j];
 
-        if (switchValue === "new") {
+        if (prevBarColor !== curBarColor) {
           value = 0;
-          if (prevBarColor === curBarColor && row[j] !== "" && rows[i - 1][j] !== "") {
-            value = row[j] - rows[i - 1][j];
-            if (value < 0 && (code === "carriers" || code === "discharged" || code === "deaths" || code === "pcrtested" || code === "pcrtests")) {
-              value = 0;
-            }
-          }
+        }
+
+        if (row[j] === "") {
+          value = 0;
+        }
+
+        if (value < 0 && (switchValue === "total" || code === "carriers" || code === "discharged" || code === "deaths" || code === "pcrtested" || code === "pcrtests")) {
+          value = 0;
+        }
+
+        if (switchValue === "total") {
+          value = totalValues[j];
         }
 
         config.data.datasets[j].data.push(value);
