@@ -122,11 +122,11 @@ const init = () => {
 
     for (thType in gThresholds) {
       let values = [];
-      let rows = gData["prefectures-data"][thType].values;
-      let latest = rows[rows.length - 1];
-      for (let i = 0; i < latest.length; i++) {
-        values.push(latest[i]);
-      }
+
+      gData["prefectures-data"].forEach(function(pref, i){
+        values.push(getValuesTotal(pref[thType].values));
+      });
+
       gThresholds[thType] = median(values);
     }
   }
@@ -173,6 +173,10 @@ const init = () => {
 
       if (prefCode === "") {
         if (code === "carriers") {
+          if (ymd < 20200508) ret = COLORS.second;
+        }
+
+        if (code === "cases") {
           if (ymd < 20200508) ret = COLORS.second;
         }
 
@@ -357,16 +361,10 @@ const init = () => {
     let switchValue = $box.find(".switch.selected").attr("value");
     let hasMovingAverage = ($box.find(".checkbox.moving-average").hasClass("on")) ? true: false;
 
-    let from = gData.transition[code].from;
-    let rows = gData.transition[code].values;
-
-    if (prefCode !== "") {
-      from = gData["prefectures-data"][code].from;
-      rows = [];
-      gData["prefectures-data"][code].values.forEach(function(frow, i){
-        rows.push([frow[parseInt(prefCode) - 1]]);
-      });
-    }
+    let root = gData.transition[code];
+               if (prefCode !== "") root = gData["prefectures-data"][parseInt(prefCode) - 1][code];
+    let from = root.from;
+    let rows = root.values;
 
     drawLatestValue($box, rows);
 
@@ -475,6 +473,7 @@ const init = () => {
     let prevBarColor = "";
     let totalValues = [];
         for (let i = 0; i < rows[0].length; i++) {totalValues.push(0);}
+
     rows.forEach(function(row, i){
 
       let curBarColor = getBarColor(code, prefCode, from, i, 0);
@@ -485,7 +484,7 @@ const init = () => {
 
         let value = row[j];
 
-        if (prevBarColor !== curBarColor) {
+        if ((prevBarColor !== curBarColor) && (code !== "reproduction")) {
           value = 0;
         }
 
@@ -552,14 +551,28 @@ const init = () => {
     $wrapper.animate({scrollLeft: $chart.width()}, 0);
   }
 
+  const getValuesTotal = (values) => {
+    let ret = 0;
+
+    values.forEach(function(row, i){
+      row.forEach(function(val, j){
+        ret += val;
+      });
+    });
+
+    return ret;
+  }
+
   const getPrefColor = (prefCode) => {
     let type = $("#select-pref-type").val();
     let ret = "rgba(90, 90, 90, 0.6)";
-    let value = gData["prefectures-data"][type].values[gData["prefectures-data"][type].values.length - 1][parseInt(prefCode) - 1];
+    let value = getValuesTotal(gData["prefectures-data"][parseInt(prefCode) - 1][type].values);
+
     if (value >= 1) {
       ret = COLORS.dark;
       if (gThresholds[type] === 0) ret = COLORS.default;
     }
+
     if (value >= gThresholds[type] && gThresholds[type] >= 1) ret = COLORS.default;
     return ret;
   }
@@ -785,10 +798,11 @@ const init = () => {
     if (prefCode !== "") config.options.animation.duration = 0;
 
     let prefs = [];
-    gData["prefectures-data"][dataType].values[gData["prefectures-data"][dataType].values.length - 1].forEach(function(value, i){
+
+    gData["prefectures-data"].forEach(function(pref, i){
       prefs.push({
         name: gData["prefectures-map"][i][LANG],
-        value: value,
+        value: getValuesTotal(pref[dataType].values),
         code: (i + 1).toString()
       });
     });
