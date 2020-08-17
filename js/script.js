@@ -198,6 +198,16 @@ const init = () => {
         if (code === "pcrtested") {
           if (ymd < 20200507) ret = COLORS.second;
         }
+
+        if (code === "serious") {
+          if (ymd < 20200427) ret = COLORS.second;
+        }
+      }
+
+      if (prefCode === "14") {
+        if (code === "pcrtested") {
+          if (ymd < 20200701) ret = COLORS.second;
+        }
       }
 
       if (prefCode === "28") {
@@ -209,6 +219,12 @@ const init = () => {
       if (prefCode === "22") {
         if (code === "pcrtested") {
           if (ymd < 20200622) ret = COLORS.second;
+        }
+      }
+
+      if (prefCode !== "" && prefCode !== "13") {
+        if (code === "serious") {
+          if (ymd < 20200508) ret = COLORS.second;
         }
       }
 
