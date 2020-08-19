@@ -43,5 +43,7 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
 
 ### License
 - MIT license. Feel free to use it for research, news, and other commercial and non-commercial purposes.
-- Copyright notice should be like: "東洋経済オンライン" or "TOYO KEIZAI ONLINE".
 - The developer assumes no responsibility arising from this project.
+- Copyright notice should be like:
+  - 東洋経済オンライン「新型コロナウイルス 国内感染の状況」制作：荻原和樹
+  - Toyo Keizai Online "Coronavirus Disease (COVID-19) Situation Report in Japan" by Kazuki OGIWARA
