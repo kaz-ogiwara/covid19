@@ -50,8 +50,8 @@ The state of the infection of the new coronavirus (COVID19) in Japan was summari
    - https://github.com/contactmodel/COVID19-Japan-Reff
 
   #### demography.csv
-  - Data source example [Japanese]: https://www.mhlw.go.jp/content/10906000/000619074.pdf
-  - Number of tested positive and deaths, by age group.
+  - Data source example [Japanese]: https://www.mhlw.go.jp/content/10906000/000696696.pdf
+  - Number of tested positive, hospitalized, critically ill, and deaths, by age group.
   - "Unknown", "Undisclosed", and "Checking" are all summarized as "Unknown".
 
   #### prefectures.csv
