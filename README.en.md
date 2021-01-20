@@ -1,7 +1,11 @@
 # Coronavirus Disease (COVID-19) Situation Report in Japan
-The state of the infection of the new coronavirus (COVID19) in Japan was summarized visually from a press release from the Ministry of Health, Labor and Welfare (MHLW).
+The state of the infection of the new coronavirus (COVID-19) in Japan was summarized visually from a press release from the Ministry of Health, Labor and Welfare (MHLW).
 
 [JAPANESE](https://github.com/kaz-ogiwara/covid19/blob/master/README.md)
+
+## Important Notice (January 21)
+- Due to a change in the person in charge of the site, this repository will no longer be updated after January 31.
+- If you have any inquiries or requests, please fill out [our inquiry form](https://s.toyokeizai.net/apply.html?id=CONTACTUS) \[Japanese\].
 
 ### Public page
 - Toyo Keizai Online "Coronavirus Disease (COVID-19) Situation Report in Japan"
