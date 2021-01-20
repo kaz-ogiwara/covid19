@@ -3,6 +3,9 @@
 
 [ENGLISH](https://github.com/kaz-ogiwara/covid19/blob/master/README.en.md)
 
+## 重要なお知らせ（2021.01.21）
+- サイト担当者の変更に伴い、このリポジトリは1月31日をもちまして更新を停止いたします。
+- ご質問・ご意見は東洋経済新報社の[お問い合わせフォーム](https://s.toyokeizai.net/apply.html?id=CONTACTUS)よりお送りください。
 
 ### 公開ページ
 - 東洋経済オンライン「新型コロナウイルス 国内感染の状況」
