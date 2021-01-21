@@ -5,6 +5,7 @@ The state of the infection of the new coronavirus (COVID-19) in Japan was summar
 
 ## Important Notice (January 21)
 - Due to a change in the person in charge of the site, this repository will no longer be updated after January 31.
+- The website itself will continue to be updated as before, and we are considering how to continue updating the data files.
 - If you have any inquiries or requests, please fill out [our inquiry form](https://s.toyokeizai.net/apply.html?id=CONTACTUS) \[Japanese\].
 
 ### Public page
